@@ -29,9 +29,19 @@ export const FormContainer = styled.div`
     background: #fff;
     border-radius: ${(props) => props.theme.borderRadius};
   }
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.small}) {
+    padding: ${(props) => props.theme.paddings.medium}
+      ${(props) => props.theme.paddings.large};
+
+    ${FormContent} {
+      padding: ${(props) => props.theme.paddings.large};
+    }
+  }
 `;
 
 export const PrimaryTitle = styled.h1`
   font-size: 2.5rem;
   margin-bottom: ${(props) => props.theme.margins.medium};
+  color: #fff;
 `;

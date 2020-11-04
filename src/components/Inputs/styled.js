@@ -40,7 +40,42 @@ export const Input = styled.input`
 `;
 
 export const InputInfo = styled.p`
-  font-size: 1.2rem;
+  font-size: ${(props) => props.theme.fonts.defaultSize};
   color: ${(props) => props.theme.fonts.colorNormal};
   margin-top: 3px;
+`;
+
+export const ErrorMsg = styled.p`
+  position: absolute;
+  top: 0;
+  right: 0;
+  white-space: nowrap;
+  background: red;
+  color: #fff;
+  padding: 3px ${(props) => props.theme.paddings.small};
+  border-radius: ${(props) => props.theme.borderRadius};
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+  font-size: 1rem;
+  transform: translate(0, -150%);
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.small}) {
+    right: 50%;
+    transform: translate(50%, -150%);
+  }
+`;
+
+export const ErrorContainer = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: red;
+  display: flex;
+
+  &:hover ${ErrorMsg} {
+    opacity: 1;
+    visibility: visible;
+  }
 `;

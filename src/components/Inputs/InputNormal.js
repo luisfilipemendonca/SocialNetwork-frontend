@@ -1,8 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 
-import { InputContainer, InputGroup, Input, Label, InputInfo } from './styled';
+import { Input } from './styled';
 
-const InputNormal = ({ id, type, placeholder, index, info }) => {
+const InputNormal = ({
+  inputData,
+  index,
+  focusHandler,
+  changeHandler,
+  blurHandler,
+}) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -12,13 +18,18 @@ const InputNormal = ({ id, type, placeholder, index, info }) => {
   }, []);
 
   return (
-    <InputContainer>
-      <InputGroup>
-        <Input ref={inputRef} type={type} placeholder={placeholder} id={id} />
-        <Label htmlFor={id}>{id}</Label>
-      </InputGroup>
-      {info && <InputInfo>{info}</InputInfo>}
-    </InputContainer>
+    <Input
+      ref={inputRef}
+      placeholder={inputData.placeholder}
+      id={inputData.id.toLowerCase()}
+      type={inputData.type}
+      hasError={inputData.hasError}
+      isTouched={inputData.isTouched}
+      value={inputData.value}
+      onFocus={focusHandler}
+      onChange={changeHandler}
+      onBlur={blurHandler}
+    />
   );
 };
 

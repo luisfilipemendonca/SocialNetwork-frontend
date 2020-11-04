@@ -35,6 +35,18 @@ export default createGlobalStyle`
     border: none;
     outline: none;
   }
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.medium}) {
+    html {
+      font-size: 75%;
+    }
+  }
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.large}) {
+    html {
+      font-size: 87.5%;
+    }
+  }
 `;
 
 export const Main = styled.main`

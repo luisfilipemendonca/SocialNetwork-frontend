@@ -11,7 +11,7 @@ export default {
     tertiaryDark: '#b25601',
   },
   fonts: {
-    defaultSize: '1.4rem',
+    defaultSize: '1.2rem',
     colorLight: '#cccccc',
     colorNormal: '#737373',
     colorDark: '#262626',
@@ -27,4 +27,9 @@ export default {
     large: '3rem',
   },
   borderRadius: '3px',
+  breakpoints: {
+    small: '36em', // 576px
+    medium: '48em', // 768px
+    large: '62em', // 992px
+  },
 };

@@ -3,35 +3,45 @@ import React from 'react';
 import { PrimaryTitle } from './styled';
 
 import { inputsLogin } from '../../constants/Inputs';
+import customInput from '../../hooks/CustomInput';
+import formValidation from '../../helpers/FormValidations';
 
 import Form from '../../components/Form';
-import InputNormal from '../../components/Inputs/InputNormal';
-import InputPassword from '../../components/Inputs/InputPassword';
+import Input from '../../components/Inputs';
 
 const FormLogin = () => {
+  const [
+    formInputs,
+    inputChangeHandler,
+    inputFocusHandler,
+    inputBlurHandler,
+  ] = customInput(inputsLogin);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const isFormValid = formValidation.formValidator(formInputs);
+
+    console.log(isFormValid);
+  };
+
   return (
     <>
       <PrimaryTitle>Login</PrimaryTitle>
-      <Form>
-        {Object.keys(inputsLogin).map((input, index) =>
-          inputsLogin[input].type === 'password' ? (
-            <InputPassword
-              id={inputsLogin[input].id}
-              placeholder={inputsLogin[input].placeholder}
-              type={inputsLogin[input].type}
-              info={inputsLogin[input].info}
-              index={index}
-            />
-          ) : (
-            <InputNormal
-              id={inputsLogin[input].id}
-              placeholder={inputsLogin[input].placeholder}
-              type={inputsLogin[input].type}
-              info={inputsLogin[input].info}
-              index={index}
-            />
-          )
-        )}
+      <Form submitHandler={submitHandler}>
+        {Object.keys(formInputs).map((input, index) => (
+          <Input
+            key={formInputs[input].id}
+            inputData={formInputs[input]}
+            index={index}
+            focusHandler={inputFocusHandler}
+            changeHandler={inputChangeHandler}
+            blurHandler={inputBlurHandler}
+          />
+        ))}
+        <button type="submit" onClick={submitHandler}>
+          Login
+        </button>
       </Form>
     </>
   );
