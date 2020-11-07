@@ -14,10 +14,9 @@ export default createGlobalStyle`
   body {
     min-height: 100vh;
     background: linear-gradient(
-      to right,
-      ${(props) => props.theme.colors.tertiaryLight},
+      to bottom,
       ${(props) => props.theme.colors.primaryLight},
-      ${(props) => props.theme.colors.secondaryLight}
+      ${(props) => props.theme.colors.tertiaryLight}
     );
     font-size: ${(props) => props.theme.fonts.defaultSize};
     color: ${(props) => props.theme.fonts.colorDark};
@@ -31,6 +30,13 @@ export default createGlobalStyle`
     list-style: none;
   }
 
+  button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
   input {
     border: none;
     outline: none;
@@ -41,12 +47,6 @@ export default createGlobalStyle`
       font-size: 75%;
     }
   }
-
-  @media screen and (min-width: ${(props) => props.theme.breakpoints.large}) {
-    html {
-      font-size: 87.5%;
-    }
-  }
 `;
 
 export const Main = styled.main`
@@ -54,5 +54,11 @@ export const Main = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - ${(props) => props.theme.components.headerHeight});
+`;
+
+export const BtnCenterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

@@ -8,8 +8,27 @@ const inputFocusHandler = (state, payload) => {
 };
 
 const inputChangeHandler = (state, payload) => {
+  const { id, value, type } = payload;
   const updatedState = { ...state };
-  updatedState[payload.target].value = payload.value;
+
+  if (type === 'file') {
+    const file = payload.files[0];
+    const fileUrl = URL.createObjectURL(payload.files[0]);
+    const validator = inputValidations.imageFileValidator(file.type);
+    let fileValue = '';
+
+    if (validator.isValid) {
+      updatedState[id].file = file;
+      fileValue = fileUrl;
+    }
+
+    updatedState[id].value = fileValue;
+    updatedState[id].hasError = !validator.isValid;
+    updatedState[id].errorMsg = validator.errorMsg;
+  } else {
+    updatedState[id].value = value;
+  }
+
   return updatedState;
 };
 
@@ -58,7 +77,7 @@ const customInput = (inputs) => {
   const inputChange = (e) =>
     dispatch({
       type: 'INPUT_CHANGE',
-      payload: { target: e.target.id, value: e.target.value },
+      payload: e.target,
     });
 
   const inputBlur = (e) => dispatch({ type: 'INPUT_BLUR', payload: e.target });

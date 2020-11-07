@@ -44,6 +44,14 @@ class InputValidation {
       errorMsg: !invalidEl ? '' : invalidEl.errorMsg,
     };
   };
+
+  imageFileValidator = (fileType) => {
+    const isValid = fileType === 'image/jpeg' || fileType === 'image/png';
+    return {
+      isValid,
+      errorMsg: isValid ? '' : 'Your file needs to be a PNG or JPG',
+    };
+  };
 }
 
 export default new InputValidation();

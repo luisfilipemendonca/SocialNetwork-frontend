@@ -32,4 +32,7 @@ export default {
     medium: '48em', // 768px
     large: '62em', // 992px
   },
+  components: {
+    headerHeight: '60px',
+  },
 };

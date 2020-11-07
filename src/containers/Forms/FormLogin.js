@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PrimaryTitle } from './styled';
+import { BtnCenterContainer } from '../../style';
 
 import { inputsLogin } from '../../constants/Inputs';
 import customInput from '../../hooks/CustomInput';
@@ -8,6 +9,7 @@ import formValidation from '../../helpers/FormValidations';
 
 import Form from '../../components/Form';
 import Input from '../../components/Inputs';
+import Button from '../../components/Buttons';
 
 const FormLogin = () => {
   const [
@@ -31,7 +33,8 @@ const FormLogin = () => {
       <Form submitHandler={submitHandler}>
         {Object.keys(formInputs).map((input, index) => (
           <Input
-            key={formInputs[input].id}
+            key={input}
+            id={input}
             inputData={formInputs[input]}
             index={index}
             focusHandler={inputFocusHandler}
@@ -39,9 +42,11 @@ const FormLogin = () => {
             blurHandler={inputBlurHandler}
           />
         ))}
-        <button type="submit" onClick={submitHandler}>
-          Login
-        </button>
+        <BtnCenterContainer>
+          <Button type="submit" className="btn-primary" onClick={submitHandler}>
+            Login
+          </Button>
+        </BtnCenterContainer>
       </Form>
     </>
   );

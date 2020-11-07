@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const InputContainer = styled.div`
+  margin-bottom: ${(props) => props.theme.margins.medium};
+
   &:not(:last-of-type) {
     margin-bottom: ${(props) => props.theme.margins.large};
   }
@@ -22,7 +24,7 @@ export const Input = styled.input`
   width: 100%;
   padding: ${(props) => props.theme.paddings.small};
   border-radius: ${(props) => props.theme.borderRadius};
-  border: 1px solid ${(props) => props.theme.colors.primaryLight};
+  border: 1px solid ${(props) => props.theme.colors.primaryNormal};
   z-index: 1;
 
   &:focus {
@@ -40,7 +42,7 @@ export const Input = styled.input`
 `;
 
 export const InputInfo = styled.p`
-  font-size: ${(props) => props.theme.fonts.defaultSize};
+  font-size: 12px;
   color: ${(props) => props.theme.fonts.colorNormal};
   margin-top: 3px;
 `;
@@ -69,8 +71,9 @@ export const ErrorMsg = styled.p`
 export const ErrorContainer = styled.span`
   position: absolute;
   top: 50%;
-  right: 1rem;
-  transform: translateY(-50%);
+  right: ${(props) => (props.type === 'file' ? '50%' : '1rem')};
+  transform: ${(props) =>
+    props.type === 'file' ? 'translate(50%, -50%)' : 'translateY(-50%)'};
   color: red;
   display: flex;
 
@@ -78,4 +81,46 @@ export const ErrorContainer = styled.span`
     opacity: 1;
     visibility: visible;
   }
+`;
+
+export const FileInput = styled.input`
+  display: none;
+`;
+
+export const FileInputContainer = styled.div`
+  border: 1px dashed ${(props) => props.theme.colors.primaryNormal};
+  height: 15rem;
+  width: 15rem;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: ${(props) => props.theme.margins.medium};
+  position: relative;
+`;
+
+export const FileInputLabel = styled.label`
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: 1.5rem;
+  color: ${(props) => props.theme.colors.primaryNormal};
+  transition: color 0.2s;
+
+  &:hover {
+    color: ${(props) => props.theme.colors.primaryDark};
+  }
+`;
+
+export const FileIconContainer = styled.span`
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 80%);
+`;
+
+export const FilePicture = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;

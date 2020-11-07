@@ -4,6 +4,7 @@ import { Input } from './styled';
 
 const InputPassword = ({
   inputData,
+  id,
   focusHandler,
   children,
   changeHandler,
@@ -17,7 +18,7 @@ const InputPassword = ({
     <>
       <Input
         placeholder={inputData.placeholder}
-        id={inputData.id.toLowerCase()}
+        id={id}
         type={isHidden ? inputData.type : 'text'}
         hasError={inputData.hasError}
         isTouched={inputData.isTouched}

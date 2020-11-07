@@ -1,6 +1,6 @@
 export const inputsLogin = {
   email: {
-    id: 'Email',
+    label: 'Email',
     type: 'text',
     placeholder: 'Your email',
     value: '',
@@ -9,7 +9,7 @@ export const inputsLogin = {
     errorMsg: '',
   },
   password: {
-    id: 'Password',
+    label: 'Password',
     type: 'password',
     placeholder: 'Your password',
     value: '',
@@ -21,7 +21,7 @@ export const inputsLogin = {
 
 export const inputsRegister = {
   username: {
-    id: 'Username',
+    label: 'Username',
     type: 'text',
     placeholder: 'Your username',
     value: '',
@@ -29,7 +29,7 @@ export const inputsRegister = {
     isTouched: false,
   },
   email: {
-    id: 'Email',
+    label: 'Email',
     type: 'text',
     placeholder: 'Your email',
     value: '',
@@ -37,12 +37,21 @@ export const inputsRegister = {
     isTouched: false,
   },
   password: {
-    id: 'Password',
+    label: 'Password',
     type: 'password',
     placeholder: 'Your password',
     info: '8 characters with at least 1 number 1 uppercase letter',
     value: '',
     hasError: false,
     isTouched: false,
+  },
+  profilePicture: {
+    label: 'picture',
+    type: 'file',
+    info:
+      'Add a profile picture. Can also be added later. Only JPG/PNG files are accepeted.',
+    value: '',
+    file: null,
+    hasError: false,
   },
 };

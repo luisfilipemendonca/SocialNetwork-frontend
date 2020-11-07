@@ -4,6 +4,7 @@ import { Input } from './styled';
 
 const InputNormal = ({
   inputData,
+  id,
   index,
   focusHandler,
   changeHandler,
@@ -21,7 +22,7 @@ const InputNormal = ({
     <Input
       ref={inputRef}
       placeholder={inputData.placeholder}
-      id={inputData.id.toLowerCase()}
+      id={id}
       type={inputData.type}
       hasError={inputData.hasError}
       isTouched={inputData.isTouched}
