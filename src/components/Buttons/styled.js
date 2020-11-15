@@ -4,6 +4,9 @@ export const IconButton = styled.button`
   position: relative;
   width: 2rem;
   height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Button = styled.button`

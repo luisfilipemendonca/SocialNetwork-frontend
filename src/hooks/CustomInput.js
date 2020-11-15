@@ -48,9 +48,26 @@ const inputBlurHandler = (state, payload) => {
     inputCheck = inputValidations.lengthValidator(payload.value.trim(), 3, 8);
   }
 
+  if (payload.id === 'comment') {
+    inputCheck = inputValidations.lengthValidator(payload.value.trim(), 1);
+  }
+
   updatedState[payload.id].hasError = !inputCheck.isValid;
   updatedState[payload.id].errorMsg = inputCheck.errorMsg;
   updatedState[payload.id].isTouched = true;
+
+  return updatedState;
+};
+
+const inputClean = (state) => {
+  const updatedState = { ...state };
+
+  Object.keys(updatedState).forEach((input) => {
+    if (updatedState[input].type === 'file') {
+      updatedState[input].file = null;
+    }
+    updatedState[input].value = '';
+  });
 
   return updatedState;
 };
@@ -63,6 +80,8 @@ const reducer = (state, action) => {
       return inputChangeHandler(state, action.payload);
     case 'INPUT_BLUR':
       return inputBlurHandler(state, action.payload);
+    case 'INPUT_CLEAN':
+      return inputClean(state);
     default:
       return state;
   }
@@ -81,8 +100,9 @@ const customInput = (inputs) => {
     });
 
   const inputBlur = (e) => dispatch({ type: 'INPUT_BLUR', payload: e.target });
+  const cleanInputsValue = () => dispatch({ type: 'INPUT_CLEAN' });
 
-  return [formInputs, inputChange, inputFocus, inputBlur];
+  return [formInputs, inputChange, inputFocus, inputBlur, cleanInputsValue];
 };
 
 export default customInput;

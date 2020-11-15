@@ -18,6 +18,7 @@ export default createGlobalStyle`
       ${(props) => props.theme.colors.primaryLight},
       ${(props) => props.theme.colors.tertiaryLight}
     );
+    background-attachment: fixed;
     font-size: ${(props) => props.theme.fonts.defaultSize};
     color: ${(props) => props.theme.fonts.colorDark};
   }
@@ -49,12 +50,16 @@ export default createGlobalStyle`
   }
 `;
 
-export const Main = styled.main`
+export const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - ${(props) => props.theme.components.headerHeight});
+  justify-content: ${(props) =>
+    props.isLoading || props.fullCenter ? 'center' : null};
+  padding: ${(props) => props.theme.components.headerHeight}
+    ${(props) => props.theme.paddings.small} 0;
+  min-height: ${(props) =>
+    props.isLoading || props.fullCenter ? '100vh' : null};
 `;
 
 export const BtnCenterContainer = styled.div`

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { PrimaryTitle } from './styled';
 
@@ -12,24 +13,29 @@ import Form from '../../components/Form';
 import Input from '../../components/Inputs';
 import Button from '../../components/Buttons';
 
+import { register } from '../../store/actions/Auth';
+
 const FormLogin = () => {
+  const dispatch = useDispatch();
   const [step, setStep] = useState(1);
   const [
     formInputs,
     inputChangeHandler,
     inputFocusHandler,
     inputBlurHandler,
+    inputCleanHandler,
   ] = customInput(inputsRegister);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const isFormValid = formValidation.formValidator(formInputs, false);
-    console.log(isFormValid);
+
+    if (!isFormValid) return;
 
     const formData = formValidation.createFormData(formInputs);
 
-    Object.keys(formData).forEach((data) => console.log(data, formData[data]));
+    dispatch(register(formData, inputCleanHandler));
   };
 
   const nextStepHandler = (e) => {

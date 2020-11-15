@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { PrimaryTitle } from './styled';
 import { BtnCenterContainer } from '../../style';
@@ -11,21 +13,36 @@ import Form from '../../components/Form';
 import Input from '../../components/Inputs';
 import Button from '../../components/Buttons';
 
+import { login } from '../../store/actions/Auth';
+
 const FormLogin = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [
     formInputs,
     inputChangeHandler,
     inputFocusHandler,
     inputBlurHandler,
+    inputCleanHandler,
   ] = customInput(inputsLogin);
+
+  const isLogged = useSelector((state) => state.auth.isLogged);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const isFormValid = formValidation.formValidator(formInputs);
 
-    console.log(isFormValid);
+    if (!isFormValid) return;
+
+    const data = formValidation.createFormObject(formInputs);
+
+    dispatch(login(data, inputCleanHandler, history));
   };
+
+  if (isLogged) {
+    history.push('/');
+  }
 
   return (
     <>

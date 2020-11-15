@@ -8,6 +8,13 @@ export const HeaderContainer = styled.header`
   justify-content: ${(props) => (props.isLogged ? 'space-between' : 'center')};
   align-items: center;
   padding: 0 ${(props) => props.theme.paddings.medium};
+  position: fixed;
+  width: 100%;
+  z-index: 5;
+
+  ${IconButton} {
+    z-index: 10;
+  }
 
   @media screen and (min-width: ${(props) => props.theme.breakpoints.medium}) {
     ${IconButton} {
@@ -61,18 +68,17 @@ export const HamburguerItem = styled.span`
 
 export const NavMenu = styled.nav`
   position: absolute;
-  top: ${(props) => props.theme.components.headerHeight};
-  left: 0;
+  top: ${(props) =>
+    props.isOpen ? '0' : `calc(${props.theme.components.headerHeight} / 2)`};
+  right: ${(props) =>
+    props.isOpen ? '0' : `calc(${props.theme.paddings.medium} + 5px)`};
   background: linear-gradient(
     to bottom,
     ${(props) => props.theme.colors.primaryDark},
     // ${(props) => props.theme.colors.secondaryLight},
     ${(props) => props.theme.colors.tertiaryLight}
   );
-  height: ${(props) =>
-    props.isOpen
-      ? `calc(100% - ${props.theme.components.headerHeight})`
-      : '0%'};
+  height: ${(props) => (props.isOpen ? `100vh` : '0%')};
   width: ${(props) => (props.isOpen ? '100%' : '0%')};
   z-index: 5;
   display: flex;

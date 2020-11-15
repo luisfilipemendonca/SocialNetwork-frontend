@@ -55,3 +55,14 @@ export const inputsRegister = {
     hasError: false,
   },
 };
+
+export const inputsComment = {
+  comment: {
+    label: 'Comment',
+    type: 'text',
+    placeholder: 'Enter your comment',
+    value: '',
+    hasError: false,
+    isTouched: false,
+  },
+};

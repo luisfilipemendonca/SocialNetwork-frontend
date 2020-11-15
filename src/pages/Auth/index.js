@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { Main, BtnCenterContainer } from '../../style';
+import { MainContainer, BtnCenterContainer } from '../../style';
 import { FormContainer } from '../../containers/Forms/styled';
 
 import FormLogin from '../../containers/Forms/FormLogin';
 import FormRegister from '../../containers/Forms/FormRegister';
 import Button from '../../components/Buttons';
 
-const Auth = () => {
-  const [isLogging, setIsLogging] = useState(true);
+import { changeAuth } from '../../store/actions/Auth';
 
-  const changeFormHandler = () => setIsLogging(!isLogging);
+const Auth = () => {
+  const dispatch = useDispatch();
+  const isLogging = useSelector((state) => state.auth.isLogging);
+
+  const changeFormHandler = () => dispatch(changeAuth());
 
   return (
-    <Main>
+    <MainContainer fullCenter>
       <FormContainer>
         {isLogging ? <FormLogin /> : <FormRegister />}
         <BtnCenterContainer>
@@ -26,7 +30,7 @@ const Auth = () => {
           </Button>
         </BtnCenterContainer>
       </FormContainer>
-    </Main>
+    </MainContainer>
   );
 };
 

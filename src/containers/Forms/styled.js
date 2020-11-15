@@ -8,7 +8,7 @@ import {
 } from '../../components/Inputs/styled';
 
 export const FormContainer = styled.div`
-  width: 95%;
+  width: 100%;
   max-width: 450px;
   background: #fff;
   position: relative;
