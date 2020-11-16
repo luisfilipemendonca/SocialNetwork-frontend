@@ -27,3 +27,17 @@ export const fetchProfile = (userId) => {
     }
   };
 };
+
+export const deletePost = (postId, history) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`/posts/${postId}`);
+
+      dispatch({ type: actionTypes.DELETE_POST, payload: postId });
+
+      history.goBack();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};

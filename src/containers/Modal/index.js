@@ -16,7 +16,7 @@ const Modal = ({ children }) => {
   };
 
   const closeModal = (e) => {
-    if (e.target.id) {
+    if (e.target.id === 'modal') {
       closeModalHandler();
     }
   };

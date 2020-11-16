@@ -57,7 +57,6 @@ const cleanPosts = (state) => {
 };
 
 const PostsReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case actionTypes.FETCH_POSTS_START:
       return fetchPostsStart(state);

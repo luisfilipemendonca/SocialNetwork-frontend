@@ -36,6 +36,8 @@ const Profile = () => {
     dispatch(fetchProfile(params.id));
   }, [params.id]);
 
+  console.log(user);
+
   return (
     <>
       <MainContainer fullCenter>

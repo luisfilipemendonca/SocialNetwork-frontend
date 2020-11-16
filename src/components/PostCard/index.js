@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { CardContainer } from './styled';
 
@@ -11,9 +12,11 @@ import CardCta from './CardCta';
 import CardComments from './CardComments';
 
 import { addLike, deleteLike } from '../../store/actions/Posts';
+import { deletePost } from '../../store/actions/Profile';
 
-const PostCard = ({ data }) => {
+const PostCard = ({ data, isDeletable }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
   const {
@@ -36,11 +39,20 @@ const PostCard = ({ data }) => {
     dispatch(deleteLike(postId));
   };
 
+  const deletePostHandler = async () => {
+    dispatch(deletePost(id, history));
+  };
+
   const toggleCommentsHandler = () => setIsCommentsOpen(!isCommentsOpen);
 
   return (
     <CardContainer>
-      <CardHeader data={User} date={createdAt} />
+      <CardHeader
+        data={User}
+        date={createdAt}
+        isDeletable={isDeletable}
+        deletePost={deletePostHandler}
+      />
       {PostPhotos.length === 1 ? (
         <CardSinglePhoto data={PostPhotos[0]} liked={liked} />
       ) : (

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IconButton } from '../Buttons/styled';
+import { IconButton, PrimaryButton } from '../Buttons/styled';
 import { FormContent } from '../Form/styled';
 import { InputContainer } from '../Inputs/styled';
 
@@ -20,6 +20,14 @@ export const CardHeaderContainer = styled.div`
   display: flex;
   align-items: center;
   padding: ${(props) => props.theme.paddings.small};
+  position: relative;
+
+  ${PrimaryButton} {
+    position: absolute;
+    top: 50%;
+    right: ${(props) => props.theme.paddings.small};
+    transform: translateY(-50%);
+  }
 `;
 
 export const HeaderPhotoContainer = styled.div`
@@ -265,15 +273,24 @@ export const HeartItem = styled.span`
   }
 `;
 
+export const HelperContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: ${(props) => (props.isOpen ? 'auto' : 'none')};
+  overflow: hidden;
+`;
+
 export const CommentsContainer = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
   background: #fff;
-  height: ${(props) => (props.isOpen ? '100%' : '0%')};
+  height: ${(props) => (props.isOpen ? '100%' : '0')};
   width: 100%;
   transition: all 0.2s;
-  opacity: ${(props) => (props.isOpen ? '1' : '0')};
   border-radius: ${(props) => props.theme.borderRadius};
   padding: 0 ${(props) => props.theme.paddings.medium};
   display: flex;

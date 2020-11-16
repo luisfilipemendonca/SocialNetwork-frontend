@@ -23,6 +23,7 @@ import {
   CommentUserInfo,
   CommentDate,
   Comment,
+  HelperContainer,
 } from './styled';
 
 import Button from '../Buttons';
@@ -53,67 +54,69 @@ const CardComments = ({ isOpen, toggleCommentsHandler, comments, postId }) => {
   };
 
   return (
-    <CommentsContainer isOpen={isOpen}>
-      <CommentsHeader>
-        <Title>Comments</Title>
-        <Button
-          type="btn"
-          className="btn-icon"
-          clickHandler={toggleCommentsHandler}
-        >
-          <FaTimes />
-        </Button>
-      </CommentsHeader>
-      <CommentsContent hasNoComments={comments.length <= 0}>
-        {comments.length > 0 ? (
-          comments.map((comment) => (
-            <CommentContainer
-              key={comment.id}
-              isRecentlyAdded={comment.isRecentlyAdded}
-            >
-              <CommentHeader>
-                {comment.User.profilePicture ? (
-                  <UserPhoto
-                    src={comment.User.profilePictureUrl}
-                    alt="User comment profile picture"
-                  />
-                ) : (
-                  <FaUserCircle />
-                )}
-                <CommentUserInfo>
-                  <CommentUsername>{comment.User.username}</CommentUsername>
-                  <CommentDate>
-                    {Dates.formatFullDate(comment.createdAt)}
-                  </CommentDate>
-                </CommentUserInfo>
-              </CommentHeader>
-              <Comment>{comment.comment}</Comment>
-            </CommentContainer>
-          ))
-        ) : (
-          <div>No Comments to show</div>
-        )}
-      </CommentsContent>
-      <Form>
-        {Object.keys(formInputs).map((input) => (
-          <Input
-            key={input}
-            id={input}
-            inputData={formInputs[input]}
-            focusHandler={inputFocusHandler}
-            changeHandler={inputChangeHandler}
-            blurHandler={inputBlurHandler}
-          />
-        ))}
-        <Button
-          type="submit"
-          className="btn-primary"
-          clickHandler={submitHandler}
-        >
-          Send
-        </Button>
-      </Form>
-    </CommentsContainer>
+    <HelperContainer isOpen={isOpen}>
+      <CommentsContainer isOpen={isOpen}>
+        <CommentsHeader>
+          <Title>Comments</Title>
+          <Button
+            type="btn"
+            className="btn-icon"
+            clickHandler={toggleCommentsHandler}
+          >
+            <FaTimes />
+          </Button>
+        </CommentsHeader>
+        <CommentsContent hasNoComments={comments.length <= 0}>
+          {comments.length > 0 ? (
+            comments.map((comment) => (
+              <CommentContainer
+                key={comment.id}
+                isRecentlyAdded={comment.isRecentlyAdded}
+              >
+                <CommentHeader>
+                  {comment.User.profilePicture ? (
+                    <UserPhoto
+                      src={comment.User.profilePictureUrl}
+                      alt="User comment profile picture"
+                    />
+                  ) : (
+                    <FaUserCircle />
+                  )}
+                  <CommentUserInfo>
+                    <CommentUsername>{comment.User.username}</CommentUsername>
+                    <CommentDate>
+                      {Dates.formatFullDate(comment.createdAt)}
+                    </CommentDate>
+                  </CommentUserInfo>
+                </CommentHeader>
+                <Comment>{comment.comment}</Comment>
+              </CommentContainer>
+            ))
+          ) : (
+            <div>No Comments to show</div>
+          )}
+        </CommentsContent>
+        <Form>
+          {Object.keys(formInputs).map((input) => (
+            <Input
+              key={input}
+              id={input}
+              inputData={formInputs[input]}
+              focusHandler={inputFocusHandler}
+              changeHandler={inputChangeHandler}
+              blurHandler={inputBlurHandler}
+            />
+          ))}
+          <Button
+            type="submit"
+            className="btn-primary"
+            clickHandler={submitHandler}
+          >
+            Send
+          </Button>
+        </Form>
+      </CommentsContainer>
+    </HelperContainer>
   );
 };
 

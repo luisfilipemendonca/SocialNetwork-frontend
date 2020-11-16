@@ -12,7 +12,9 @@ import {
   PostDate,
 } from './styled';
 
-const CardHeader = ({ data, date }) => {
+import Button from '../Buttons';
+
+const CardHeader = ({ data, date, deletePost, isDeletable }) => {
   const { username, profilePicture, profilePictureUrl } = data;
 
   return (
@@ -28,6 +30,11 @@ const CardHeader = ({ data, date }) => {
         <PostUsername>{username}</PostUsername>
         <PostDate>{Dates.formatFullDate(date)}</PostDate>
       </HeaderInfo>
+      {isDeletable && (
+        <Button type="button" className="btn-primary" clickHandler={deletePost}>
+          Delete Post
+        </Button>
+      )}
     </CardHeaderContainer>
   );
 };
