@@ -14,12 +14,18 @@ const fetchPostsSuccess = (data) => {
   };
 };
 
-export const fetchPosts = () => {
+export const fetchPosts = (postId) => {
   return async (dispatch) => {
     dispatch(fetchPostsStart());
 
     try {
-      const response = await axios('/posts');
+      let response;
+
+      if (postId) {
+        response = await axios(`/posts/${postId}`);
+      } else {
+        response = await axios('/posts');
+      }
 
       dispatch(fetchPostsSuccess(response.data));
     } catch (e) {
@@ -71,4 +77,8 @@ export const addComment = (data) => {
       console.log(e);
     }
   };
+};
+
+export const cleanPosts = () => {
+  return { type: actionTypes.CLEAN_POSTS };
 };

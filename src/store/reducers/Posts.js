@@ -49,7 +49,15 @@ const addComment = (state, payload) => {
   return updatedState;
 };
 
+const cleanPosts = (state) => {
+  console.log('cleanup');
+  const updatedState = { ...state };
+  updatedState.data = null;
+  return updatedState;
+};
+
 const PostsReducer = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case actionTypes.FETCH_POSTS_START:
       return fetchPostsStart(state);
@@ -61,6 +69,8 @@ const PostsReducer = (state = initialState, action) => {
       return deleteLike(state, action.payload);
     case actionTypes.ADD_COMMENT:
       return addComment(state, action.payload);
+    case actionTypes.CLEAN_POSTS:
+      return cleanPosts(state);
     default:
       return state;
   }

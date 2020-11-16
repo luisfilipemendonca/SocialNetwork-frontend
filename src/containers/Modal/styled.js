@@ -15,11 +15,16 @@ export const ModalContainer = styled.div`
   opacity: ${(props) => (props.isOpen ? '1' : '0')};
   transition: all 0.3s;
 
-  ${IconButton} {
+  & > ${IconButton} {
     position: absolute;
     top: 2rem;
     right: 2rem;
     font-size: 2rem;
     color: ${(props) => props.theme.colors.primaryLight};
+  }
+
+  & > :nth-child(2) {
+    transition: opacity 0.3s 0.3s;
+    opacity: ${(props) => (props.isOpen ? '1' : '0')};
   }
 `;

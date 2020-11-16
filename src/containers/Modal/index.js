@@ -10,14 +10,18 @@ const Modal = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
 
-  const closeModalHandler = () => history.goBack();
+  const closeModalHandler = () => {
+    setIsOpen(false);
+    history.goBack();
+  };
+
+  const closeModal = (e) => {
+    if (e.target.id) {
+      closeModalHandler();
+    }
+  };
 
   useEffect(() => {
-    const closeModal = (e) => {
-      if (e.target.id) {
-        closeModalHandler();
-      }
-    };
     setIsOpen(true);
     window.addEventListener('click', closeModal);
 
