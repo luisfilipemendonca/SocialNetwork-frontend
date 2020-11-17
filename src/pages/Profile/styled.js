@@ -29,6 +29,7 @@ export const ProfileHeader = styled.div`
   @media screen and (min-width: ${(props) => props.theme.breakpoints.medium}) {
     height: 100%;
     border-right: 1px solid ${(props) => props.theme.colors.primaryLight};
+    width: 30%;
   }
 `;
 

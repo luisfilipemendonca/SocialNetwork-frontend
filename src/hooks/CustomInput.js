@@ -72,6 +72,17 @@ const inputClean = (state) => {
   return updatedState;
 };
 
+const setInputValueHandler = (state, payload) => {
+  const updatedState = { ...state };
+
+  Object.keys(payload).forEach((input) => {
+    updatedState[input].value = payload[input];
+    updatedState[input].isTouched = true;
+  });
+
+  return updatedState;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'INPUT_FOCUS':
@@ -82,6 +93,8 @@ const reducer = (state, action) => {
       return inputBlurHandler(state, action.payload);
     case 'INPUT_CLEAN':
       return inputClean(state);
+    case 'SET_INPUT_VALUE':
+      return setInputValueHandler(state, action.payload);
     default:
       return state;
   }
@@ -101,8 +114,17 @@ const customInput = (inputs) => {
 
   const inputBlur = (e) => dispatch({ type: 'INPUT_BLUR', payload: e.target });
   const cleanInputsValue = () => dispatch({ type: 'INPUT_CLEAN' });
+  const setInputValue = (data) =>
+    dispatch({ type: 'SET_INPUT_VALUE', payload: data });
 
-  return [formInputs, inputChange, inputFocus, inputBlur, cleanInputsValue];
+  return [
+    formInputs,
+    inputChange,
+    inputFocus,
+    inputBlur,
+    cleanInputsValue,
+    setInputValue,
+  ];
 };
 
 export default customInput;

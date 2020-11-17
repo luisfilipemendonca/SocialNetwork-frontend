@@ -17,9 +17,18 @@ const deletePost = (state, payload) => {
   updatedState.user.Posts = updatedState.user.Posts.filter(
     (post) => post.id !== payload
   );
+  return updatedState;
+};
 
-  console.log(payload);
+const updateUserSuccess = (state, payload) => {
+  const updatedState = { ...state };
+
+  Object.keys(payload).forEach((input) => {
+    updatedState.user[input] = payload[input];
+  });
+
   console.log(updatedState);
+
   return updatedState;
 };
 
@@ -29,6 +38,8 @@ const ProfileReducer = (state = initialState, action) => {
       return fetchProfileSuccess(state, action.payload);
     case actionTypes.DELETE_POST:
       return deletePost(state, action.payload);
+    case actionTypes.UPDATE_USER_SUCCESS:
+      return updateUserSuccess(state, action.payload);
     default:
       return state;
   }

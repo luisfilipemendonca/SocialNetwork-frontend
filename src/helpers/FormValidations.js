@@ -3,7 +3,11 @@ class FormValidation {
     let isValid = true;
 
     Object.keys(inputs).forEach((input) => {
-      if (!fileValueNeeded && inputs[input].type === 'file') return;
+      if (
+        (!fileValueNeeded && inputs[input].type === 'file') ||
+        (!fileValueNeeded && inputs[input].value.length <= 0)
+      )
+        return;
       isValid = !inputs[input].hasError && inputs[input].isTouched && isValid;
     });
 
@@ -16,11 +20,9 @@ class FormValidation {
     Object.keys(inputs).forEach((input) => {
       if (inputs[input].type === 'file') {
         if (inputs[input].file) {
-          // formData[input] = inputs[input].file;
           formData.append(input, inputs[input].file);
         }
       } else {
-        // formData[input] = inputs[input].value;
         formData.append(input, inputs[input].value);
       }
     });
@@ -32,6 +34,7 @@ class FormValidation {
     const data = {};
 
     Object.keys(inputs).forEach((input) => {
+      if (inputs[input].value.length <= 0) return;
       data[input] = inputs[input].value;
     });
 

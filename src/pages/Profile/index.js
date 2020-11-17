@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { MainContainer } from '../../style';
@@ -20,6 +20,7 @@ import {
 import Button from '../../components/Buttons';
 import MyRoute from '../../components/MyRoute';
 import SinglePostContainer from '../../containers/SinglePost';
+import FormUpdate from '../../containers/Forms/FormUpdate';
 
 import { fetchProfile } from '../../store/actions/Profile';
 
@@ -33,10 +34,9 @@ const Profile = () => {
   const isLoading = false;
 
   useEffect(() => {
+    console.log('FETCHING USER');
     dispatch(fetchProfile(params.id));
   }, [params.id]);
-
-  console.log(user);
 
   return (
     <>
@@ -70,7 +70,9 @@ const Profile = () => {
                 {userId === parseInt(params.id, 10) ? (
                   <>
                     <Button className="btn-primary">Create Post</Button>
-                    <Button className="btn-primary">Update Account</Button>
+                    <Link to={`${location.pathname}/update`}>
+                      Update Account
+                    </Link>
                     <Button className="btn-primary">Delete Account</Button>
                   </>
                 ) : (
@@ -100,6 +102,7 @@ const Profile = () => {
         component={SinglePostContainer}
         isClosed
       />
+      <MyRoute path="/profile/:id/update" component={FormUpdate} isClosed />
     </>
   );
 };

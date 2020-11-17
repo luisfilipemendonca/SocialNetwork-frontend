@@ -28,6 +28,15 @@ export const CardHeaderContainer = styled.div`
     right: ${(props) => props.theme.paddings.small};
     transform: translateY(-50%);
   }
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.medium}) {
+    padding: ${(props) => props.theme.paddings.small}
+      ${(props) => props.theme.paddings.medium};
+
+    ${PrimaryButton} {
+      right: ${(props) => props.theme.paddings.medium};
+    }
+  }
 `;
 
 export const HeaderPhotoContainer = styled.div`
@@ -60,6 +69,11 @@ export const CardPhotoContainer = styled.div`
   height: 350px;
   position: relative;
   overflow: hidden;
+
+  @media screen and (min-width: ${(props) => props.theme.breakpoints.medium}) {
+    padding: 0 ${(props) => props.theme.paddings.medium};
+    height: 375px;
+  }
 `;
 
 export const CardPhoto = styled.img`

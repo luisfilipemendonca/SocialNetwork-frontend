@@ -41,3 +41,21 @@ export const deletePost = (postId, history) => {
     }
   };
 };
+
+export const updateUser = (data, history) => {
+  return async (dispatch, getState) => {
+    // dispatch start
+
+    try {
+      const { userId } = getState().auth;
+
+      await axios.put(`/users/${userId}`, data);
+
+      dispatch({ type: actionTypes.UPDATE_USER_SUCCESS, payload: data });
+
+      history.goBack();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
