@@ -9,7 +9,7 @@ export const HamburgerButton = styled.button`
   z-index: 100;
   outline: none;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     display: none;
   }
 `;
