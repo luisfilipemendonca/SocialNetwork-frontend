@@ -16,4 +16,8 @@ export default {
     secondaryDark: '#FFC857',
     secondaryLight: '#FFDD96',
   },
+  header: {
+    heightSM: '70px',
+    heightLG: '80px',
+  },
 };

@@ -32,6 +32,7 @@ import Theme from './style/Theme';
 
 import ToastContainer from './layout/ToastContainer';
 import Header from './layout/Header';
+import Routes from './routes';
 
 import ToastsReducer from './store/reducers/Toasts';
 
@@ -53,6 +54,7 @@ const App = () => {
           <ThemeProvider theme={Theme}>
             <ToastContainer />
             <Header />
+            <Routes />
             <GlobalStyle />
           </ThemeProvider>
         </BrowserRouter>

@@ -11,7 +11,7 @@ const NavBar = ({ isOpen, togglerHandler }) => {
       <NavbarToggler togglerHandler={togglerHandler} isOpen={isOpen} />
       <NavbarContainer isOpen={isOpen}>
         <NavbarMenu isOpen={isOpen}>
-          <NavLink path="/" description="World" />
+          <NavLink path="/" description="World" exact />
           <NavLink path="/following" description="Following" />
           <NavLink path="/profile" description="Profile" />
           <NavLink path="/logout" description="Logout" />
