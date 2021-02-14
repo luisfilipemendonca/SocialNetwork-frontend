@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
   background-color: ${(props) => props.theme.colors.primaryDark};
   border-bottom: 1px solid ${(props) => props.theme.colors.secondaryDark};
   height: ${(props) => props.theme.header.heightSM};
+  z-index: 10;
 
   @media screen and (min-width: 576px) {
     padding: 0 16px;
@@ -30,7 +31,7 @@ export const HeaderContainer = styled.header`
 `;
 
 export const HeaderTitle = styled.h1`
-  color: ${(props) => props.theme.colors.secondaryDark};
+  color: ${(props) => props.theme.colors.secondaryLight};
   text-shadow: 0 0 10px ${(props) => props.theme.colors.primaryDark};
   z-index: 100;
 `;

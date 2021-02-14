@@ -5,7 +5,7 @@ import { HeaderContainer, HeaderTitle } from './styled';
 import NavBar from '../../components/Navbar';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const isLoggedIn = true;
 
   const togglerHandler = () => setIsOpen(!isOpen);

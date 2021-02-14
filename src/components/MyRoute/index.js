@@ -4,8 +4,6 @@ import { Redirect, Route } from 'react-router-dom';
 const MyRoute = ({ isProtected, path, isExact, component }) => {
   const isLoggedIn = true;
 
-  console.log(component);
-
   if (!isLoggedIn && isProtected) {
     return <Redirect to="/login" />;
   }

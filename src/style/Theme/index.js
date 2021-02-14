@@ -10,11 +10,11 @@ export default {
     },
   },
   colors: {
-    background: '#C7C7D0',
-    primaryDark: '#1F2041',
-    primaryLight: '#3B3C59',
-    secondaryDark: '#FFC857',
-    secondaryLight: '#FFDD96',
+    background: '#fbf5ef',
+    primaryDark: '#142664',
+    primaryLight: '#597199',
+    secondaryDark: '#f1d66f',
+    secondaryLight: '#f0d6bd',
   },
   header: {
     heightSM: '70px',
