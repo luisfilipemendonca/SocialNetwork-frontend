@@ -25,38 +25,35 @@ export const InputBorder = styled.span`
   left: 0;
   width: 100%;
   height: 100%;
-  border: 1px solid ${(props) => props.theme.colors.primaryLight};
+  border: 1px solid
+    ${(props) => (!props.hasError ? props.theme.colors.primaryDark : 'red')};
   border-radius: 3px;
   pointer-events: none;
 
-  &:before {
+  &:before,
+  &:after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
     width: 0%;
     height: 0%;
-    border-top: 1px solid;
-    border-left: 1px solid;
     border-color: ${(props) => props.theme.colors.primaryDark};
     border-radius: 3px;
     transition: 0.2s ease-in;
     transition-property: width, height;
   }
 
+  &:before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+
   &:after {
-    content: '';
-    position: absolute;
     bottom: 0;
     right: 0;
-    width: 0%;
-    height: 0%;
     border-bottom: 1px solid;
     border-right: 1px solid;
-    border-color: ${(props) => props.theme.colors.primaryDark};
-    border-radius: 3px;
-    transition: 0.2s ease-in;
-    transition-property: width, height;
   }
 `;
 
@@ -75,5 +72,31 @@ export const Input = styled.input`
 
   &:invalid {
     box-shadow: none;
+  }
+`;
+
+export const InputErrorMsg = styled.p`
+  position: absolute;
+  top: -50%;
+  right: 10px;
+  background: red;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+`;
+
+export const InputError = styled.span`
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: red;
+  display: flex;
+
+  &:hover + ${InputErrorMsg} {
+    opacity: 1;
   }
 `;

@@ -1,17 +1,15 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 import MainContainer from '../../layout/Main';
-import FormAuth from '../../layout/FormAuth';
+import FormLogin from '../../layout/FormLogin';
 
 const Auth = () => {
-  const location = useLocation();
-
-  console.log(location.pathname);
+  // const location = useLocation();
 
   return (
     <MainContainer>
-      <FormAuth islogging={location.pathname === '/login'} />
+      <FormLogin />
     </MainContainer>
   );
 };

@@ -7,7 +7,7 @@ export const FormContainer = styled.div`
   position: relative;
 `;
 
-export const Form = styled.form`
+export const FormElement = styled.form`
   width: 100%;
   border-radius: 3px;
   padding: 32px 16px;

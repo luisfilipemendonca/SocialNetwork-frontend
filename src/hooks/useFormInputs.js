@@ -14,6 +14,8 @@ const inputBlurHandler = (state, target) => {
 
   const validatorValue = updatedInputs[inputIdx].validator(target);
 
+  console.log(updatedInputs[inputIdx]);
+
   if (!validatorValue.isValid) {
     updatedInputs[inputIdx].errorMsg = validatorValue.errorMsg;
   }
@@ -31,8 +33,6 @@ const inputFocusHandler = (state, target) => {
   updatedInputs[inputIdx].isValid = false;
   updatedInputs[inputIdx].isTouched = false;
   updatedInputs[inputIdx].errorMsg = '';
-
-  console.log(updatedInputs[inputIdx]);
 
   return updatedInputs;
 };
