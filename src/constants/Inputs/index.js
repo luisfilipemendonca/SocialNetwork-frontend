@@ -1,3 +1,5 @@
+import InputsValidator from '../../helpers/InputsValidator';
+
 export const loginInputs = [
   {
     id: 'email',
@@ -7,6 +9,8 @@ export const loginInputs = [
     isRequired: true,
     isTouched: false,
     isValid: false,
+    errorMsg: '',
+    validator: InputsValidator.isEmail,
   },
   {
     id: 'password',

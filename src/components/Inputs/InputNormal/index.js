@@ -8,7 +8,7 @@ import {
   InputBorder,
 } from './styled';
 
-const InputNormal = ({ input, changeHandler }) => {
+const InputNormal = ({ input, changeHandler, blurHandler, focusHandler }) => {
   const { id, type, placeholder, value } = input;
 
   return (
@@ -21,6 +21,8 @@ const InputNormal = ({ input, changeHandler }) => {
           placeholder={placeholder}
           value={value}
           onChange={(e) => changeHandler(e.target)}
+          onBlur={(e) => blurHandler(e.target)}
+          onFocus={(e) => focusHandler(e.target)}
         />
         <InputBorder />
       </InputGroup>

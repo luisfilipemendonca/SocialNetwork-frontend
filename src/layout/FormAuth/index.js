@@ -9,12 +9,21 @@ import useFormInputs from '../../hooks/useFormInputs';
 import { loginInputs } from '../../constants/Inputs';
 
 const FormAuth = ({ islogging }) => {
-  const { formInputs, changeHandler } = useFormInputs(loginInputs);
-
-  console.log(changeHandler);
+  const {
+    formInputs,
+    changeHandler,
+    blurHandler,
+    focusHandler,
+  } = useFormInputs(loginInputs);
 
   const inputs = formInputs.map((input) => (
-    <InputNormal key={input.id} input={input} changeHandler={changeHandler} />
+    <InputNormal
+      key={input.id}
+      input={input}
+      changeHandler={changeHandler}
+      blurHandler={blurHandler}
+      focusHandler={focusHandler}
+    />
   ));
 
   return (
