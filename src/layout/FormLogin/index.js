@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Form from '../../components/Form';
 import InputNormal from '../../components/Inputs/InputNormal';
@@ -9,11 +9,11 @@ import useFormInputs from '../../hooks/useFormInputs';
 
 import { loginInputs } from '../../constants/Inputs';
 import FormBuilder from '../../helpers/FormBuilder';
-// import { login } from '../../store/actions/Auth';
+import { login } from '../../store/actions/Auth';
 
 const FormLogin = () => {
-  // const isLoading = useSelector((state) => state.auth.isLoading);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const history = useHistory();
   const {
     formInputs,
     changeHandler,
@@ -38,9 +38,7 @@ const FormLogin = () => {
 
     if (!formBuilder.isFormValid()) return;
 
-    console.log('ola');
-
-    // dispatch(login(formBuilder.buildFormObj()));
+    dispatch(login(formBuilder.buildFormObj(), history));
   };
 
   return (

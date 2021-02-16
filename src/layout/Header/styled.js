@@ -34,4 +34,5 @@ export const HeaderTitle = styled.h1`
   color: ${(props) => props.theme.colors.secondaryLight};
   text-shadow: 0 0 10px ${(props) => props.theme.colors.primaryDark};
   z-index: 100;
+  margin: ${(props) => (props.isLogged ? null : '0 auto')};
 `;

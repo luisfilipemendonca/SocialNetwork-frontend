@@ -22,7 +22,7 @@ import AuthReducer from './store/reducers/Auth';
 
 const persistConfig = {
   key: 'auth',
-  whitelist: ['isLogged', 'userToken', 'userId'],
+  whitelist: ['isLogged', 'userToken', 'userId', 'userEmail'],
   storage,
 };
 

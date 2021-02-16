@@ -14,8 +14,6 @@ const inputBlurHandler = (state, target) => {
 
   const validatorValue = updatedInputs[inputIdx].validator(target);
 
-  console.log(updatedInputs[inputIdx]);
-
   if (!validatorValue.isValid) {
     updatedInputs[inputIdx].errorMsg = validatorValue.errorMsg;
   }
