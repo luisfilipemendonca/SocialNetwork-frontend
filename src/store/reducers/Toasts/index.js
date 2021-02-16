@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import * as actionTypes from '../../../constants/ActionTypes';
 
 const initialState = {
   toasts: [],
@@ -10,7 +11,6 @@ const addToast = (state, payload) => {
     ...payload,
     id: uuidv4(),
   });
-  console.log(updatedState);
   return updatedState;
 };
 
@@ -22,9 +22,9 @@ const removeToast = (state, id) => {
 
 const ToastsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_TOAST':
+    case actionTypes.ADD_TOAST:
       return addToast(state, action.payload);
-    case 'DELETE_TOAST':
+    case actionTypes.DELETE_TOAST:
       return removeToast(state, action.payload);
     default:
       return state;

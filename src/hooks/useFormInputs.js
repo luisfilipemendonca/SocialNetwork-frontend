@@ -51,7 +51,10 @@ const reducer = (state, action) => {
 };
 
 const useFormInputs = (initialInputs) => {
-  const [formInputs, dispatch] = useReducer(reducer, initialInputs);
+  const [formInputs, dispatch] = useReducer(
+    reducer,
+    initialInputs.map((input) => ({ ...input }))
+  );
 
   const changeHandler = (target) =>
     dispatch({ type: 'INPUT_CHANGE', payload: target });

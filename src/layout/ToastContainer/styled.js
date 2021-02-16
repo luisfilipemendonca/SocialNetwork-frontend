@@ -11,6 +11,7 @@ export const ToastWrapper = styled.div`
   padding: 20px;
   overflow: hidden;
   flex-direction: column;
+  z-index: 100;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;
