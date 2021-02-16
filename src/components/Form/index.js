@@ -2,18 +2,27 @@ import React from 'react';
 
 import { FormContainer, FormElement, FormHeader, FormContent } from './styled';
 
-const Form = ({ children }) => {
+const Form = ({
+  children,
+  title,
+  subtitle,
+  aditionalContent,
+  submitHandler,
+}) => {
   return (
     <FormContainer>
-      <FormElement>
+      <FormElement onSubmit={submitHandler}>
         <FormHeader>
-          <h1>Login</h1>
-          <p>Fill all the fields to login into your account</p>
+          <h1>{title}</h1>
+          <p>{subtitle}</p>
         </FormHeader>
         <FormContent>
           {children}
-          <button type="submit">Submit</button>
+          <button type="submit" onClick={submitHandler}>
+            Submit
+          </button>
         </FormContent>
+        {aditionalContent}
       </FormElement>
     </FormContainer>
   );

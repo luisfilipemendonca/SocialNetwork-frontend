@@ -6,16 +6,15 @@ import InputNormal from '../../components/Inputs/InputNormal';
 
 import useFormInputs from '../../hooks/useFormInputs';
 
-import { loginInputs } from '../../constants/Inputs';
-import FormBuilder from '../../helpers/FormBuilder';
+import { registerInputs } from '../../constants/Inputs';
 
-const FormLogin = () => {
+const FormRegister = () => {
   const {
     formInputs,
     changeHandler,
     blurHandler,
     focusHandler,
-  } = useFormInputs(loginInputs);
+  } = useFormInputs(registerInputs);
 
   const inputs = formInputs.map((input) => (
     <InputNormal
@@ -27,26 +26,15 @@ const FormLogin = () => {
     />
   ));
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    const formBuilder = new FormBuilder(formInputs);
-
-    if (!formBuilder.isFormValid()) return;
-
-    console.log(formBuilder.buildFormObj());
-  };
-
   return (
     <Form
-      title="Login"
-      subtitle="Fill all the fields to login into your account"
-      aditionalContent={<Link to="/register">Switch to Register</Link>}
-      submitHandler={submitHandler}
+      title="Register"
+      subtitle="Fill all the fields to create your account"
+      aditionalContent={<Link to="/login">Switch to Login</Link>}
     >
       {inputs}
     </Form>
   );
 };
 
-export default FormLogin;
+export default FormRegister;
