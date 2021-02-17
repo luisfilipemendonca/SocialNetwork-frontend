@@ -17,7 +17,7 @@ import Routes from './routes';
 
 import ToastsReducer from './store/reducers/Toasts';
 import AuthReducer from './store/reducers/Auth';
-// import PostsReducer from './store/reducers/Posts';
+import PostsReducer from './store/reducers/Posts';
 // import ProfileReducer from './store/reducers/Profile';
 
 const persistConfig = {
@@ -26,15 +26,9 @@ const persistConfig = {
   storage,
 };
 
-// const rootReducers = combineReducers({
-// auth: persistReducer(persistConfig, AuthReducer),
-// posts: PostsReducer,
-// profile: ProfileReducer,
-// });
-
 const rootReducers = combineReducers({
   auth: persistReducer(persistConfig, AuthReducer),
-  // posts: PostsReducer,
+  posts: PostsReducer,
   // profile: ProfileReducer,
   toasts: ToastsReducer,
 });

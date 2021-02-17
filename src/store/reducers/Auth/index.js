@@ -1,3 +1,4 @@
+import axios from 'axios';
 import * as actionTypes from '../../../constants/ActionTypes';
 
 const initialState = {
@@ -30,6 +31,9 @@ const loginSuccess = (state, payload) => {
   stateCopy.userId = userId;
   stateCopy.userEmail = userEmail;
   stateCopy.userToken = userToken;
+
+  axios.defaults.headers.authorization = `Bearer ${userToken}`;
+
   return stateCopy;
 };
 
