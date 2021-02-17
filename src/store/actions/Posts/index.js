@@ -19,7 +19,7 @@ export const fetchPosts = () => {
         payload: response.data,
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 };

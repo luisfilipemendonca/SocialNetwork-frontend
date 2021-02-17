@@ -29,7 +29,7 @@ export const register = (data, history) => {
 
       history.goBack();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 };
@@ -48,7 +48,7 @@ export const login = (data, history) => {
 
       history.replace('/');
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 };

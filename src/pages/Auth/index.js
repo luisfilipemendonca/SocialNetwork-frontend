@@ -10,8 +10,6 @@ const Auth = () => {
 
   const isLogging = location.pathname === '/login';
 
-  console.log(isLogging);
-
   return (
     <MainContainer>
       {isLogging ? <FormLogin /> : <FormRegister />}

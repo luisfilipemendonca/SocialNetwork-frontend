@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Form from '../../components/Form';
 import InputNormal from '../../components/Inputs/InputNormal';
@@ -12,8 +12,6 @@ import FormBuilder from '../../helpers/FormBuilder';
 import { register } from '../../store/actions/Auth';
 
 const FormRegister = () => {
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  console.log(isLoading);
   const dispatch = useDispatch();
   const history = useHistory();
   const {

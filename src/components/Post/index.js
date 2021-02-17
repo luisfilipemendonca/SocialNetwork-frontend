@@ -1,58 +1,47 @@
 import React from 'react';
+import { FaHeartBroken } from 'react-icons/fa';
+import { BiMessage } from 'react-icons/bi';
 
-import {
-  PostContainer,
-  PostImgContainer,
-  PostDescription,
-  PostLikes,
-  PostComments,
-  PostDate,
-  PostLikeAnim,
-  PostLikeAnimContainer,
-} from './styled';
+import { PostContainer, PostImgContainer, PostCTA, PostCTABtn } from './styled';
 
 import PostHeader from './PostHeader';
-import PostImg from './PostImage';
+import PostImage from './PostImage';
+import PostImageSlider from './PostImageSlider';
+import PostAnimation from './PostAnimation';
+import PostDetails from './PostDetails';
 
 const Post = ({ postData }) => {
-  const { User, PostPhotos, description, createdAt } = postData;
-  console.log(postData);
+  const {
+    User,
+    PostPhotos,
+    description,
+    createdAt,
+    alreadyLiked,
+    liked,
+  } = postData;
+
+  const isLiked = alreadyLiked || liked;
+
   return (
     <PostContainer>
-      <PostHeader userData={User} />
+      <PostHeader userData={User} createdAt={createdAt} />
       <PostImgContainer>
-        <PostImg src={PostPhotos[0].postPhotoUrl} alt={description} />
-        <PostLikeAnimContainer>
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-          <PostLikeAnim />
-        </PostLikeAnimContainer>
+        {PostPhotos.length <= 1 ? (
+          <PostImage src={PostPhotos[0].postPhotoUrl} alt={description} />
+        ) : (
+          <PostImageSlider postPhotos={PostPhotos} alt={description} />
+        )}
+        <PostAnimation isLiked={isLiked} />
       </PostImgContainer>
-      <PostDescription>{description}</PostDescription>
-      <PostLikes>
-        Likes: <span>10</span>
-      </PostLikes>
-      <PostComments>
-        Comments: <span>15</span>
-      </PostComments>
-      <PostDate>{createdAt}</PostDate>
+      <PostDetails username={User.username} description={description} />
+      <PostCTA>
+        <PostCTABtn type="button">
+          <BiMessage />
+        </PostCTABtn>
+        <PostCTABtn type="button">
+          <FaHeartBroken />
+        </PostCTABtn>
+      </PostCTA>
     </PostContainer>
   );
 };

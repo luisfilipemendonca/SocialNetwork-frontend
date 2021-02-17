@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PostHeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 4px 8px;
+  padding: 8px 0;
 `;
 
 export const PostIcon = styled.span`
