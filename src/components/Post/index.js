@@ -1,8 +1,11 @@
 import React from 'react';
-import { FaHeartBroken } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux';
+import { FaHeartBroken, FaHeart } from 'react-icons/fa';
 import { BiMessage } from 'react-icons/bi';
 
 import { PostContainer, PostImgContainer, PostCTA, PostCTABtn } from './styled';
+
+import { addLike, removeLike } from '../../store/actions/Posts';
 
 import PostHeader from './PostHeader';
 import PostImage from './PostImage';
@@ -11,6 +14,8 @@ import PostAnimation from './PostAnimation';
 import PostDetails from './PostDetails';
 
 const Post = ({ postData }) => {
+  const userId = useSelector((state) => state.auth.userId);
+  const dispatch = useDispatch();
   const {
     User,
     PostPhotos,
@@ -18,9 +23,18 @@ const Post = ({ postData }) => {
     createdAt,
     alreadyLiked,
     liked,
+    id,
   } = postData;
 
-  const isLiked = alreadyLiked || liked;
+  const addLikeHandler = () => {
+    dispatch(addLike({ userId, postId: id }));
+  };
+
+  const removeLikeHandler = () => {
+    dispatch(removeLike(id, userId));
+  };
+
+  const isLiked = liked || alreadyLiked;
 
   return (
     <PostContainer>
@@ -31,15 +45,18 @@ const Post = ({ postData }) => {
         ) : (
           <PostImageSlider postPhotos={PostPhotos} alt={description} />
         )}
-        <PostAnimation isLiked={isLiked} />
+        <PostAnimation isLiked={liked} alreadyLiked={alreadyLiked} />
       </PostImgContainer>
       <PostDetails username={User.username} description={description} />
       <PostCTA>
         <PostCTABtn type="button">
           <BiMessage />
         </PostCTABtn>
-        <PostCTABtn type="button">
-          <FaHeartBroken />
+        <PostCTABtn
+          type="button"
+          onClick={!isLiked ? addLikeHandler : removeLikeHandler}
+        >
+          {isLiked ? <FaHeart /> : <FaHeartBroken />}
         </PostCTABtn>
       </PostCTA>
     </PostContainer>

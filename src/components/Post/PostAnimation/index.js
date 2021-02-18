@@ -2,9 +2,9 @@ import React from 'react';
 
 import { PostLikeAnimContainer, PostLikeAnim } from './styled';
 
-const PostAnimation = ({ isLiked }) => {
+const PostAnimation = ({ isLiked, alreadyLiked }) => {
   return (
-    <PostLikeAnimContainer isLiked={isLiked}>
+    <PostLikeAnimContainer isLiked={isLiked && !alreadyLiked}>
       <PostLikeAnim />
       <PostLikeAnim />
       <PostLikeAnim />

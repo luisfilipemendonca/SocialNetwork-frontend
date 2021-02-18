@@ -12,3 +12,7 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const FETCH_POSTS_START = 'FETCH_POSTS_START';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAIL = 'FETCH_POSTS_FAIL';
+
+// Like ActionTypes
+export const ADD_LIKE = 'ADD_LIKE';
+export const REMOVE_LIKE = 'REMOVE_LIKE';
