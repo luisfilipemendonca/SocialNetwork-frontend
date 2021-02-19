@@ -2,20 +2,23 @@ import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import { PostHeaderContainer, PostIcon } from './styled';
+import { PostHeaderContainer, PostIcon, UserDetails, Date } from './styled';
 
-const PostHeader = ({ userData }) => {
+const PostHeader = ({ userData, forComment, createdAt }) => {
   const { profilePicture, username } = userData;
   return (
-    <PostHeaderContainer>
-      {!profilePicture ? (
-        <PostIcon>
-          <FaUserCircle />
-        </PostIcon>
-      ) : null}
-      <Link to="/">
-        <h3>{username}</h3>
-      </Link>
+    <PostHeaderContainer forComment={forComment}>
+      <UserDetails>
+        {!profilePicture ? (
+          <PostIcon forComment={forComment}>
+            <FaUserCircle />
+          </PostIcon>
+        ) : null}
+        <Link to="/">
+          <h3>{username}</h3>
+        </Link>
+      </UserDetails>
+      <Date>{createdAt}</Date>
     </PostHeaderContainer>
   );
 };

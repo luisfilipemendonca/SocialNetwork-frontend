@@ -22,6 +22,7 @@ export const PostCTA = styled.div`
   bottom: 0;
   right: -1px;
   display: flex;
+  z-index: 10;
 `;
 
 export const PostCTABtn = styled.button`

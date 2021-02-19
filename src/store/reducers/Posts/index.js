@@ -33,7 +33,7 @@ const removeLike = (state, payload) => {
     (like) => like.userId !== payload.userId
   );
   stateCopy.posts[postIdx].liked = false;
-  stateCopy.posts[postIdx].alreadyliked = false;
+  stateCopy.posts[postIdx].alreadyLiked = false;
 
   return stateCopy;
 };

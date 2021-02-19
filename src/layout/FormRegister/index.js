@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Form from '../../components/Form';
-import InputNormal from '../../components/Inputs/InputNormal';
+import Input from '../../components/Inputs';
 
 import useFormInputs from '../../hooks/useFormInputs';
 
@@ -22,7 +22,7 @@ const FormRegister = () => {
   } = useFormInputs(registerInputs);
 
   const inputs = formInputs.map((input) => (
-    <InputNormal
+    <Input
       key={input.id}
       input={input}
       changeHandler={changeHandler}

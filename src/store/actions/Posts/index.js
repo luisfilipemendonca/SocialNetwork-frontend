@@ -44,6 +44,8 @@ export const removeLike = (postId, userId) => {
     try {
       await axios.delete(`http://localhost:3001/likes/${postId}`);
 
+      console.log('removed');
+
       dispatch({
         type: actionTypes.REMOVE_LIKE,
         payload: {
@@ -52,7 +54,7 @@ export const removeLike = (postId, userId) => {
         },
       });
     } catch (e) {
-      // console.log(e)
+      console.log(e);
     }
   };
 };

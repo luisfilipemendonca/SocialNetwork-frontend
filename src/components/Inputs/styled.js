@@ -5,7 +5,7 @@ export const InputContainer = styled.div`
   margin-bottom: 16px;
 
   &:last-of-type {
-    margin-bottom: 32px;
+    margin-bottom: ${(props) => (props.isComment ? '16px' : '32px')};
   }
 `;
 
@@ -57,7 +57,7 @@ export const InputBorder = styled.span`
   }
 `;
 
-export const Input = styled.input`
+export const InputElement = styled.input`
   display: block;
   width: 100%;
   padding: 12px 8px;

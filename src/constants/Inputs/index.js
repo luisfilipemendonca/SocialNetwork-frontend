@@ -66,3 +66,18 @@ export const registerInputs = [
     validator: InputsValidator.isPasswordValid,
   },
 ];
+
+export const commentInput = [
+  {
+    id: 'comment',
+    type: 'textarea',
+    value: '',
+    placeholder: 'Enter your comment..',
+    isRequired: true,
+    isTouched: false,
+    isValid: false,
+    errorMsg: '',
+    minLength: 1,
+    validator: InputsValidator.hasExpectedLength,
+  },
+];

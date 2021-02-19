@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FaHeartBroken, FaHeart } from 'react-icons/fa';
 import { BiMessage } from 'react-icons/bi';
@@ -12,13 +12,16 @@ import PostImage from './PostImage';
 import PostImageSlider from './PostImageSlider';
 import PostAnimation from './PostAnimation';
 import PostDetails from './PostDetails';
+import PostComments from './PostComments';
 
 const Post = ({ postData }) => {
+  const [isCommentsOpen, setIsCommentsOpen] = useState(false);
   const userId = useSelector((state) => state.auth.userId);
   const dispatch = useDispatch();
   const {
     User,
     PostPhotos,
+    Comments,
     description,
     createdAt,
     alreadyLiked,
@@ -26,12 +29,20 @@ const Post = ({ postData }) => {
     id,
   } = postData;
 
+  console.log(postData);
+
   const addLikeHandler = () => {
+    console.log('Adding', id);
     dispatch(addLike({ userId, postId: id }));
   };
 
   const removeLikeHandler = () => {
+    console.log('Removing', id);
     dispatch(removeLike(id, userId));
+  };
+
+  const openCommentsHandler = () => {
+    setIsCommentsOpen(!isCommentsOpen);
   };
 
   const isLiked = liked || alreadyLiked;
@@ -48,16 +59,24 @@ const Post = ({ postData }) => {
         <PostAnimation isLiked={liked} alreadyLiked={alreadyLiked} />
       </PostImgContainer>
       <PostDetails username={User.username} description={description} />
+      <PostComments
+        isOpen={isCommentsOpen}
+        openCommentsHandler={openCommentsHandler}
+        comments={Comments}
+      />
       <PostCTA>
-        <PostCTABtn type="button">
+        <PostCTABtn type="button" onClick={openCommentsHandler}>
           <BiMessage />
         </PostCTABtn>
-        <PostCTABtn
-          type="button"
-          onClick={!isLiked ? addLikeHandler : removeLikeHandler}
-        >
-          {isLiked ? <FaHeart /> : <FaHeartBroken />}
-        </PostCTABtn>
+        {isLiked ? (
+          <PostCTABtn type="button" onClick={removeLikeHandler}>
+            <FaHeart />
+          </PostCTABtn>
+        ) : (
+          <PostCTABtn type="button" onClick={addLikeHandler}>
+            <FaHeartBroken />
+          </PostCTABtn>
+        )}
       </PostCTA>
     </PostContainer>
   );
