@@ -65,12 +65,43 @@ export const addComment = (data) => {
       dispatch({
         type: actionTypes.ADD_COMMENT,
         payload: {
-          commentData: response.data,
+          commentData: { ...response.data, isRecentlyAdded: true },
           postId: data.postId,
         },
       });
     } catch (e) {
       console.log(e);
     }
+  };
+};
+
+export const fetchPostComments = (postId, page = 1, offset = 0) => {
+  return async (dispatch) => {
+    dispatch({ type: actionTypes.FETCH_POSTS_START });
+
+    try {
+      const response = await axios(
+        `http://localhost:3001/comments/${postId}?page=${page}&offset=${offset}`
+      );
+
+      dispatch({
+        type: actionTypes.FETCH_COMMENTS_SUCCESS,
+        payload: {
+          commentsData: response.data,
+          postId,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const cleanComments = (postId) => {
+  return async (dispatch) => {
+    dispatch({
+      type: actionTypes.CLEAR_COMMENTS,
+      payload: postId,
+    });
   };
 };

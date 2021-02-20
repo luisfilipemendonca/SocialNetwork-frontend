@@ -21,7 +21,7 @@ const Post = ({ postData }) => {
   const {
     User,
     PostPhotos,
-    Comments,
+    CommentData,
     description,
     createdAt,
     alreadyLiked,
@@ -58,7 +58,7 @@ const Post = ({ postData }) => {
       <PostComments
         isOpen={isCommentsOpen}
         openCommentsHandler={openCommentsHandler}
-        comments={Comments}
+        commentsData={CommentData}
         postId={id}
       />
       <PostCTA>

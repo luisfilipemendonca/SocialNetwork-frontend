@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const PostCommentsContainerAux = styled.div`
   position: absolute;
@@ -48,11 +48,47 @@ export const CommentsContainer = styled.div`
   padding: 0 16px;
 `;
 
+const blinkEffect = keyframes`
+  0% {
+    background-color: #ffffff;
+  }
+
+  15% {
+    background-color: #ddd;
+  }
+
+  30% {
+    background-color: #ffffff;
+  }
+
+  45% {
+    background-color: #ddd;
+  }
+
+  60% {
+    background-color: #ffffff;
+  }
+
+  75% {
+    background-color: #ddd;
+  }
+
+  90% {
+    background-color: #ffffff;
+  }
+
+  100% {
+    background-color: #ddd;
+  }
+`;
+
 export const CommentContainer = styled.div`
   border: 1px solid green;
   margin-top: 16px;
   border-radius: 3px;
   padding: 8px;
+  animation: ${(props) => props.isRecentlyAdded && blinkEffect};
+  animation-duration: 3s;
 
   &:last-of-type {
     margin-bottom: 16px;
