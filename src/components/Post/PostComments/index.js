@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 
 import {
   PostCommentsContainerAux,
@@ -12,13 +13,22 @@ import {
   CommentForm,
 } from './styled';
 
-import { commentInput } from '../../../constants/Inputs';
-
 import PostHeader from '../PostHeader';
 import Input from '../../Inputs';
 
-const PostComments = ({ isOpen, openCommentsHandler, comments }) => {
-  // console.log(comments);
+import { commentInputs } from '../../../constants/Inputs';
+import useFormInputs from '../../../hooks/useFormInputs';
+import FormBuilder from '../../../helpers/FormBuilder';
+import { addComment } from '../../../store/actions/Posts';
+
+const PostComments = ({ isOpen, openCommentsHandler, comments, postId }) => {
+  const dispatch = useDispatch();
+  const {
+    formInputs,
+    changeHandler,
+    blurHandler,
+    focusHandler,
+  } = useFormInputs(commentInputs);
 
   const commentsItem = comments.map(({ User, id, comment, createdAt }) => (
     <CommentContainer key={id}>
@@ -26,6 +36,27 @@ const PostComments = ({ isOpen, openCommentsHandler, comments }) => {
       <Comment>{comment}</Comment>
     </CommentContainer>
   ));
+
+  const commentInput = formInputs.map((input) => (
+    <Input
+      key={input.id}
+      input={input}
+      isComment
+      changeHandler={changeHandler}
+      blurHandler={blurHandler}
+      focusHandler={focusHandler}
+    />
+  ));
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const formBuilder = new FormBuilder(formInputs);
+
+    if (!formBuilder.isFormValid()) return;
+
+    dispatch(addComment({ ...formBuilder.buildFormObj(), postId }));
+  };
 
   return (
     <PostCommentsContainerAux>
@@ -37,9 +68,11 @@ const PostComments = ({ isOpen, openCommentsHandler, comments }) => {
           </button>
         </PostCommentsHeader>
         <CommentsContainer>{commentsItem}</CommentsContainer>
-        <CommentForm>
-          <Input type="textarea" input={commentInput} isComment />
-          <button type="submit">Add Comment</button>
+        <CommentForm onSubmit={submitHandler}>
+          {commentInput}
+          <button type="submit" onClick={submitHandler}>
+            Add Comment
+          </button>
         </CommentForm>
       </PostCommentsContainer>
     </PostCommentsContainerAux>

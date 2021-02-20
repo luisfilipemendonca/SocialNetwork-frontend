@@ -1,10 +1,12 @@
 import React from 'react';
 import { MdErrorOutline } from 'react-icons/md';
 
+import InputNormal from './InputNormal';
+import InputTextarea from './InputTextarea';
+
 import {
   InputContainer,
   InputLabel,
-  InputElement,
   InputGroup,
   InputBorder,
   InputError,
@@ -18,44 +20,39 @@ const Input = ({
   focusHandler,
   isComment,
 }) => {
-  const {
-    id,
-    type,
-    placeholder,
-    value,
-    minLength,
-    maxLength,
-    isValid,
-    isTouched,
-    errorMsg,
-  } = input;
+  const { id, type, isValid, isTouched, errorMsg } = input;
 
   const hasError = !isValid && isTouched;
+
+  let inputElement = (
+    <InputNormal
+      id={id}
+      type={type}
+      input={input}
+      onChange={(e) => changeHandler(e.target)}
+      onBlur={(e) => blurHandler(e.target)}
+      onFocus={(e) => focusHandler(e.target)}
+    />
+  );
+
+  if (type === 'textarea') {
+    inputElement = (
+      <InputTextarea
+        id={id}
+        type={type}
+        input={input}
+        onChange={(e) => changeHandler(e.target)}
+        onBlur={(e) => blurHandler(e.target)}
+        onFocus={(e) => focusHandler(e.target)}
+      />
+    );
+  }
 
   return (
     <InputContainer isComment={isComment}>
       <InputLabel>{id}</InputLabel>
       <InputGroup>
-        {type !== 'file' && type !== 'textarea' && (
-          <InputElement
-            id={id}
-            type={type}
-            placeholder={placeholder}
-            value={value}
-            minLength={minLength}
-            maxLength={maxLength}
-            onChange={(e) => changeHandler(e.target)}
-            onBlur={(e) => blurHandler(e.target)}
-            onFocus={(e) => focusHandler(e.target)}
-          />
-        )}
-        {type === 'textarea' && (
-          <textarea
-            onChange={(e) => changeHandler(e.target)}
-            onBlur={(e) => blurHandler(e.target)}
-            onFocus={(e) => focusHandler(e.target)}
-          />
-        )}
+        {inputElement}
         <InputBorder hasError={hasError} />
         {hasError && (
           <>

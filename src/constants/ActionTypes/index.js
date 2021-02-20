@@ -16,3 +16,6 @@ export const FETCH_POSTS_FAIL = 'FETCH_POSTS_FAIL';
 // Like ActionTypes
 export const ADD_LIKE = 'ADD_LIKE';
 export const REMOVE_LIKE = 'REMOVE_LIKE';
+
+// Comments ActionTypes
+export const ADD_COMMENT = 'ADD_COMMENT';

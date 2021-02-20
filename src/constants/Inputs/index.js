@@ -67,7 +67,7 @@ export const registerInputs = [
   },
 ];
 
-export const commentInput = [
+export const commentInputs = [
   {
     id: 'comment',
     type: 'textarea',

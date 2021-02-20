@@ -38,6 +38,16 @@ const removeLike = (state, payload) => {
   return stateCopy;
 };
 
+const addComment = (state, payload) => {
+  const stateCopy = { ...state, posts: [...state.posts] };
+  const postIdx = stateCopy.posts.findIndex(
+    (post) => post.id === payload.postId
+  );
+  stateCopy.posts[postIdx].Comments.unshift(payload.commentData);
+
+  return stateCopy;
+};
+
 const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_POSTS_SUCCESS:
@@ -46,6 +56,8 @@ const PostsReducer = (state = initialState, action) => {
       return addLike(state, action.payload);
     case actionTypes.REMOVE_LIKE:
       return removeLike(state, action.payload);
+    case actionTypes.ADD_COMMENT:
+      return addComment(state, action.payload);
     default:
       return state;
   }

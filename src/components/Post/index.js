@@ -29,15 +29,11 @@ const Post = ({ postData }) => {
     id,
   } = postData;
 
-  console.log(postData);
-
   const addLikeHandler = () => {
-    console.log('Adding', id);
     dispatch(addLike({ userId, postId: id }));
   };
 
   const removeLikeHandler = () => {
-    console.log('Removing', id);
     dispatch(removeLike(id, userId));
   };
 
@@ -63,6 +59,7 @@ const Post = ({ postData }) => {
         isOpen={isCommentsOpen}
         openCommentsHandler={openCommentsHandler}
         comments={Comments}
+        postId={id}
       />
       <PostCTA>
         <PostCTABtn type="button" onClick={openCommentsHandler}>

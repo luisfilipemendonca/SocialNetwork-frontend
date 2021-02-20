@@ -44,13 +44,29 @@ export const removeLike = (postId, userId) => {
     try {
       await axios.delete(`http://localhost:3001/likes/${postId}`);
 
-      console.log('removed');
-
       dispatch({
         type: actionTypes.REMOVE_LIKE,
         payload: {
           postId,
           userId,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+export const addComment = (data) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/comments', data);
+
+      dispatch({
+        type: actionTypes.ADD_COMMENT,
+        payload: {
+          commentData: response.data,
+          postId: data.postId,
         },
       });
     } catch (e) {

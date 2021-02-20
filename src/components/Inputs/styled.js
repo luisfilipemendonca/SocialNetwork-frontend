@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const InputContainer = styled.div`
   width: 100%;
@@ -57,24 +57,6 @@ export const InputBorder = styled.span`
   }
 `;
 
-export const InputElement = styled.input`
-  display: block;
-  width: 100%;
-  padding: 12px 8px;
-  border: none;
-  background: none;
-  outline: none;
-
-  &:focus + ${InputBorder}:before, &:focus + ${InputBorder}:after {
-    width: 100%;
-    height: 100%;
-  }
-
-  &:invalid {
-    box-shadow: none;
-  }
-`;
-
 export const InputErrorMsg = styled.p`
   position: absolute;
   top: -50%;
@@ -98,5 +80,23 @@ export const InputError = styled.span`
 
   &:hover + ${InputErrorMsg} {
     opacity: 1;
+  }
+`;
+
+export const InputDefault = css`
+  display: block;
+  width: 100%;
+  padding: 12px 8px;
+  border: none;
+  background: none;
+  outline: none;
+
+  &:focus + ${InputBorder}:before, &:focus + ${InputBorder}:after {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:invalid {
+    box-shadow: none;
   }
 `;

@@ -20,13 +20,14 @@ class InputsValidator {
 
   static hasExpectedLength(target) {
     const value = target.value.trim();
+    const maxLength = target.maxLength > 0 ? target.maxLength : Infinity;
     const isValid =
-      value.length >= target.minLength &&
-      value.length <= (target.maxLength || Infinity);
+      value.length >= target.minLength && value.length <= maxLength;
+
     let errorMsg;
 
     if (!isValid) {
-      if (target.maxLength !== Infinity) {
+      if (maxLength !== Infinity) {
         errorMsg = `Must contain between ${target.minLength} and ${target.minLength} characters`;
       } else {
         errorMsg = `Must contain at least ${target.minLength} characters`;
