@@ -81,3 +81,19 @@ export const commentInputs = [
     validator: InputsValidator.hasExpectedLength,
   },
 ];
+
+export const profilePhotoInputs = [
+  {
+    id: 'profile photo',
+    backendId: 'profilePicture',
+    type: 'file',
+    value: null,
+    displayValue: '',
+    placeholder: 'Choose your profile photo..',
+    isRequired: true,
+    isTouched: false,
+    isValid: false,
+    errorMsg: '',
+    validator: InputsValidator.isImageValid,
+  },
+];

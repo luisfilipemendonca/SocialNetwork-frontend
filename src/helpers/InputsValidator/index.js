@@ -64,6 +64,21 @@ class InputsValidator {
       isValid: hasCapitalLetter && hasNumber && hasExpectedLength.isValid,
     };
   }
+
+  static isImageValid(target) {
+    let isValid = true;
+
+    [...target].forEach((file) => {
+      if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
+        isValid = false;
+      }
+    });
+
+    return {
+      isValid,
+      errorMsg: isValid ? '' : 'Only png and jpg files are accepted',
+    };
+  }
 }
 
 export default InputsValidator;

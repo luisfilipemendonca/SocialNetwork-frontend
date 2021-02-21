@@ -11,6 +11,8 @@ import {
   InputBorder,
   InputError,
   InputErrorMsg,
+  InputFileContainer,
+  InputFilePreview,
 } from './styled';
 
 const Input = ({
@@ -50,6 +52,13 @@ const Input = ({
 
   return (
     <InputContainer isComment={isComment}>
+      {type === 'file' && (
+        <InputFileContainer hasFile={input.displayValue}>
+          {input.displayValue && (
+            <InputFilePreview src={input.displayValue} alt="profile" />
+          )}
+        </InputFileContainer>
+      )}
       <InputLabel>{id}</InputLabel>
       <InputGroup>
         {inputElement}

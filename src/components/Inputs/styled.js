@@ -100,3 +100,19 @@ export const InputDefault = css`
     box-shadow: none;
   }
 `;
+
+export const InputFileContainer = styled.div`
+  height: 200px;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: ${(props) => !props.hasFile && '2px dashed green'};
+`;
+
+export const InputFilePreview = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;

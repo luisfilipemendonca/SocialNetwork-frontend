@@ -4,14 +4,13 @@ export const FormContainer = styled.div`
   margin: 32px auto;
   width: 100%;
   max-width: 600px;
-  position: relative;
 `;
 
 export const FormElement = styled.form`
   width: 100%;
   border-radius: 3px;
   padding: 32px 16px;
-  position: absolute;
+  position: relative;
   background: white;
   z-index: 0;
   overflow: hidden;

@@ -4,11 +4,29 @@ const inputChangeHandler = (state, target) => {
   const updatedInputs = [...state];
   const inputIdx = updatedInputs.findIndex((input) => input.id === target.id);
 
-  updatedInputs[inputIdx].value = target.value;
+  if (target.type === 'file') {
+    const validatorValue = updatedInputs[inputIdx].validator(target.files);
+    updatedInputs[inputIdx].isValid = validatorValue.isValid;
+    updatedInputs[inputIdx].isTouched = true;
+
+    if (!validatorValue.isValid) {
+      updatedInputs[inputIdx].errorMsg = validatorValue.errorMsg;
+    } else {
+      updatedInputs[inputIdx].displayValue = URL.createObjectURL(
+        target.files[0]
+      );
+      updatedInputs[inputIdx].value = { ...target.files[0] };
+    }
+  } else {
+    updatedInputs[inputIdx].value = target.value;
+  }
+
   return updatedInputs;
 };
 
 const inputBlurHandler = (state, target) => {
+  if (target.type === 'file') return state;
+
   const updatedInputs = [...state];
   const inputIdx = updatedInputs.findIndex((input) => input.id === target.id);
 
