@@ -11,10 +11,23 @@ export default createGlobalStyle`
     min-height: 100vh;
     background: linear-gradient(to bottom right, #fff2dc, #d7d8ff);
     color: #363759;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px;
   }
 
   ul {
     list-style: none;
+  }
+
+  li {
+    height: 100px;
+    border: 1px solid red;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   a {
