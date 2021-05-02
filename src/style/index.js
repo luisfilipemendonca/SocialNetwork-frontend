@@ -9,7 +9,8 @@ export default createGlobalStyle`
 
   body {
     min-height: 100vh;
-    background-color: ${(props) => props.theme.colors.background};
+    background: linear-gradient(to bottom right, #fff2dc, #d7d8ff);
+    color: #363759;
   }
 
   ul {
