@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 const useInfiniteScroll = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
-  const ref = useRef(null);
+  const infiniteScrollRef = useRef(null);
 
   const handleObserver = (entities) => {
     const target = entities[0];
@@ -22,12 +22,12 @@ const useInfiniteScroll = () => {
 
     const observer = new IntersectionObserver(handleObserver, options);
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (infiniteScrollRef.current) {
+      observer.observe(infiniteScrollRef.current);
     }
   }, []);
 
-  return { currentPage, ref };
+  return { currentPage, infiniteScrollRef };
 };
 
 export default useInfiniteScroll;

@@ -1,39 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import axios from 'axios';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import Theme from './style/Theme';
 import GlobalStyle from './style';
+import Theme from './style/Theme';
 
-import useInfiniteScroll from './hooks/useInfiniteScroll';
+import { persistor, store } from './store/config';
+
+import HomePage from './pages/Home';
 
 const App = () => {
-  const [data, setData] = useState([]);
-  const { currentPage, ref } = useInfiniteScroll();
-
-  const getData = async () => {
-    const response = await axios('https://jsonplaceholder.typicode.com/todos/');
-
-    setData(response.data);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const filteredTodos = data.filter((_, idx) => idx <= currentPage * 10);
-
   return (
     <>
-      <ThemeProvider theme={Theme}>
-        <ul>
-          {filteredTodos.map((value) => (
-            <li key={value.id}>{value.title}</li>
-          ))}
-        </ul>
-        <div ref={ref} />
-        <GlobalStyle />
-      </ThemeProvider>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <BrowserRouter>
+            <ThemeProvider theme={Theme}>
+              <HomePage />
+              <GlobalStyle />
+            </ThemeProvider>
+          </BrowserRouter>
+        </PersistGate>
+      </Provider>
     </>
   );
 };
