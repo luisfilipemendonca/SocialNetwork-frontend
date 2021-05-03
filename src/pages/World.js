@@ -5,7 +5,7 @@ import { fetchPosts } from '../store/actions/posts';
 
 import Post from '../components/Post';
 
-const HomePage = () => {
+const WorldPage = () => {
   const { posts } = useSelector((state) => state.posts);
   const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
@@ -46,4 +46,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default WorldPage;

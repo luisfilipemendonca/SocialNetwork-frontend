@@ -9,7 +9,7 @@ import Theme from './style/Theme';
 
 import { persistor, store } from './store';
 
-import WorldPage from './pages/World';
+import Routes from './routes';
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <ThemeProvider theme={Theme}>
-              <WorldPage />
+              <Routes />
               <GlobalStyle />
             </ThemeProvider>
           </BrowserRouter>
