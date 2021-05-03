@@ -1,7 +1,4 @@
-const initialState = {
-  user: 'Luis Mendonça',
-  loading: true,
-};
+const initialState = {};
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -7,9 +7,9 @@ import { PersistGate } from 'redux-persist/integration/react';
 import GlobalStyle from './style';
 import Theme from './style/Theme';
 
-import { persistor, store } from './store/config';
+import { persistor, store } from './store';
 
-import HomePage from './pages/Home';
+import WorldPage from './pages/World';
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <ThemeProvider theme={Theme}>
-              <HomePage />
+              <WorldPage />
               <GlobalStyle />
             </ThemeProvider>
           </BrowserRouter>
