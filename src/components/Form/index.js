@@ -9,14 +9,14 @@ import {
   FormBtns,
 } from './styled';
 
-const Form = ({ title, info }) => {
+const Form = ({ title, info, children }) => {
   return (
     <FormContainer>
       <FormHeader>
         {title && <FormTitle>{title}</FormTitle>}
         {info && <FormInfo>{info}</FormInfo>}
       </FormHeader>
-      <FormContent>Ola</FormContent>
+      <FormContent>{children}</FormContent>
       <FormBtns>
         <button type="button">Login</button>
         <button type="button">Change to register</button>

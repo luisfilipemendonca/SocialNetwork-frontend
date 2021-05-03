@@ -52,6 +52,11 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  input {
+    border: none;
+    outline: none;
+  }
+
   button {
     background: none;
     border: none;

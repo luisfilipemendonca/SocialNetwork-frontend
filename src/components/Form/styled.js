@@ -4,7 +4,7 @@ export const FormContainer = styled.form`
   background-color: #f5f5f5;
   box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primaryDark};
   width: 100%;
-  max-width: 500px;
+  max-width: 35rem;
   margin: 2rem auto;
   border-radius: 3px;
   position: relative;
@@ -46,11 +46,11 @@ export const FormInfo = styled.p`
 `;
 
 export const FormContent = styled.div`
-  height: 300px;
   margin: 0 2rem 2rem;
   border-radius: 3px;
   background-color: #f5f5f5;
   box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primaryDark};
+  padding: 2rem 1rem;
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.small}) {
     margin: 0 4rem 2rem;
