@@ -14,9 +14,9 @@ export default {
     },
     sizes: {
       default: '1.2rem',
-      primaryTitle: '2.4rem',
-      secondaryTitle: '2.1rem',
-      tertiaryTitle: '1.8rem',
+      primaryTitle: '2rem',
+      secondaryTitle: '1.8rem',
+      tertiaryTitle: '1.6rem',
     },
   },
   mediaQueries: {
@@ -24,5 +24,8 @@ export default {
     medium: '768px',
     large: '992px',
     extraLarge: '1200px',
+  },
+  dimensions: {
+    navbarHeightSmall: '60px',
   },
 };

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -57,4 +57,18 @@ export default createGlobalStyle`
     border: none;
     cursor: pointer;
   }
+`;
+
+export const MainContainer = styled.main`
+  padding-top: ${({ theme }) => theme.dimensions.navbarHeightSmall};
+  max-width: 1000px;
+  margin: 0 auto;
+`;
+
+export const MainSection = styled.section`
+  padding: 0.8rem;
+`;
+
+export const SectionForm = styled(MainSection)`
+  position: relative;
 `;
