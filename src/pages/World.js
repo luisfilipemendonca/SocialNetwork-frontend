@@ -21,10 +21,27 @@ const HomePage = () => {
   console.log(posts);
 
   return (
-    <section>
-      {posts.map((post) => (
-        <Post key={post.id} />
-      ))}
+    <section
+      style={{
+        padding: '8px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      {posts.map(
+        ({ id, description, createdAt, User, PostPhotos, Comments }) => (
+          <Post
+            key={id}
+            id={id}
+            description={description}
+            createdAt={createdAt}
+            user={User}
+            photos={PostPhotos}
+            comments={Comments}
+          />
+        )
+      )}
     </section>
   );
 };
