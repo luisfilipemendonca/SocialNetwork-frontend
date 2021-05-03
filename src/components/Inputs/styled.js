@@ -8,7 +8,7 @@ export const InputContainer = styled.div`
 
 export const InputLabel = styled.label`
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 `;
 
 export const InputGroup = styled.div`
@@ -29,7 +29,7 @@ export const InputBorder = styled.span`
 export const InputElement = styled.input`
   width: 100%;
   display: block;
-  padding: 0.6rem 0.8rem;
+  padding: 0.7rem 0.8rem;
   background-color: ${({ hasError }) =>
     hasError ? 'rgba(252,76,76, 0.2)' : 'rgba(163, 164, 207, 0.2)'};
   border-radius: 3px;

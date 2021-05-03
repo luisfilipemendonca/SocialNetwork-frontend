@@ -13,25 +13,43 @@ import {
   InputErrorMessage,
 } from './styled';
 
-const Input = ({ label, hasError }) => {
-  console.log(navigator.userAgent);
-
+const Input = ({
+  id,
+  value,
+  label,
+  hasError,
+  placeholder,
+  errorMsg,
+  info,
+  type,
+  changeHandler,
+  focusHandler,
+}) => {
   return (
     <InputContainer>
-      <InputLabel>{label}</InputLabel>
+      {label && <InputLabel>{label}</InputLabel>}
       <InputGroup>
-        <InputElement hasError={hasError} />
+        <InputElement
+          id={id}
+          hasError={hasError}
+          placeholder={placeholder}
+          type={type}
+          onChange={changeHandler}
+          onFocus={focusHandler}
+          value={value}
+        />
         <InputBorder />
         {hasError && (
           <InputError>
             <InputErrorIcon>
               <FaExclamationCircle />
             </InputErrorIcon>
-            <InputErrorMessage>Some error</InputErrorMessage>
+
+            <InputErrorMessage>{errorMsg}</InputErrorMessage>
           </InputError>
         )}
       </InputGroup>
-      <InputInfo>info</InputInfo>
+      {info && <InputInfo>{info}</InputInfo>}
     </InputContainer>
   );
 };

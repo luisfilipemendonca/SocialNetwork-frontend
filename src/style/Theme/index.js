@@ -26,6 +26,6 @@ export default {
     extraLarge: '1200px',
   },
   dimensions: {
-    navbarHeightSmall: '60px',
+    navbarHeightSmall: '5rem',
   },
 };
