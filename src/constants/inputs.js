@@ -25,3 +25,15 @@ export const loginInputs = {
     ],
   },
 };
+
+export const registerInputs = {
+  username: {
+    value: '',
+    label: 'Username',
+    type: 'text',
+    placeholder: 'Enter your username',
+    hasError: false,
+    validators: [Validator.isRequired],
+  },
+  ...loginInputs,
+};
