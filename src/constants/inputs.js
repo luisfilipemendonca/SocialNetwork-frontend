@@ -15,6 +15,13 @@ export const loginInputs = {
     type: 'password',
     placeholder: 'Enter your password',
     hasError: false,
-    validators: [Validator.isRequired],
+    minLength: 6,
+    maxLength: 8,
+    validators: [
+      Validator.isRequired,
+      Validator.hasExpectedLength,
+      Validator.containsNumber,
+      Validator.containsCapitalLetter,
+    ],
   },
 };

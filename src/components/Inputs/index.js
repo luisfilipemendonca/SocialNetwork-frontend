@@ -27,7 +27,7 @@ const Input = ({
 }) => {
   return (
     <InputContainer>
-      {label && <InputLabel>{label}</InputLabel>}
+      {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <InputGroup>
         <InputElement
           id={id}

@@ -51,10 +51,10 @@ export const InputError = styled.div`
 export const InputErrorMessage = styled.p`
   position: absolute;
   right: 0;
-  top: -90%;
+  top: -80%;
   background-color: #fc4c4c;
-  padding: 0.2rem 1rem;
-  font-size: 1rem;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.8rem;
   border-radius: 3px;
   color: #f5f5f5;
 `;

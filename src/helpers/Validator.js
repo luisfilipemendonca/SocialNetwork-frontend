@@ -24,6 +24,38 @@ class Validator {
 
     return { isValid, errorMsg: isValid ? '' : 'Provide a valid email' };
   }
+
+  static hasExpectedLength(input) {
+    const { value, minLength, maxLength = Infinity } = input;
+
+    const isValid =
+      value.trim().length >= minLength && value.trim().length <= maxLength;
+
+    return {
+      isValid,
+      errorMsg: isValid
+        ? ''
+        : `Must contain ${
+            maxLength !== Infinity
+              ? `at least ${minLength} characters`
+              : `between ${minLength} and ${maxLength} characters`
+          }`,
+    };
+  }
+
+  static containsNumber(input) {
+    const { value } = input;
+    const numberRegex = /\d/;
+    const isValid = numberRegex.test(value);
+    return { isValid, errorMsg: isValid ? '' : 'Requires at least one number' };
+  }
+
+  static containsCapitalLetter(input) {
+    const { value } = input;
+    const capitalLetterRegex = /[A-Z]/;
+    const isValid = capitalLetterRegex.test(value);
+    return { isValid, errorMsg: isValid ? '' : 'Requires a capital letter' };
+  }
 }
 
 export default Validator;
