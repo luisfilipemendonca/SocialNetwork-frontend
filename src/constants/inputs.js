@@ -16,7 +16,6 @@ export const loginInputs = {
     placeholder: 'Enter your password',
     hasError: false,
     minLength: 6,
-    maxLength: 8,
     validators: [
       Validator.isRequired,
       Validator.hasExpectedLength,
@@ -33,7 +32,9 @@ export const registerInputs = {
     type: 'text',
     placeholder: 'Enter your username',
     hasError: false,
-    validators: [Validator.isRequired],
+    minLength: 3,
+    maxLength: 16,
+    validators: [Validator.isRequired, Validator.hasExpectedLength],
   },
   ...loginInputs,
 };

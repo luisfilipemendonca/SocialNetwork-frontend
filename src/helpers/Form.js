@@ -21,6 +21,16 @@ class Form {
 
     return isFormValid;
   }
+
+  buildFormObj() {
+    const data = {};
+
+    Object.keys(this.inputs).forEach((input) => {
+      data[input] = this.inputs[input].value;
+    });
+
+    return data;
+  }
 }
 
 export default Form;

@@ -26,10 +26,11 @@ class Validator {
   }
 
   static hasExpectedLength(input) {
-    const { value, minLength, maxLength = Infinity } = input;
+    const { value, minLength, maxLength } = input;
 
     const isValid =
-      value.trim().length >= minLength && value.trim().length <= maxLength;
+      value.trim().length >= minLength &&
+      value.trim().length <= (maxLength || Infinity);
 
     return {
       isValid,

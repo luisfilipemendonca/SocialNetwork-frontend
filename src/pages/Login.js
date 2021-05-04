@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { SectionForm } from '../style';
 
@@ -8,10 +9,13 @@ import useInputs from '../hooks/useInputs';
 
 import FormHelper from '../helpers/Form';
 
+import { login } from '../store/actions/user';
+
 import Form from '../components/Form';
 import Input from '../components/Inputs';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     loginInputs
   );
@@ -23,7 +27,9 @@ const LoginPage = () => {
 
     if (!form.validate(setErrorHandler)) return;
 
-    console.log('ola');
+    const data = form.buildFormObj();
+
+    dispatch(login(data));
   };
 
   return (

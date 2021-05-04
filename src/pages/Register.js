@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { SectionForm } from '../style';
 
@@ -6,12 +7,15 @@ import { registerInputs } from '../constants/inputs';
 
 import useInputs from '../hooks/useInputs';
 
+import { register } from '../store/actions/user';
+
 import FormHelper from '../helpers/Form';
 
 import Form from '../components/Form';
 import Input from '../components/Inputs';
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     registerInputs
   );
@@ -23,7 +27,9 @@ const RegisterPage = () => {
 
     if (!form.validate(setErrorHandler)) return;
 
-    console.log('ola');
+    const data = form.buildFormObj();
+
+    dispatch(register(data));
   };
 
   return (
