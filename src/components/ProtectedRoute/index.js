@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux';
 const ProtectedRoute = ({ isExact, isClosed, component, path }) => {
   const user = useSelector((state) => state.user);
 
-  console.log(user);
-
   if (!user.isLogged && isClosed) {
     return <Redirect to="/login" />;
   }

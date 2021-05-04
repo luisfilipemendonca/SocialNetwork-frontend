@@ -15,12 +15,22 @@ const focus = (state, payload) => {
   return inputsCopy;
 };
 
+const setError = (state, payload) => {
+  const { id, errorMsg } = payload;
+  const inputsCopy = { ...state };
+  inputsCopy[id].hasError = true;
+  inputsCopy[id].errorMsg = errorMsg;
+  return inputsCopy;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE':
       return change(state, action.payload);
     case 'FOCUS':
       return focus(state, action.payload);
+    case 'SET_ERROR':
+      return setError(state, action.payload);
     default:
       return state;
   }
@@ -35,7 +45,10 @@ const useInputs = (initialInputs) => {
   const focusHandler = (e) =>
     dispatch({ type: 'FOCUS', payload: e.currentTarget });
 
-  return { inputs, changeHandler, focusHandler };
+  const setErrorHandler = (id, errorMsg) =>
+    dispatch({ type: 'SET_ERROR', payload: { id, errorMsg } });
+
+  return { inputs, changeHandler, focusHandler, setErrorHandler };
 };
 
 export default useInputs;

@@ -10,6 +10,6 @@ export const fetchPosts = () => async (dispatch) => {
     dispatch({ type: actionTypes.FETCH_POST, payload: response.data });
     dispatch({ type: actionTypes.STOP_LOADING });
   } catch (e) {
-    console.log(e);
+    // do something
   }
 };
