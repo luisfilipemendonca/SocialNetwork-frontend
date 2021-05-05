@@ -8,6 +8,8 @@ import {
   PostSliderBullet,
 } from './styled';
 
+import PostLikeAnimation from '../PostLikeAnimation';
+
 const PostPhotos = ({ photos }) => {
   const [sliderPosition, setSliderPosition] = useState(0);
 
@@ -29,6 +31,7 @@ const PostPhotos = ({ photos }) => {
           <PostSliderBullet onClick={() => sliderPositionHandler(2)} />
         </PostSliderBulletsContainer>
       )}
+      <PostLikeAnimation />
     </PostPhotoContainer>
   );
 };
