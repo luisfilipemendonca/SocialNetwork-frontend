@@ -1,23 +1,23 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { SectionForm } from '../style';
+import { SectionForm } from '../../style';
 
-import { loginInputs } from '../constants/inputs';
+import { registerInputs } from '../../constants/inputs';
 
-import useInputs from '../hooks/useInputs';
+import useInputs from '../../hooks/useInputs';
 
-import FormHelper from '../helpers/Form';
+import { authenticate } from '../../store/actions/user';
 
-import { login } from '../store/actions/user';
+import FormHelper from '../../helpers/Form';
 
-import Form from '../components/Form';
-import Input from '../components/Inputs';
+import Form from '../../components/Form';
+import Input from '../../components/Inputs';
 
-const LoginPage = () => {
+const FormRegister = () => {
   const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
-    loginInputs
+    registerInputs
   );
 
   const submitHandler = (e) => {
@@ -29,14 +29,14 @@ const LoginPage = () => {
 
     const data = form.buildFormObj();
 
-    dispatch(login(data));
+    dispatch(authenticate(data));
   };
 
   return (
     <SectionForm>
       <Form
-        title="Login"
-        info="Fill all fields to login into your account"
+        title="Register"
+        info="Fill all fields to create an account"
         submitHandler={submitHandler}
       >
         {Object.keys(inputs).map((key) => (
@@ -58,4 +58,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default FormRegister;

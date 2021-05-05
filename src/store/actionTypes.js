@@ -8,5 +8,4 @@ export const START_LOADING_FORM = 'START_LOADING_FORM';
 export const STOP_LOADING_FORM = 'STOP_LOADING_FORM';
 
 // USER ACTIONS
-export const REGISTER = 'REGISTER';
-export const LOGIN = 'LOGIN';
+export const AUTHENTICATE = 'AUTHENTICATE';
