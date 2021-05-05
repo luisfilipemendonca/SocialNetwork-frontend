@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const PostContainer = styled.article`
   width: 100%;
-  max-width: 450px;
+  max-width: 33rem;
   box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primaryDark};
   margin-bottom: 3rem;
   background-color: #f5f5f5;
@@ -44,22 +44,6 @@ export const PostUserIcon = styled.span``;
 export const PostUsername = styled.h3``;
 
 export const PostDate = styled.span``;
-
-export const PostPhotoContainer = styled.div`
-  height: 25rem;
-
-  @media screen and (min-width: ${({ theme }) => theme.mediaQueries.medium}) {
-    height: 28rem;
-    padding: 0 0.8rem;
-  }
-`;
-
-export const PostPhoto = styled.img`
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-`;
 
 export const PostLikes = styled.p`
   padding: 0.3rem 0.8rem;

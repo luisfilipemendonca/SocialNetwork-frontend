@@ -10,8 +10,6 @@ import {
   PostUserIcon,
   PostDate,
   PostUsername,
-  PostPhotoContainer,
-  PostPhoto,
   PostLikes,
   PostDescription,
   PostCta,
@@ -26,6 +24,8 @@ import {
   CommentDate,
   Comment,
 } from './styled';
+
+import PostPhotos from './PostPhotos';
 
 const Post = ({ description, createdAt, user, photos, comments }) => {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
@@ -48,9 +48,7 @@ const Post = ({ description, createdAt, user, photos, comments }) => {
           </PostUser>
           <PostDate>{createdAt}</PostDate>
         </PostHeader>
-        <PostPhotoContainer>
-          <PostPhoto src={photos[0].postPhotoUrl} />
-        </PostPhotoContainer>
+        <PostPhotos photos={photos} />
         <PostLikes>Likes: 100</PostLikes>
         <PostDescription>{description}</PostDescription>
         <PostCommentsContainer isOpen={isCommentsOpen}>
