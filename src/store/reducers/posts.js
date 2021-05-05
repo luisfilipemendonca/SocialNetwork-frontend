@@ -10,10 +10,36 @@ const fetchPosts = (state, payload) => {
   return updatedState;
 };
 
+const addLike = (state, payload) => {
+  const { postId, data } = payload;
+  const updatedState = { ...state };
+  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+  updatedState.posts[postIdx].liked = true;
+  updatedState.posts[postIdx].alreadyLiked = true;
+  updatedState.posts[postIdx].Likes.push(data);
+  return updatedState;
+};
+
+const deleteLike = (state, payload) => {
+  const { postId, userId } = payload;
+  const updatedState = { ...state };
+  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+  updatedState.posts[postIdx].liked = false;
+  updatedState.posts[postIdx].alreadyLiked = false;
+  updatedState.posts[postIdx].Likes = updatedState.posts[postIdx].Likes.filter(
+    (like) => like.userId !== userId
+  );
+  return updatedState;
+};
+
 const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_POST:
       return fetchPosts(state, action.payload);
+    case actionTypes.ADD_LIKE:
+      return addLike(state, action.payload);
+    case actionTypes.DELETE_LIKE:
+      return deleteLike(state, action.payload);
     default:
       return state;
   }

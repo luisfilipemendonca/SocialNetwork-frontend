@@ -30,7 +30,7 @@ const authenticate = (state, payload) => {
   stateCopy.userFirstTime = userFirstTime;
   stateCopy.userProfilePicture = userProfilePicture;
 
-  axios.defaults.headers.authorization = `Bearer ${userToken};`;
+  axios.defaults.headers.authorization = `Bearer ${userToken}`;
 
   return stateCopy;
 };
@@ -38,6 +38,8 @@ const authenticate = (state, payload) => {
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATE:
+      return authenticate(state, action.payload);
+    case actionTypes.REHYDRATE_USER:
       return authenticate(state, action.payload);
     default:
       return state;

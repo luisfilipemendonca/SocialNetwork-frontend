@@ -13,3 +13,28 @@ export const fetchPosts = () => async (dispatch) => {
     // do something
   }
 };
+
+export const addLike = (postId) => async (dispatch) => {
+  try {
+    const response = await axios.post('/likes', { postId });
+
+    dispatch({
+      type: actionTypes.ADD_LIKE,
+      payload: { postId, data: response.data },
+    });
+  } catch (e) {
+    // do something
+  }
+};
+
+export const deleteLike = (postId) => async (dispatch, getState) => {
+  try {
+    const { userId } = getState().user;
+
+    await axios.delete(`/likes/${postId}`);
+
+    dispatch({ type: actionTypes.DELETE_LIKE, payload: { postId, userId } });
+  } catch (e) {
+    // do something
+  }
+};

@@ -18,6 +18,8 @@ const WorldPage = () => {
     return <div>Is Loading...</div>;
   }
 
+  console.log(posts);
+
   return (
     <section
       style={{
@@ -28,7 +30,17 @@ const WorldPage = () => {
       }}
     >
       {posts.map(
-        ({ id, description, createdAt, User, PostPhotos, Comments }) => (
+        ({
+          id,
+          description,
+          createdAt,
+          User,
+          PostPhotos,
+          Comments,
+          liked,
+          alreadyLiked,
+          Likes,
+        }) => (
           <Post
             key={id}
             id={id}
@@ -37,6 +49,9 @@ const WorldPage = () => {
             user={User}
             photos={PostPhotos}
             comments={Comments}
+            likesCount={Likes.length}
+            liked={liked}
+            alreadyLiked={alreadyLiked}
           />
         )
       )}

@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { FaUserCircle, FaCommentAlt, FaHeart } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import {
+  FaUserCircle,
+  FaCommentAlt,
+  FaHeart,
+  FaHeartBroken,
+} from 'react-icons/fa';
 
 import {
   PostContainer,
@@ -25,12 +31,35 @@ import {
   Comment,
 } from './styled';
 
+import { addLike, deleteLike } from '../../store/actions/posts';
+
 import PostPhotos from './PostPhotos';
 
-const Post = ({ description, createdAt, user, photos, comments }) => {
+const Post = ({
+  id,
+  description,
+  createdAt,
+  user,
+  photos,
+  comments,
+  liked,
+  alreadyLiked,
+  likesCount,
+}) => {
+  const dispatch = useDispatch();
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
   const toggleCommentsVisibility = () => setIsCommentsOpen(!isCommentsOpen);
+
+  const addLikeHandler = () => {
+    console.log('adding');
+    dispatch(addLike(id));
+  };
+
+  const deleteLikeHandler = () => {
+    console.log('removing');
+    dispatch(deleteLike(id));
+  };
 
   return (
     <PostContainer>
@@ -48,13 +77,13 @@ const Post = ({ description, createdAt, user, photos, comments }) => {
           </PostUser>
           <PostDate>{createdAt}</PostDate>
         </PostHeader>
-        <PostPhotos photos={photos} />
-        <PostLikes>Likes: 100</PostLikes>
+        <PostPhotos photos={photos} liked={liked} alreadyLiked={alreadyLiked} />
+        <PostLikes>Likes: {likesCount}</PostLikes>
         <PostDescription>{description}</PostDescription>
         <PostCommentsContainer isOpen={isCommentsOpen}>
           <PostCommentsHeader>Comments</PostCommentsHeader>
           <PostCommentsContent>
-            {comments.map(
+            {comments?.map(
               ({
                 comment,
                 User,
@@ -78,8 +107,11 @@ const Post = ({ description, createdAt, user, photos, comments }) => {
         <PostBtn type="button" onClick={toggleCommentsVisibility}>
           <FaCommentAlt />
         </PostBtn>
-        <PostBtn type="button">
-          <FaHeart />
+        <PostBtn
+          type="button"
+          onClick={liked || alreadyLiked ? deleteLikeHandler : addLikeHandler}
+        >
+          {liked || alreadyLiked ? <FaHeart /> : <FaHeartBroken />}
         </PostBtn>
       </PostCta>
     </PostContainer>
