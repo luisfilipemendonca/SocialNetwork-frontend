@@ -3,6 +3,7 @@ import * as actionTypes from '../actionTypes';
 const initialState = {
   isLoading: false,
   isFormLoading: false,
+  isCommentsLoading: false,
 };
 
 const startLoading = (state) => {

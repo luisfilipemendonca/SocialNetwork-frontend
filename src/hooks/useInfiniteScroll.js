@@ -4,6 +4,7 @@ const useInfiniteScroll = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const infiniteScrollRef = useRef(null);
+  const rootRef = useRef(null);
 
   const handleObserver = (entities) => {
     const target = entities[0];
@@ -14,8 +15,10 @@ const useInfiniteScroll = () => {
   };
 
   useEffect(() => {
+    if (!rootRef.current) return;
+
     const options = {
-      root: null,
+      root: rootRef.current || null,
       rootMargin: '20px',
       threshold: 1.0,
     };
@@ -27,7 +30,11 @@ const useInfiniteScroll = () => {
     }
   }, []);
 
-  return { currentPage, infiniteScrollRef };
+  return {
+    currentPage,
+    infiniteScrollRef,
+    rootRef,
+  };
 };
 
 export default useInfiniteScroll;

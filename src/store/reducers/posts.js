@@ -32,6 +32,17 @@ const deleteLike = (state, payload) => {
   return updatedState;
 };
 
+const fetchComments = (state, payload) => {
+  const { hasMoreComments, comments, postId } = payload;
+  const updatedState = { ...state };
+  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+  updatedState.posts[postIdx].comments = (
+    updatedState.posts[postIdx].comments || []
+  ).concat(comments);
+  updatedState.posts[postIdx].hasMoreComments = hasMoreComments;
+  return updatedState;
+};
+
 const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_POST:
@@ -40,6 +51,8 @@ const PostsReducer = (state = initialState, action) => {
       return addLike(state, action.payload);
     case actionTypes.DELETE_LIKE:
       return deleteLike(state, action.payload);
+    case actionTypes.FETCH_COMMENTS:
+      return fetchComments(state, action.payload);
     default:
       return state;
   }

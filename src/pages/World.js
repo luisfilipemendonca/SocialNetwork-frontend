@@ -18,8 +18,6 @@ const WorldPage = () => {
     return <div>Is Loading...</div>;
   }
 
-  console.log(posts);
-
   return (
     <section
       style={{
@@ -36,10 +34,11 @@ const WorldPage = () => {
           createdAt,
           User,
           PostPhotos,
-          Comments,
+          comments,
           liked,
           alreadyLiked,
           Likes,
+          hasMoreComments,
         }) => (
           <Post
             key={id}
@@ -48,7 +47,8 @@ const WorldPage = () => {
             createdAt={createdAt}
             user={User}
             photos={PostPhotos}
-            comments={Comments}
+            comments={comments}
+            hasMoreComments={hasMoreComments}
             likesCount={Likes.length}
             liked={liked}
             alreadyLiked={alreadyLiked}

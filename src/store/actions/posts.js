@@ -38,3 +38,19 @@ export const deleteLike = (postId) => async (dispatch, getState) => {
     // do something
   }
 };
+
+export const fetchComments = ({ postId, page, offset }) => async (dispatch) => {
+  //  dispatch loading comments
+  try {
+    const response = await axios(
+      `/comments/${postId}?page=${page}&offset=${offset}`
+    );
+
+    dispatch({
+      type: actionTypes.FETCH_COMMENTS,
+      payload: { ...response.data, postId },
+    });
+  } catch (e) {
+    // do something
+  }
+};

@@ -10,7 +10,7 @@ import {
 
 import PostLikeAnimation from '../PostLikeAnimation';
 
-const PostPhotos = ({ photos, liked, alreadyLiked }) => {
+const PostPhotos = ({ photos, showAnimation }) => {
   const [sliderPosition, setSliderPosition] = useState(0);
 
   const sliderPositionHandler = (position) => {
@@ -31,7 +31,7 @@ const PostPhotos = ({ photos, liked, alreadyLiked }) => {
           <PostSliderBullet onClick={() => sliderPositionHandler(2)} />
         </PostSliderBulletsContainer>
       )}
-      {liked && alreadyLiked && <PostLikeAnimation />}
+      {showAnimation && <PostLikeAnimation />}
     </PostPhotoContainer>
   );
 };
