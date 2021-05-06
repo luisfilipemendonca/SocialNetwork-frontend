@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
 
+import { formatedDateTime } from '../../../util/dates';
+
 import {
   PostHeaderContainer,
   PostDate,
@@ -28,7 +30,7 @@ const PostHeader = ({
         )}
         <PostUsername>{username}</PostUsername>
       </PostUser>
-      <PostDate>{createdAt}</PostDate>
+      <PostDate>{formatedDateTime(createdAt)}</PostDate>
     </PostHeaderContainer>
   );
 };

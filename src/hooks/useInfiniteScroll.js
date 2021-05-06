@@ -15,8 +15,6 @@ const useInfiniteScroll = () => {
   };
 
   useEffect(() => {
-    if (!rootRef.current) return;
-
     const options = {
       root: rootRef.current || null,
       rootMargin: '20px',

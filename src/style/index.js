@@ -44,7 +44,7 @@ export default createGlobalStyle`
     font-size: ${({ theme }) => theme.typography.sizes.terciaryTitle};
   }
 
-  ul {
+  li {
     list-style: none;
   }
 
@@ -71,9 +71,15 @@ export const MainContainer = styled.main`
 `;
 
 export const MainSection = styled.section`
-  padding: 0.8rem;
+  padding: 1rem;
 `;
 
 export const SectionForm = styled(MainSection)`
   position: relative;
+`;
+
+export const PostsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
