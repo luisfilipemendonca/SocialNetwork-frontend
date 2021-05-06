@@ -42,7 +42,6 @@ export const NavbarTogglerItem = styled.span`
   top: 50%;
   left: 50%;
   transition: transform 0.3s linear;
-  margin: 0 auto;
 
   &:nth-child(1) {
     transform: translate(-50%, -50%);
@@ -68,12 +67,12 @@ export const NavbarMenu = styled.ul`
   position: fixed;
   top: 0;
   right: 0;
-  /* width: 100%; */
+  width: 100%;
   height: 100%;
   background: ${({ theme }) =>
     `linear-gradient(to bottom, ${theme.colors.primaryDark} 10%, ${theme.colors.secondaryLight})`};
   transition: width 0.3s linear;
-  width: ${({ isOpen }) => (isOpen ? '100%' : '0%')};
+  width: ${({ isOpen }) => (isOpen ? '100%' : '0')};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,6 +84,7 @@ export const NavbarMenu = styled.ul`
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.medium}) {
     position: static;
+    transform: unset;
     flex-direction: row;
     background: none;
     top: unset;
@@ -152,6 +152,7 @@ export const NavbarLink = styled(NavLink)`
     width: unset;
     font-size: 1.4rem;
     padding: 0.2rem 1.5rem;
+    transition: none;
 
     &::before {
       background-color: ${({ theme }) => theme.colors.secondaryDark};

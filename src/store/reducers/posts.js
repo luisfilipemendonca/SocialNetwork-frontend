@@ -4,6 +4,15 @@ const initialState = {
   posts: [],
 };
 
+export const addLikeHandler = ({ state, postId, data }) => {
+  const addLikeState = state;
+  const postIdx = addLikeState.findIndex((post) => post.id === postId);
+  addLikeState[postIdx].liked = true;
+  addLikeState[postIdx].alreadyLiked = true;
+  addLikeState[postIdx].Likes.push(data);
+  return addLikeState;
+};
+
 const fetchPosts = (state, payload) => {
   const updatedState = { ...state };
   updatedState.posts = payload;
@@ -13,10 +22,11 @@ const fetchPosts = (state, payload) => {
 const addLike = (state, payload) => {
   const { postId, data } = payload;
   const updatedState = { ...state };
-  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
-  updatedState.posts[postIdx].liked = true;
-  updatedState.posts[postIdx].alreadyLiked = true;
-  updatedState.posts[postIdx].Likes.push(data);
+  updatedState.posts = addLikeHandler({
+    state: updatedState.posts,
+    postId,
+    data,
+  });
   return updatedState;
 };
 

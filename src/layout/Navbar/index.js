@@ -21,23 +21,31 @@ const Navbar = () => {
     <NavbarContainer isLogged={isLogged}>
       <NavbarBrand>Social Network</NavbarBrand>
       {isLogged && (
-        <NavbarToggler onClick={openNavbarHandler}>
-          <NavbarTogglerItem isOpen={isOpen} />
-          <NavbarTogglerItem isOpen={isOpen} />
-          <NavbarTogglerItem isOpen={isOpen} />
-        </NavbarToggler>
+        <>
+          <NavbarToggler onClick={openNavbarHandler}>
+            <NavbarTogglerItem isOpen={isOpen} />
+            <NavbarTogglerItem isOpen={isOpen} />
+            <NavbarTogglerItem isOpen={isOpen} />
+          </NavbarToggler>
+          <NavbarMenu isOpen={isOpen}>
+            <NavbarItem>
+              <NavbarLink to="/" exact>
+                World
+              </NavbarLink>
+            </NavbarItem>
+            <NavbarItem>
+              <NavbarLink to="/following" exact>
+                Following
+              </NavbarLink>
+            </NavbarItem>
+            <NavbarItem>
+              <NavbarLink to="profile" exact>
+                Profile
+              </NavbarLink>
+            </NavbarItem>
+          </NavbarMenu>
+        </>
       )}
-      <NavbarMenu isOpen={isOpen}>
-        <NavbarItem>
-          <NavbarLink to="/">World</NavbarLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NavbarLink to="/following">Following</NavbarLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NavbarLink to="profile">Profile</NavbarLink>
-        </NavbarItem>
-      </NavbarMenu>
     </NavbarContainer>
   );
 };
