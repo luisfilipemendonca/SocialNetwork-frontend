@@ -15,7 +15,7 @@ export const fetchUserData = (id, isProfile = false) => async (dispatch) => {
     } else {
       dispatch({
         type: actionTypes.FETCH_USER_POSTS,
-        payload: response.data.posts,
+        payload: response.data.Posts,
       });
     }
   } catch (e) {

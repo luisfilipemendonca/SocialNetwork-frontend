@@ -78,6 +78,24 @@ export const SectionForm = styled(MainSection)`
   position: relative;
 `;
 
+export const SectionProfile = styled(MainSection)`
+  height: calc(
+    100vh - ${({ theme }) => theme.dimensions.navbarHeightSmall} - 2rem
+  );
+  background-color: #f5f5f5;
+  box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primaryLight};
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  margin: 0 auto;
+
+  @media screen and (min-width: ${({ theme }) => theme.mediaQueries.large}) {
+    max-width: unset;
+    flex-direction: row;
+  }
+`;
+
 export const PostsContainer = styled.div`
   display: flex;
   flex-direction: column;
