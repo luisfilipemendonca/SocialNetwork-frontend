@@ -2,6 +2,7 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
   posts: [],
+  selectedPost: [],
 };
 
 export const addLikeHandler = ({ state, postId, data }) => {
@@ -53,6 +54,18 @@ const fetchComments = (state, payload) => {
   return updatedState;
 };
 
+const getPost = (state, payload) => {
+  const updatedState = { ...state };
+  updatedState.selectedPost = payload;
+  return updatedState;
+};
+
+const clearPost = (state) => {
+  const updatedState = { ...state };
+  updatedState.selectedPost = [];
+  return updatedState;
+};
+
 const PostsReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_POST:
@@ -63,6 +76,10 @@ const PostsReducer = (state = initialState, action) => {
       return deleteLike(state, action.payload);
     case actionTypes.FETCH_COMMENTS:
       return fetchComments(state, action.payload);
+    case actionTypes.GET_POST:
+      return getPost(state, action.payload);
+    case actionTypes.CLEAR_POST:
+      return clearPost(state);
     default:
       return state;
   }

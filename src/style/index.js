@@ -88,7 +88,7 @@ export const SectionProfile = styled(MainSection)`
   display: flex;
   flex-direction: column;
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 1rem auto;
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.large}) {
     max-width: unset;

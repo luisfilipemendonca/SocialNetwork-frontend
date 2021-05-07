@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const UserProfile = styled.div`
@@ -116,7 +115,7 @@ export const UserPostsMenu = styled.ul`
 
 export const UserPostItem = styled.li``;
 
-export const UserPostLink = styled(Link)`
+export const UserPostBtn = styled.button`
   display: block;
   height: 100%;
   position: relative;

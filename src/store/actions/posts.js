@@ -54,3 +54,18 @@ export const fetchComments = ({ postId, page, offset }) => async (dispatch) => {
     // do something
   }
 };
+
+export const getPost = (postId) => async (dispatch) => {
+  try {
+    const response = await axios(`/posts/${postId}`);
+
+    dispatch({
+      type: actionTypes.GET_POST,
+      payload: response.data,
+    });
+  } catch (e) {
+    // do soemthing
+  }
+};
+
+export const clearPost = () => ({ type: actionTypes.CLEAR_POST });
