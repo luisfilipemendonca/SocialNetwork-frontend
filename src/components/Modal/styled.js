@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { PostContainer } from '../Post/styled';
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -11,12 +12,17 @@ export const ModalContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.8rem;
+  overflow: auto;
 
-  div {
-    width: 200px;
-    height: 200px;
-    background-color: #f5f5f5;
-    transform: rotate(360deg);
+  & ${PostContainer} {
+    box-shadow: none;
+    /* border: 1px solid ${({ theme }) => theme.colors.primaryLight}; */
+    margin-bottom: 0;
+
+    @media screen and (min-width: ${({ theme }) => theme.mediaQueries.medium}) {
+      box-shadow: none;
+    }
   }
 
   &.modal-enter {
@@ -27,7 +33,7 @@ export const ModalContainer = styled.div`
   &.modal-enter-active {
     transform: scale(1);
     opacity: 1;
-    transition: 0.5s linear;
+    transition: 0.3s ease-in;
     transition-property: transform, opacity;
   }
 
@@ -37,15 +43,17 @@ export const ModalContainer = styled.div`
 
   &.modal-exit-active {
     opacity: 0;
-    transition: opacity 0.2s linear;
+    transition: opacity 0.3s ease-out;
   }
 
-  &.modal-enter div {
-    transform: scale(0) rotate(360deg);
+  &.modal-enter > ${PostContainer} {
+    transform: translateY(-20px);
+    opacity: 0;
   }
 
-  &.modal-enter-active div {
-    transform: scale(1) rotate(0);
-    transition: transform 0.5s linear 0.5s;
+  &.modal-enter-active > ${PostContainer} {
+    opacity: 1;
+    transform: translateY(0);
+    transition: transform 0.7s ease-in 0.3s, opacity 0.4s ease-in 0.3s;
   }
 `;

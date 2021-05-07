@@ -26,6 +26,7 @@ import { fetchUserData } from '../store/actions/profile';
 import { getPost, clearPost } from '../store/actions/posts';
 
 import Modal from '../components/Modal';
+import Post from '../components/Post';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,36 @@ const ProfilePage = () => {
 
   return (
     <SectionProfile>
-      <Modal show={selectedPost.length > 0} closeHandler={clearPostHandler} />
+      <Modal show={selectedPost.length > 0} closeHandler={clearPostHandler}>
+        {selectedPost.map(
+          ({
+            id: postId,
+            description,
+            createdAt,
+            User,
+            PostPhotos,
+            comments,
+            liked,
+            alreadyLiked,
+            Likes,
+            hasMoreComments,
+          }) => (
+            <Post
+              key={postId}
+              id={postId}
+              description={description}
+              createdAt={createdAt}
+              user={User}
+              photos={PostPhotos}
+              comments={comments}
+              hasMoreComments={hasMoreComments}
+              likesCount={Likes.length}
+              liked={liked}
+              alreadyLiked={alreadyLiked}
+            />
+          )
+        )}
+      </Modal>
       <UserProfile>
         <UserData>
           <UserInfo>
