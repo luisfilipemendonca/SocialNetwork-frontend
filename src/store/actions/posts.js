@@ -14,7 +14,7 @@ export const fetchPosts = () => async (dispatch) => {
   }
 };
 
-export const addLike = (postId, isProfile) => async (dispatch) => {
+export const addLike = (postId, isProfile = false) => async (dispatch) => {
   try {
     const response = await axios.post('/likes', { postId });
 
@@ -27,7 +27,10 @@ export const addLike = (postId, isProfile) => async (dispatch) => {
   }
 };
 
-export const deleteLike = (postId, isProfile) => async (dispatch, getState) => {
+export const deleteLike = (postId, isProfile = false) => async (
+  dispatch,
+  getState
+) => {
   try {
     const { userId } = getState().user;
 
@@ -42,7 +45,9 @@ export const deleteLike = (postId, isProfile) => async (dispatch, getState) => {
   }
 };
 
-export const fetchComments = ({ postId, page, offset }) => async (dispatch) => {
+export const fetchComments = ({ postId, page, offset }, isProfile) => async (
+  dispatch
+) => {
   //  dispatch loading comments
   try {
     const response = await axios(
@@ -51,7 +56,7 @@ export const fetchComments = ({ postId, page, offset }) => async (dispatch) => {
 
     dispatch({
       type: actionTypes.FETCH_COMMENTS,
-      payload: { ...response.data, postId },
+      payload: { ...response.data, postId, isProfile },
     });
   } catch (e) {
     // do something
@@ -72,3 +77,18 @@ export const getPost = (postId) => async (dispatch) => {
 };
 
 export const clearPost = () => ({ type: actionTypes.CLEAR_POST });
+
+export const addComment = (data, postId, isProfile = false) => async (
+  dispatch
+) => {
+  try {
+    const response = await axios.post('/comments', { ...data, postId });
+
+    dispatch({
+      type: actionTypes.ADD_COMMENT,
+      payload: { postId, comment: response.data, isProfile },
+    });
+  } catch (e) {
+    // do something
+  }
+};

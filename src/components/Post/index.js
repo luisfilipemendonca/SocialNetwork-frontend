@@ -49,6 +49,7 @@ const Post = ({
           postId={id}
           offset={commentsOffset || 0}
           hasMoreComments={hasMoreComments}
+          isProfile={isProfile}
         />
       </PostContent>
       <PostCta

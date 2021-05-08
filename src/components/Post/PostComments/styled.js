@@ -27,9 +27,32 @@ export const PostCommentsContent = styled.ul`
 `;
 
 export const CommentContainer = styled.li`
+  @keyframes blink {
+    0% {
+      background-color: #f5f5f5;
+    }
+    20% {
+      background-color: rgba(163, 164, 207, 0.2);
+    }
+    40% {
+      background-color: #f5f5f5;
+    }
+    60% {
+      background-color: rgba(163, 164, 207, 0.2);
+    }
+    80% {
+      background-color: #f5f5f5;
+    }
+    100% {
+      background-color: rgba(163, 164, 207, 0.2);
+    }
+  }
+
   margin-bottom: 1rem;
   padding: 1rem;
   box-shadow: 0 0 5px ${({ theme }) => theme.colors.primaryLight};
+  animation: ${({ recentlyAdded }) =>
+    recentlyAdded ? 'blink 2s linear' : 'none'};
 `;
 
 export const CommentHeader = styled.div`

@@ -35,6 +35,7 @@ const WorldPage = () => {
             alreadyLiked,
             Likes,
             hasMoreComments,
+            commentsOffset,
           }) => (
             <Post
               key={id}
@@ -48,6 +49,7 @@ const WorldPage = () => {
               likesCount={Likes.length}
               liked={liked}
               alreadyLiked={alreadyLiked}
+              commentsOffset={commentsOffset}
             />
           )
         )}

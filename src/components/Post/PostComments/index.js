@@ -19,7 +19,9 @@ import { commentInput } from '../../../constants/inputs';
 import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
 import useInputs from '../../../hooks/useInputs';
 
-import { fetchComments } from '../../../store/actions/posts';
+import FormHelper from '../../../helpers/Form';
+
+import { fetchComments, addComment } from '../../../store/actions/posts';
 
 import Input from '../../Inputs';
 
@@ -29,19 +31,36 @@ const PostComments = ({
   postId,
   offset,
   hasMoreComments,
+  isProfile,
 }) => {
   const dispatch = useDispatch();
   const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll(
     hasMoreComments
   );
-  const { inputs, changeHandler, focusHandler, clearInputsHandler } = useInputs(
-    commentInput
-  );
+  const {
+    inputs,
+    changeHandler,
+    focusHandler,
+    clearInputsHandler,
+    setErrorHandler,
+  } = useInputs(commentInput);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const form = new FormHelper(inputs);
+
+    if (!form.validate(setErrorHandler)) return;
+
+    const data = form.buildFormObj();
+
+    dispatch(addComment(data, postId, isProfile));
+  };
 
   useEffect(() => {
     if (currentPage === 0 || !hasMoreComments) return;
 
-    dispatch(fetchComments({ postId, offset, page: currentPage }));
+    dispatch(fetchComments({ postId, offset, page: currentPage }, isProfile));
   }, [currentPage]);
 
   useEffect(() => {
@@ -55,8 +74,14 @@ const PostComments = ({
       <PostCommentsHeader>Comments</PostCommentsHeader>
       <PostCommentsContent ref={rootRef}>
         {comments?.map(
-          ({ comment, User, createdAt: commentCreatedAt, id: commentId }) => (
-            <CommentContainer key={commentId}>
+          ({
+            comment,
+            User,
+            createdAt: commentCreatedAt,
+            id: commentId,
+            recentlyAdded,
+          }) => (
+            <CommentContainer key={commentId} recentlyAdded={recentlyAdded}>
               <CommentHeader>
                 <CommentUser>{User.username}</CommentUser>
                 <CommentDate>{commentCreatedAt}</CommentDate>
@@ -68,7 +93,7 @@ const PostComments = ({
         <div ref={infiniteScrollRef}>Loading...</div>
       </PostCommentsContent>
       <PostCommentCta>
-        <CommentForm>
+        <CommentForm onSubmit={submitHandler}>
           {Object.keys(inputs).map((key) => (
             <Input
               key={key}
@@ -83,7 +108,9 @@ const PostComments = ({
               focusHandler={focusHandler}
             />
           ))}
-          <button type="button">Add Comment</button>
+          <button type="button" onClick={submitHandler}>
+            Add Comment
+          </button>
         </CommentForm>
       </PostCommentCta>
     </PostCommentsContainer>

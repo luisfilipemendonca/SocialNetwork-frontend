@@ -23,6 +23,31 @@ const deleteLikeHandler = ({ state, postIdx, userId }) => {
   return deleteLikeState;
 };
 
+const addCommentHandler = ({ state, postIdx, comment }) => {
+  const addCommentState = state;
+  addCommentState[postIdx].comments.unshift({
+    ...comment,
+    recentlyAdded: true,
+  });
+  addCommentState[postIdx].commentsOffset =
+    (addCommentState[postIdx].commentsOffset || 0) + 1;
+  return addCommentState;
+};
+
+const fetchCommentsHandler = ({
+  state,
+  postIdx,
+  comments,
+  hasMoreComments,
+}) => {
+  const commentsState = state;
+  commentsState[postIdx].comments = (
+    commentsState[postIdx].comments || []
+  ).concat(comments);
+  commentsState[postIdx].hasMoreComments = hasMoreComments;
+  return commentsState;
+};
+
 const fetchPosts = (state, payload) => {
   const updatedState = { ...state };
   updatedState.posts = payload;
@@ -74,13 +99,26 @@ const deleteLike = (state, payload) => {
 };
 
 const fetchComments = (state, payload) => {
-  const { hasMoreComments, comments, postId } = payload;
+  const { hasMoreComments, comments, postId, isProfile } = payload;
   const updatedState = { ...state };
-  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
-  updatedState.posts[postIdx].comments = (
-    updatedState.posts[postIdx].comments || []
-  ).concat(comments);
-  updatedState.posts[postIdx].hasMoreComments = hasMoreComments;
+
+  if (isProfile) {
+    updatedState.posts = fetchCommentsHandler({
+      state: updatedState.selectedPost,
+      postIdx: 0,
+      comments,
+      hasMoreComments,
+    });
+  } else {
+    const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+    updatedState.posts = fetchCommentsHandler({
+      state: updatedState.posts,
+      postIdx,
+      comments,
+      hasMoreComments,
+    });
+  }
+
   return updatedState;
 };
 
@@ -93,6 +131,19 @@ const getPost = (state, payload) => {
 const clearPost = (state) => {
   const updatedState = { ...state };
   updatedState.selectedPost = [];
+  return updatedState;
+};
+
+const addComment = (state, payload) => {
+  const { postId, comment, isProfile } = payload;
+  const updatedState = { ...state };
+
+  if (isProfile) {
+    addCommentHandler({ state: updatedState.posts, postIdx: 0, comment });
+  } else {
+    const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+    addCommentHandler({ state: updatedState.posts, postIdx, comment });
+  }
   return updatedState;
 };
 
@@ -110,6 +161,8 @@ const PostsReducer = (state = initialState, action) => {
       return getPost(state, action.payload);
     case actionTypes.CLEAR_POST:
       return clearPost(state);
+    case actionTypes.ADD_COMMENT:
+      return addComment(state, action.payload);
     default:
       return state;
   }
