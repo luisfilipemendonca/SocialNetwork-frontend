@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PostContainer } from '../Post/styled';
+import { PostCtaContainer } from '../Post/PostCta/styled';
 
 export const ModalContainer = styled.div`
   position: fixed;
@@ -17,12 +18,15 @@ export const ModalContainer = styled.div`
 
   & ${PostContainer} {
     box-shadow: none;
-    /* border: 1px solid ${({ theme }) => theme.colors.primaryLight}; */
     margin-bottom: 0;
 
     @media screen and (min-width: ${({ theme }) => theme.mediaQueries.medium}) {
       box-shadow: none;
     }
+  }
+
+  & ${PostCtaContainer} {
+    transform: translate(0, 50%);
   }
 
   &.modal-enter {
@@ -47,13 +51,11 @@ export const ModalContainer = styled.div`
   }
 
   &.modal-enter > ${PostContainer} {
-    transform: translateY(-20px);
     opacity: 0;
   }
 
   &.modal-enter-active > ${PostContainer} {
     opacity: 1;
-    transform: translateY(0);
-    transition: transform 0.7s ease-in 0.3s, opacity 0.4s ease-in 0.3s;
+    transition: opacity 0.4s ease-in 0.3s;
   }
 `;

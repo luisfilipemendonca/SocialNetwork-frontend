@@ -26,8 +26,6 @@ export const PostCommentsContent = styled.ul`
   padding: 1rem;
 `;
 
-export const PostCommentCta = styled.div``;
-
 export const CommentContainer = styled.li`
   margin-bottom: 1rem;
   padding: 1rem;
@@ -47,3 +45,10 @@ export const CommentDate = styled.span``;
 export const Comment = styled.p`
   font-size: 1rem;
 `;
+
+export const PostCommentCta = styled.div`
+  padding: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.primaryLight};
+`;
+
+export const CommentForm = styled.form``;

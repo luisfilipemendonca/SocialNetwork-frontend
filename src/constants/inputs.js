@@ -38,3 +38,13 @@ export const registerInputs = {
   },
   ...loginInputs,
 };
+
+export const commentInput = {
+  comment: {
+    value: '',
+    type: 'textarea',
+    placeholder: 'Enter your comment',
+    hasError: false,
+    validators: [Validator.isRequired],
+  },
+};

@@ -88,6 +88,7 @@ const ProfilePage = () => {
               likesCount={Likes.length}
               liked={liked}
               alreadyLiked={alreadyLiked}
+              isProfile
             />
           )
         )}

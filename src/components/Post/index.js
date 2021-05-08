@@ -24,6 +24,7 @@ const Post = ({
   likesCount,
   commentsOffset,
   hasMoreComments,
+  isProfile,
 }) => {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
@@ -54,6 +55,7 @@ const Post = ({
         id={id}
         liked={liked || alreadyLiked}
         toggleCommentsVisibility={toggleCommentsVisibility}
+        isProfile={isProfile}
       />
     </PostContainer>
   );

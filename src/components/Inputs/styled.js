@@ -39,6 +39,19 @@ export const InputElement = styled.input`
   }
 `;
 
+export const TextareaElement = styled.textarea`
+  width: 100%;
+  display: block;
+  padding: 0.7rem 0.8rem;
+  background-color: ${({ hasError }) =>
+    hasError ? 'rgba(252,76,76, 0.2)' : 'rgba(163, 164, 207, 0.2)'};
+  border-radius: 3px;
+
+  &:focus + ${InputBorder} {
+    width: 100%;
+  }
+`;
+
 export const InputError = styled.div`
   position: absolute;
   top: 0;

@@ -13,6 +13,8 @@ import {
   InputErrorMessage,
 } from './styled';
 
+import Textarea from './Textarea';
+
 const Input = ({
   id,
   value,
@@ -29,15 +31,27 @@ const Input = ({
     <InputContainer>
       {label && <InputLabel htmlFor={id}>{label}</InputLabel>}
       <InputGroup>
-        <InputElement
-          id={id}
-          hasError={hasError}
-          placeholder={placeholder}
-          type={type}
-          onChange={changeHandler}
-          onFocus={focusHandler}
-          value={value}
-        />
+        {type === 'textarea' && (
+          <Textarea
+            id={id}
+            hasError={hasError}
+            placeholder={placeholder}
+            changeHandler={changeHandler}
+            focusHandler={focusHandler}
+            value={value}
+          />
+        )}
+        {type !== 'textarea' && (
+          <InputElement
+            id={id}
+            hasError={hasError}
+            placeholder={placeholder}
+            type={type}
+            onChange={changeHandler}
+            onFocus={focusHandler}
+            value={value}
+          />
+        )}
         <InputBorder />
         {hasError && (
           <InputError>

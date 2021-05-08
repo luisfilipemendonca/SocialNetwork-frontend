@@ -5,13 +5,22 @@ const initialState = {
   selectedPost: [],
 };
 
-export const addLikeHandler = ({ state, postId, data }) => {
+const addLikeHandler = ({ state, postIdx, data }) => {
   const addLikeState = state;
-  const postIdx = addLikeState.findIndex((post) => post.id === postId);
   addLikeState[postIdx].liked = true;
   addLikeState[postIdx].alreadyLiked = true;
   addLikeState[postIdx].Likes.push(data);
   return addLikeState;
+};
+
+const deleteLikeHandler = ({ state, postIdx, userId }) => {
+  const deleteLikeState = state;
+  deleteLikeState[postIdx].liked = false;
+  deleteLikeState[postIdx].alreadyLiked = false;
+  deleteLikeState[postIdx].Likes = deleteLikeState[postIdx].Likes.filter(
+    (like) => like.userId !== userId
+  );
+  return deleteLikeState;
 };
 
 const fetchPosts = (state, payload) => {
@@ -21,25 +30,46 @@ const fetchPosts = (state, payload) => {
 };
 
 const addLike = (state, payload) => {
-  const { postId, data } = payload;
+  const { postId, data, isProfile } = payload;
   const updatedState = { ...state };
-  updatedState.posts = addLikeHandler({
-    state: updatedState.posts,
-    postId,
-    data,
-  });
+
+  if (isProfile) {
+    updatedState.selectedPost = addLikeHandler({
+      state: updatedState.selectedPost,
+      postIdx: 0,
+      data,
+    });
+  } else {
+    const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+    updatedState.posts = addLikeHandler({
+      state: updatedState.posts,
+      postIdx,
+      data,
+    });
+  }
+
   return updatedState;
 };
 
 const deleteLike = (state, payload) => {
-  const { postId, userId } = payload;
+  const { postId, userId, isProfile } = payload;
   const updatedState = { ...state };
-  const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
-  updatedState.posts[postIdx].liked = false;
-  updatedState.posts[postIdx].alreadyLiked = false;
-  updatedState.posts[postIdx].Likes = updatedState.posts[postIdx].Likes.filter(
-    (like) => like.userId !== userId
-  );
+
+  if (isProfile) {
+    updatedState.selectedPost = deleteLikeHandler({
+      state: updatedState.selectedPost,
+      postIdx: 0,
+      userId,
+    });
+  } else {
+    const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
+    updatedState.posts = deleteLikeHandler({
+      state: updatedState.posts,
+      postIdx,
+      userId,
+    });
+  }
+
   return updatedState;
 };
 

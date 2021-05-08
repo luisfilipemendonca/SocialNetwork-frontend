@@ -52,9 +52,11 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
-  input {
+  input,
+  textarea {
     border: none;
     outline: none;
+    resize: none;
   }
 
   button {

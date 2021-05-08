@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { useReducer } from 'react';
 
 const change = (state, payload) => {
@@ -23,6 +24,16 @@ const setError = (state, payload) => {
   return inputsCopy;
 };
 
+const clearInputs = (state) => {
+  const inputsCopy = { ...state };
+
+  Object.keys(inputsCopy).forEach((input) => {
+    inputsCopy[input].value = '';
+  });
+
+  return inputsCopy;
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE':
@@ -31,6 +42,8 @@ const reducer = (state, action) => {
       return focus(state, action.payload);
     case 'SET_ERROR':
       return setError(state, action.payload);
+    case 'CLEAR_INPUTS':
+      return clearInputs(state);
     default:
       return state;
   }
@@ -48,7 +61,15 @@ const useInputs = (initialInputs) => {
   const setErrorHandler = (id, errorMsg) =>
     dispatch({ type: 'SET_ERROR', payload: { id, errorMsg } });
 
-  return { inputs, changeHandler, focusHandler, setErrorHandler };
+  const clearInputsHandler = () => dispatch({ type: 'CLEAR_INPUTS' });
+
+  return {
+    inputs,
+    changeHandler,
+    focusHandler,
+    setErrorHandler,
+    clearInputsHandler,
+  };
 };
 
 export default useInputs;
