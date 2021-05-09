@@ -39,20 +39,22 @@ const FormLogin = () => {
         info="Fill all fields to login into your account"
         submitHandler={submitHandler}
       >
-        {Object.keys(inputs).map((key) => (
-          <Input
-            key={key}
-            id={key}
-            placeholder={inputs[key].placeholder}
-            label={inputs[key].label}
-            value={inputs[key].value}
-            hasError={inputs[key].hasError}
-            errorMsg={inputs[key].errorMsg}
-            type={inputs[key].type}
-            changeHandler={changeHandler}
-            focusHandler={focusHandler}
-          />
-        ))}
+        {inputs.map(
+          ({ id, placeholder, label, value, hasError, errorMsg, type }) => (
+            <Input
+              key={id}
+              id={id}
+              placeholder={placeholder}
+              label={label}
+              value={value}
+              hasError={hasError}
+              errorMsg={errorMsg}
+              type={type}
+              changeHandler={changeHandler}
+              focusHandler={focusHandler}
+            />
+          )
+        )}
       </Form>
     </SectionForm>
   );

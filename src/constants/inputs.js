@@ -1,7 +1,8 @@
 import Validator from '../helpers/Validator';
 
-export const loginInputs = {
-  email: {
+export const loginInputs = [
+  {
+    id: 'email',
     value: '',
     label: 'Email',
     type: 'email',
@@ -9,7 +10,8 @@ export const loginInputs = {
     hasError: false,
     validators: [Validator.isRequired, Validator.isEmail],
   },
-  password: {
+  {
+    id: 'password',
     value: '',
     label: 'Password',
     type: 'password',
@@ -23,10 +25,11 @@ export const loginInputs = {
       Validator.containsCapitalLetter,
     ],
   },
-};
+];
 
-export const registerInputs = {
-  username: {
+export const registerInputs = [
+  {
+    id: 'username',
     value: '',
     label: 'Username',
     type: 'text',
@@ -37,14 +40,15 @@ export const registerInputs = {
     validators: [Validator.isRequired, Validator.hasExpectedLength],
   },
   ...loginInputs,
-};
+];
 
-export const commentInput = {
-  comment: {
+export const commentInput = [
+  {
+    id: 'comment',
     value: '',
     type: 'textarea',
     placeholder: 'Enter your comment',
     hasError: false,
     validators: [Validator.isRequired],
   },
-};
+];

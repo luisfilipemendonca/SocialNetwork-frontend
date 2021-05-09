@@ -3,34 +3,33 @@ import { useReducer } from 'react';
 
 const change = (state, payload) => {
   const { id, value } = payload;
-  const inputsCopy = { ...state };
-  inputsCopy[id].value = value;
+  const inputsCopy = [...state];
+  const inputIdx = inputsCopy.findIndex((input) => input.id === id);
+  inputsCopy[inputIdx].value = value;
   return inputsCopy;
 };
 
 const focus = (state, payload) => {
   const { id } = payload;
-  const inputsCopy = { ...state };
-  inputsCopy[id].hasError = false;
-  inputsCopy[id].errorMsg = '';
+  const inputsCopy = [...state];
+  const inputIdx = inputsCopy.findIndex((input) => input.id === id);
+  inputsCopy[inputIdx].hasError = false;
+  inputsCopy[inputIdx].errorMsg = '';
   return inputsCopy;
 };
 
 const setError = (state, payload) => {
   const { id, errorMsg } = payload;
-  const inputsCopy = { ...state };
-  inputsCopy[id].hasError = true;
-  inputsCopy[id].errorMsg = errorMsg;
+  const inputsCopy = [...state];
+  const inputIdx = inputsCopy.findIndex((input) => input.id === id);
+  inputsCopy[inputIdx].hasError = true;
+  inputsCopy[inputIdx].errorMsg = errorMsg;
   return inputsCopy;
 };
 
 const clearInputs = (state) => {
-  const inputsCopy = { ...state };
-
-  Object.keys(inputsCopy).forEach((input) => {
-    inputsCopy[input].value = '';
-  });
-
+  const inputsCopy = [...state];
+  inputsCopy.forEach((input) => ({ ...input, value: '' }));
   return inputsCopy;
 };
 
@@ -50,7 +49,10 @@ const reducer = (state, action) => {
 };
 
 const useInputs = (initialInputs) => {
-  const [inputs, dispatch] = useReducer(reducer, { ...initialInputs });
+  const [inputs, dispatch] = useReducer(
+    reducer,
+    initialInputs.map((input) => ({ ...input }))
+  );
 
   const changeHandler = (e) =>
     dispatch({ type: 'CHANGE', payload: e.currentTarget });

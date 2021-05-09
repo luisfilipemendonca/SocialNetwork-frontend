@@ -37,13 +37,9 @@ const PostComments = ({
   const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll(
     hasMoreComments
   );
-  const {
-    inputs,
-    changeHandler,
-    focusHandler,
-    clearInputsHandler,
-    setErrorHandler,
-  } = useInputs(commentInput);
+  const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
+    commentInput
+  );
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -62,12 +58,6 @@ const PostComments = ({
 
     dispatch(fetchComments({ postId, offset, page: currentPage }, isProfile));
   }, [currentPage]);
-
-  useEffect(() => {
-    if (isCommentsOpen) {
-      clearInputsHandler();
-    }
-  }, [isCommentsOpen]);
 
   return (
     <PostCommentsContainer isOpen={isCommentsOpen}>
@@ -94,20 +84,21 @@ const PostComments = ({
       </PostCommentsContent>
       <PostCommentCta>
         <CommentForm onSubmit={submitHandler}>
-          {Object.keys(inputs).map((key) => (
-            <Input
-              key={key}
-              id={key}
-              placeholder={inputs[key].placeholder}
-              label={inputs[key].label}
-              value={inputs[key].value}
-              hasError={inputs[key].hasError}
-              errorMsg={inputs[key].errorMsg}
-              type={inputs[key].type}
-              changeHandler={changeHandler}
-              focusHandler={focusHandler}
-            />
-          ))}
+          {inputs.map(
+            ({ id, placeholder, value, hasError, errorMsg, type }) => (
+              <Input
+                key={id}
+                id={id}
+                placeholder={placeholder}
+                value={value}
+                hasError={hasError}
+                errorMsg={errorMsg}
+                type={type}
+                changeHandler={changeHandler}
+                focusHandler={focusHandler}
+              />
+            )
+          )}
           <button type="button" onClick={submitHandler}>
             Add Comment
           </button>

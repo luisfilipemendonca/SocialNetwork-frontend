@@ -6,13 +6,13 @@ class Form {
   validate(setInputError) {
     let isFormValid = true;
 
-    Object.keys(this.inputs).forEach((input) => {
+    this.inputs.forEach((input) => {
       // eslint-disable-next-line no-restricted-syntax
-      for (const validator of this.inputs[input].validators) {
-        const { isValid, errorMsg } = validator(this.inputs[input]);
+      for (const validator of input.validators) {
+        const { isValid, errorMsg } = validator(input);
 
         if (!isValid) {
-          setInputError(input, errorMsg);
+          setInputError(input.id, errorMsg);
           isFormValid = false;
           break;
         }
@@ -25,8 +25,8 @@ class Form {
   buildFormObj() {
     const data = {};
 
-    Object.keys(this.inputs).forEach((input) => {
-      data[input] = this.inputs[input].value;
+    this.inputs.forEach((input) => {
+      data[input.id] = input.value;
     });
 
     return data;
