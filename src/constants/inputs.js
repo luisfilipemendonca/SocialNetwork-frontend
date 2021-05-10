@@ -61,5 +61,6 @@ export const profilePictureInput = [
     type: 'file',
     acceptedTypes: ['image/jpeg', 'image/png'],
     fileValidator: Validator.isFileValid,
+    validators: [Validator.isRequired],
   },
 ];

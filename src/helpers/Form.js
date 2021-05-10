@@ -31,6 +31,21 @@ class Form {
 
     return data;
   }
+
+  buildFormData() {
+    const formData = new FormData();
+
+    this.inputs.forEach((input) => {
+      if (input.type === 'file' && input.value.length > 1) {
+        input.value.forEach((val) => formData.append(`${input.id}[]`, val));
+      } else if (input.type === 'file' && input.value.length <= 1) {
+        input.value.forEach((val) => formData.append(input.id, val));
+      } else {
+        formData.append(input.id, input.value);
+      }
+    });
+    return formData;
+  }
 }
 
 export default Form;

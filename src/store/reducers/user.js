@@ -49,6 +49,23 @@ const fetchUserPosts = (state, payload) => {
   return stateCopy;
 };
 
+const updateUser = (state, payload) => {
+  const {
+    userName,
+    userEmail,
+    userFirstTime,
+    userProfilePicture,
+    userProfilePictureUrl,
+  } = payload;
+  const stateCopy = { ...state };
+  stateCopy.userName = userName;
+  stateCopy.userEmail = userEmail;
+  stateCopy.userFirstTime = userFirstTime;
+  stateCopy.userProfilePicture = userProfilePicture;
+  stateCopy.userProfilePictureUrl = userProfilePictureUrl;
+  return stateCopy;
+};
+
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATE:
@@ -57,6 +74,8 @@ const UserReducer = (state = initialState, action) => {
       return authenticate(state, { ...action.payload, rehydrated: true });
     case actionTypes.FETCH_USER_POSTS:
       return fetchUserPosts(state, action.payload);
+    case actionTypes.UPDATE_USER_PHOTO:
+      return updateUser(state, action.payload);
     default:
       return state;
   }
