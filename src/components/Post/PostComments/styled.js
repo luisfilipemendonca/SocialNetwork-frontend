@@ -2,16 +2,36 @@ import styled from 'styled-components';
 
 export const PostCommentsContainer = styled.div`
   position: absolute;
-  top: ${({ isOpen }) => (isOpen ? '0' : '100%')};
-  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
   left: 0;
   height: 100%;
   width: 100%;
   background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
-  transition: top 0.5s linear, opacity 0.4s linear;
   border-radius: 3px;
+
+  &.show-enter {
+    top: 100%;
+    opacity: 0;
+  }
+
+  &.show-enter-active {
+    top: 0;
+    opacity: 1;
+    transition: top 0.5s linear, opacity 0.4s linear;
+  }
+
+  &.show-enter-done,
+  &.show-exit {
+    top: 0;
+    opacity: 1;
+  }
+
+  &.show-exit-active {
+    top: 100%;
+    opacity: 0;
+    transition: top 0.5s linear, opacity 0.4s linear;
+  }
 `;
 
 export const PostCommentsHeader = styled.h3`

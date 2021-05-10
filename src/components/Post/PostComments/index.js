@@ -27,16 +27,13 @@ import Input from '../../Inputs';
 
 const PostComments = ({
   comments,
-  isCommentsOpen,
   postId,
   offset,
   hasMoreComments,
   isProfile,
 }) => {
   const dispatch = useDispatch();
-  const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll(
-    hasMoreComments
-  );
+  const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     commentInput
   );
@@ -54,13 +51,13 @@ const PostComments = ({
   };
 
   useEffect(() => {
-    if (currentPage === 0 || !hasMoreComments) return;
+    if (currentPage === 0) return;
 
     dispatch(fetchComments({ postId, offset, page: currentPage }, isProfile));
   }, [currentPage]);
 
   return (
-    <PostCommentsContainer isOpen={isCommentsOpen}>
+    <PostCommentsContainer>
       <PostCommentsHeader>Comments</PostCommentsHeader>
       <PostCommentsContent ref={rootRef}>
         {comments?.map(
@@ -80,7 +77,7 @@ const PostComments = ({
             </CommentContainer>
           )
         )}
-        <div ref={infiniteScrollRef}>Loading...</div>
+        {hasMoreComments && <div ref={infiniteScrollRef}>Loading...</div>}
       </PostCommentsContent>
       <PostCommentCta>
         <CommentForm onSubmit={submitHandler}>

@@ -20,6 +20,8 @@ const WorldPage = () => {
     return <div>Is Loading...</div>;
   }
 
+  console.log(posts);
+
   return (
     <MainSection>
       <PostsContainer>

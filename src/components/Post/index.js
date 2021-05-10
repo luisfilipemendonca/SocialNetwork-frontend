@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 
 import {
   PostContainer,
   PostContent,
   PostLikes,
   PostDescription,
+  PostInfo,
 } from './styled';
 
 import PostHeader from './PostHeader';
@@ -41,16 +43,25 @@ const Post = ({
           username={user.username}
         />
         <PostPhotos photos={photos} showAnimation={liked && alreadyLiked} />
-        <PostLikes>Likes: {likesCount}</PostLikes>
-        <PostDescription>{description}</PostDescription>
-        <PostComments
-          comments={comments}
-          isCommentsOpen={isCommentsOpen}
-          postId={id}
-          offset={commentsOffset || 0}
-          hasMoreComments={hasMoreComments}
-          isProfile={isProfile}
-        />
+        <PostInfo>
+          <PostDescription>{description}</PostDescription>
+          <PostLikes>Likes: {likesCount}</PostLikes>
+        </PostInfo>
+        <CSSTransition
+          in={isCommentsOpen}
+          timeout={500}
+          classNames="show"
+          unmountOnExit
+        >
+          <PostComments
+            comments={comments}
+            isCommentsOpen={isCommentsOpen}
+            postId={id}
+            offset={commentsOffset || 0}
+            hasMoreComments={hasMoreComments}
+            isProfile={isProfile}
+          />
+        </CSSTransition>
       </PostContent>
       <PostCta
         id={id}

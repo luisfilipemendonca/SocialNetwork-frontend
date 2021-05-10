@@ -19,10 +19,12 @@ export const PostContent = styled.div`
   overflow: hidden;
 `;
 
-export const PostLikes = styled.p`
-  padding: 0.3rem 0.8rem;
+export const PostInfo = styled.div`
+  padding: 0.8rem;
 `;
 
+export const PostLikes = styled.p``;
+
 export const PostDescription = styled.p`
-  padding: 0.3rem 0.8rem;
+  margin-bottom: 0.5rem;
 `;
