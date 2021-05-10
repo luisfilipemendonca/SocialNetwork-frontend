@@ -58,8 +58,6 @@ const ProfilePage = () => {
     }
   }, []);
 
-  console.log(selectedPost);
-
   return (
     <SectionProfile>
       <Modal show={selectedPost.length > 0} closeHandler={clearPostHandler}>

@@ -13,6 +13,7 @@ import { authenticate } from '../../store/actions/user';
 
 import Form from '../../components/Form';
 import Input from '../../components/Inputs';
+import { SecondaryLink } from '../../components/BaseButton/styled';
 
 const FormLogin = () => {
   const dispatch = useDispatch();
@@ -32,12 +33,18 @@ const FormLogin = () => {
     dispatch(authenticate(data, true));
   };
 
+  const aditionalBtn = (
+    <SecondaryLink to="/register">Change to Register</SecondaryLink>
+  );
+
   return (
     <SectionForm>
       <Form
         title="Login"
         info="Fill all fields to login into your account"
         submitHandler={submitHandler}
+        submitBtnDescription="Login"
+        aditionalBtn={aditionalBtn}
       >
         {inputs.map(
           ({ id, placeholder, label, value, hasError, errorMsg, type }) => (

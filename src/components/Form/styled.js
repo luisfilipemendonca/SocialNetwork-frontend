@@ -59,4 +59,10 @@ export const FormContent = styled.div`
 
 export const FormBtns = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > *:not(:last-child) {
+    margin-right: 1rem;
+  }
 `;

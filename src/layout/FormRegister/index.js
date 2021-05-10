@@ -13,6 +13,7 @@ import FormHelper from '../../helpers/Form';
 
 import Form from '../../components/Form';
 import Input from '../../components/Inputs';
+import { SecondaryLink } from '../../components/BaseButton/styled';
 
 const FormRegister = () => {
   const dispatch = useDispatch();
@@ -32,12 +33,18 @@ const FormRegister = () => {
     dispatch(authenticate(data));
   };
 
+  const aditionalBtn = (
+    <SecondaryLink to="/login">Change to Login</SecondaryLink>
+  );
+
   return (
     <SectionForm>
       <Form
         title="Register"
         info="Fill all fields to create an account"
         submitHandler={submitHandler}
+        submitBtnDescription="Register"
+        aditionalBtn={aditionalBtn}
       >
         {inputs.map(
           ({ id, placeholder, label, value, hasError, errorMsg, type }) => (

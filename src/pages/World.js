@@ -1,23 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MainSection, PostsContainer } from '../style';
 
 import { fetchPosts } from '../store/actions/posts';
+import { updateUserPhoto } from '../store/actions/user';
 
 import Post from '../components/Post';
 import Modal from '../components/Modal';
 import FormProfilePicture from '../layout/FormProfilePicture';
 
 const WorldPage = () => {
+  const [showModal, setShowModal] = useState(false);
   const { userFirstTime } = useSelector((state) => state.user);
   const { posts } = useSelector((state) => state.posts);
   const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
+  const closeModal = () => {
+    dispatch(updateUserPhoto({}, false));
+    setShowModal(false);
+  };
+
   useEffect(() => {
     dispatch(fetchPosts());
   }, []);
+
+  useEffect(() => {
+    if (!userFirstTime) return;
+
+    setTimeout(() => setShowModal(true), 1000);
+  }, [userFirstTime]);
 
   if (isLoading) {
     return <div>Is Loading...</div>;
@@ -25,8 +38,8 @@ const WorldPage = () => {
 
   return (
     <>
-      <Modal show={userFirstTime}>
-        <FormProfilePicture />
+      <Modal show={showModal} closeHandler={closeModal}>
+        <FormProfilePicture closeHandler={closeModal} />
       </Modal>
       <MainSection>
         <PostsContainer>

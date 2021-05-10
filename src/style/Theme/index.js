@@ -4,8 +4,10 @@ export default {
     backgroundPurple: '#d7d8ff',
     primaryDark: '#6c6eb2',
     primaryLight: '#a3a4cf',
+    primaryOpacity: 'rgba(163, 164, 207, 0.2)',
     secondaryDark: '#efd8b2',
     secondaryLight: '#f7ecd8',
+    secondaryOpacity: 'rgba(239, 216, 178, 0.3)',
   },
   typography: {
     colors: {

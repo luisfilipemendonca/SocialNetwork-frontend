@@ -52,6 +52,11 @@ export default createGlobalStyle`
     text-decoration: none;
   }
 
+  button,
+  ::placeholder {
+    font-family: 'Poppins', sans-serif;
+  }
+
   input,
   textarea {
     border: none;

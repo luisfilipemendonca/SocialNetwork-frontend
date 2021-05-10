@@ -12,7 +12,7 @@ import { updateUserPhoto } from '../../store/actions/user';
 import Form from '../../components/Form';
 import Input from '../../components/Inputs';
 
-const FormProfilePicture = () => {
+const FormProfilePicture = ({ closeHandler }) => {
   const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     profilePictureInput
@@ -30,11 +30,19 @@ const FormProfilePicture = () => {
     dispatch(updateUserPhoto(data));
   };
 
+  const aditionalBtn = (
+    <button type="button" onClick={closeHandler}>
+      Close
+    </button>
+  );
+
   return (
     <Form
       title="Add Profile Picture"
       info="Can be added later"
       submitHandler={submitHandler}
+      submitBtnDescription="Add Photo"
+      aditionalBtn={aditionalBtn}
     >
       {inputs.map((input) => (
         <Input

@@ -9,7 +9,16 @@ import {
   FormBtns,
 } from './styled';
 
-const Form = ({ title, info, children, submitHandler }) => {
+import { PrimaryButton } from '../BaseButton/styled';
+
+const Form = ({
+  title,
+  info,
+  children,
+  submitHandler,
+  submitBtnDescription,
+  aditionalBtn,
+}) => {
   return (
     <FormContainer onSubmit={submitHandler}>
       <FormHeader>
@@ -18,10 +27,10 @@ const Form = ({ title, info, children, submitHandler }) => {
       </FormHeader>
       <FormContent>{children}</FormContent>
       <FormBtns>
-        <button type="submit" onClick={submitHandler}>
-          Login
-        </button>
-        <button type="button">Change to register</button>
+        <PrimaryButton type="submit" onClick={submitHandler}>
+          {submitBtnDescription}
+        </PrimaryButton>
+        {aditionalBtn}
       </FormBtns>
     </FormContainer>
   );
