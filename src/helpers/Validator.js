@@ -57,6 +57,21 @@ class Validator {
     const isValid = capitalLetterRegex.test(value);
     return { isValid, errorMsg: isValid ? '' : 'Requires a capital letter' };
   }
+
+  static isFileValid(input, files) {
+    const { acceptedTypes } = input;
+    let isValid = true;
+
+    files.forEach(({ type }) => {
+      isValid =
+        acceptedTypes.some((acceptedType) => acceptedType === type) && isValid;
+    });
+
+    return {
+      isValid,
+      errorMsg: isValid ? '' : 'That file type is not accepted',
+    };
+  }
 }
 
 export default Validator;

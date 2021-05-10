@@ -86,3 +86,51 @@ export const InputInfo = styled.p`
   margin-top: 0.3rem;
   font-size: 1rem;
 `;
+
+export const InputFileContainer = styled.div`
+  position: relative;
+
+  & ${InputErrorIcon} {
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
+  & ${InputErrorMessage} {
+    right: 50%;
+    transform: translate(50%, -50%);
+    white-space: nowrap;
+  }
+`;
+
+export const InputFileLabel = styled.label`
+  display: block;
+  position: relative;
+  width: ${({ isProfilePhoto }) => (isProfilePhoto ? '13rem' : '100%')};
+  height: ${({ isProfilePhoto }) => (isProfilePhoto ? '13rem' : '100%')};
+  border: ${({ theme }) => `1px dashed ${theme.colors.primaryDark}`};
+  cursor: pointer;
+  border-radius: ${({ isProfilePhoto }) => isProfilePhoto && '50%'};
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: ${({ hasError }) =>
+    hasError ? 'rgba(252,76,76, 0.2)' : 'rgba(163, 164, 207, 0.2)'};
+`;
+
+export const InputFileElement = styled.input`
+  display: none;
+`;
+
+export const InputFilePreviewContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+
+export const InputFilePreview = styled.img`
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+`;

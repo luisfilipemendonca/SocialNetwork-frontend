@@ -52,3 +52,14 @@ export const commentInput = [
     validators: [Validator.isRequired],
   },
 ];
+
+export const profilePictureInput = [
+  {
+    id: 'profilePicture',
+    value: '',
+    hasError: false,
+    type: 'file',
+    acceptedTypes: ['image/jpeg', 'image/png'],
+    fileValidator: Validator.isFileValid,
+  },
+];

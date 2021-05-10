@@ -1,11 +1,38 @@
 /* eslint-disable no-restricted-syntax */
 import { useReducer } from 'react';
 
-const change = (state, payload) => {
-  const { id, value } = payload;
+const setError = (state, payload) => {
+  const { id, errorMsg } = payload;
   const inputsCopy = [...state];
   const inputIdx = inputsCopy.findIndex((input) => input.id === id);
-  inputsCopy[inputIdx].value = value;
+  inputsCopy[inputIdx].hasError = true;
+  inputsCopy[inputIdx].errorMsg = errorMsg;
+  return inputsCopy;
+};
+
+const change = (state, payload) => {
+  const { id, value, files, type } = payload;
+
+  const inputsCopy = [...state];
+  const inputIdx = inputsCopy.findIndex((input) => input.id === id);
+
+  if (type === 'file') {
+    const { isValid, errorMsg } = inputsCopy[inputIdx].fileValidator(
+      inputsCopy[inputIdx],
+      [...files]
+    );
+
+    if (isValid) {
+      inputsCopy[inputIdx].value = [...files];
+      inputsCopy[inputIdx].hasError = false;
+      inputsCopy[inputIdx].errorMsg = '';
+    } else {
+      inputsCopy[inputIdx].value = '';
+      setError(state, { id, errorMsg });
+    }
+  } else {
+    inputsCopy[inputIdx].value = value;
+  }
   return inputsCopy;
 };
 
@@ -15,15 +42,6 @@ const focus = (state, payload) => {
   const inputIdx = inputsCopy.findIndex((input) => input.id === id);
   inputsCopy[inputIdx].hasError = false;
   inputsCopy[inputIdx].errorMsg = '';
-  return inputsCopy;
-};
-
-const setError = (state, payload) => {
-  const { id, errorMsg } = payload;
-  const inputsCopy = [...state];
-  const inputIdx = inputsCopy.findIndex((input) => input.id === id);
-  inputsCopy[inputIdx].hasError = true;
-  inputsCopy[inputIdx].errorMsg = errorMsg;
   return inputsCopy;
 };
 

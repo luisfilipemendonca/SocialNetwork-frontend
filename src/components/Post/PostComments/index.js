@@ -20,6 +20,7 @@ import useInfiniteScroll from '../../../hooks/useInfiniteScroll';
 import useInputs from '../../../hooks/useInputs';
 
 import FormHelper from '../../../helpers/Form';
+import { formatedDateTime } from '../../../util/dates';
 
 import { fetchComments, addComment } from '../../../store/actions/posts';
 
@@ -71,7 +72,7 @@ const PostComments = ({
             <CommentContainer key={commentId} recentlyAdded={recentlyAdded}>
               <CommentHeader>
                 <CommentUser>{User.username}</CommentUser>
-                <CommentDate>{commentCreatedAt}</CommentDate>
+                <CommentDate>{formatedDateTime(commentCreatedAt)}</CommentDate>
               </CommentHeader>
               <Comment>{comment}</Comment>
             </CommentContainer>

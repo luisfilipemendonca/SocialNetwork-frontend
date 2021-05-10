@@ -67,14 +67,14 @@ export default createGlobalStyle`
 `;
 
 export const MainContainer = styled.main`
-  padding-top: ${({ theme }) => theme.dimensions.navbarHeightSmall};
+  padding: ${({ theme }) =>
+      `calc(${theme.dimensions.navbarHeightSmall} + 1rem)`}
+    1rem 1rem;
   max-width: 1000px;
   margin: 0 auto;
 `;
 
-export const MainSection = styled.section`
-  padding: 1rem;
-`;
+export const MainSection = styled.section``;
 
 export const SectionForm = styled(MainSection)`
   position: relative;
@@ -90,7 +90,8 @@ export const SectionProfile = styled(MainSection)`
   display: flex;
   flex-direction: column;
   max-width: 40rem;
-  margin: 1rem auto;
+  margin: 0 auto;
+  padding: 1rem;
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.large}) {
     max-width: unset;

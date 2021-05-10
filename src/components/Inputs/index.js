@@ -14,6 +14,7 @@ import {
 
 import Textarea from './Textarea';
 import InputNormal from './InputNormal';
+import InputFile from './InputFile';
 
 const Input = ({
   id,
@@ -27,6 +28,20 @@ const Input = ({
   changeHandler,
   focusHandler,
 }) => {
+  if (type === 'file') {
+    return (
+      <InputFile
+        id={id}
+        type={type}
+        hasError={hasError}
+        value={value}
+        errorMsg={errorMsg}
+        focusHandler={focusHandler}
+        changeHandler={changeHandler}
+      />
+    );
+  }
+
   let input = null;
 
   if (type === 'textarea') {
@@ -47,8 +62,8 @@ const Input = ({
         hasError={hasError}
         placeholder={placeholder}
         type={type}
-        onChange={changeHandler}
-        onFocus={focusHandler}
+        changeHandler={changeHandler}
+        focusHandler={focusHandler}
         value={value}
       />
     );
