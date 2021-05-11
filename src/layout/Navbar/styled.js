@@ -12,6 +12,7 @@ export const NavbarContainer = styled.nav`
   position: fixed;
   width: 100%;
   z-index: 30;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.secondaryDark};
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.small}) {
     padding: 0.8rem 1rem;

@@ -20,8 +20,17 @@ export const PostUserImg = styled.img`
   display: block;
 `;
 
-export const PostUserIcon = styled.span``;
+export const PostUserIcon = styled.span`
+  display: flex;
+  color: ${({ theme }) => theme.colors.primaryLight};
 
-export const PostUsername = styled.h3``;
+  svg {
+    font-size: 3.5rem;
+  }
+`;
+
+export const PostUsername = styled.h3`
+  margin-left: 0.5rem;
+`;
 
 export const PostDate = styled.span``;

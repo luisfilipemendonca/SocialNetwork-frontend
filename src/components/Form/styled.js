@@ -52,6 +52,10 @@ export const FormContent = styled.div`
   box-shadow: 0 0 1rem ${({ theme }) => theme.colors.primaryDark};
   padding: 2rem 1rem;
 
+  & > *:not(:last-child) {
+    margin-bottom: 1.8rem;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.small}) {
     margin: 0 4rem 2rem;
   }

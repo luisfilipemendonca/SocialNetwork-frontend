@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { FaUserCircle } from 'react-icons/fa';
 
 import { SectionProfile } from '../style';
@@ -27,8 +27,14 @@ import { getPost, clearPost } from '../store/actions/posts';
 
 import Modal from '../components/Modal';
 import Post from '../components/Post';
+import {
+  PrimaryButton,
+  PrimaryLink,
+  SecondaryLink,
+} from '../components/BaseButton/styled';
 
 const ProfilePage = () => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const { id } = useParams();
   const {
@@ -56,7 +62,7 @@ const ProfilePage = () => {
     } else {
       dispatch(fetchUserData(userId));
     }
-  }, []);
+  }, [id]);
 
   return (
     <SectionProfile>
@@ -116,11 +122,13 @@ const ProfilePage = () => {
         </UserData>
         <UserCta>
           {id ? (
-            <button type="button">Follow</button>
+            <PrimaryButton type="button">Follow</PrimaryButton>
           ) : (
             <>
-              <button type="button">Create Post</button>
-              <button type="button">Update Profile</button>
+              <PrimaryLink to="/">Create Post</PrimaryLink>
+              <SecondaryLink to={`${location.pathname}/user/update_account`}>
+                Update Profile
+              </SecondaryLink>
               <button type="button">Delete Account</button>
             </>
           )}

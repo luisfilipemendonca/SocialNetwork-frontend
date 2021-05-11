@@ -8,12 +8,12 @@ const initialState = {
 };
 
 const fetchUserProfile = (state, payload) => {
-  const { posts, profilePicture, profilePictureUrl, username } = payload;
+  const { Posts, profilePicture, profilePictureUrl, username } = payload;
   const stateCopy = { ...state };
   stateCopy.userProfilePicture = profilePicture;
   stateCopy.userProfilePictureUrl = profilePictureUrl;
   stateCopy.userName = username;
-  stateCopy.posts = posts;
+  stateCopy.userPosts = Posts;
   return stateCopy;
 };
 

@@ -34,9 +34,10 @@ export const UserInfo = styled.div`
 `;
 
 export const UserPhotoContainer = styled.span`
-  display: block;
+  display: flex;
   width: 4rem;
   height: 4rem;
+  font-size: 4rem;
 `;
 
 export const UserPhoto = styled.img`
@@ -88,10 +89,27 @@ export const UserFollowValue = styled.span``;
 
 export const UserCta = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primaryLight};
   margin-bottom: 1rem;
+
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+    width: 120px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 400px) {
+    flex-direction: row;
+
+    & > *:not(:last-child) {
+      margin-bottom: 0;
+      width: unset;
+    }
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.large}) {
     flex-direction: column;

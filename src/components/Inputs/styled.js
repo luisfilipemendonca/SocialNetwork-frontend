@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
-export const InputContainer = styled.div`
-  &:not(:last-of-type) {
-    margin-bottom: 1.8rem;
-  }
-`;
+export const InputContainer = styled.div``;
 
 export const InputLabel = styled.label`
   display: block;

@@ -6,11 +6,23 @@ import AuthenticationPage from '../pages/Authentication';
 
 import ProtectedRoute from '../components/ProtectedRoute';
 import ProfilePage from '../pages/Profile';
+import FormUpdateAccount from '../layout/FormUpdateAccount';
 
 const Routes = () => {
   return (
     <Switch>
-      <ProtectedRoute path="/profile/:id" component={ProfilePage} isClosed />
+      <ProtectedRoute
+        path="/profile/user/update_account"
+        component={FormUpdateAccount}
+        isClosed
+        isExact
+      />
+      <ProtectedRoute
+        path="/profile/:id"
+        component={ProfilePage}
+        isClosed
+        isExact
+      />
       <ProtectedRoute path="/profile" component={ProfilePage} isClosed />
       <ProtectedRoute path="/login" component={AuthenticationPage} />
       <ProtectedRoute path="/register" component={AuthenticationPage} />

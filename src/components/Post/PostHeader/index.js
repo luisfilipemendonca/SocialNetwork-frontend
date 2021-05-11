@@ -1,5 +1,7 @@
 import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { formatedDateTime } from '../../../util/dates';
 
@@ -17,7 +19,10 @@ const PostHeader = ({
   profilePictureUrl,
   username,
   createdAt,
+  postUserId,
 }) => {
+  const { userId } = useSelector((state) => state.user);
+
   return (
     <PostHeaderContainer>
       <PostUser>
@@ -28,7 +33,11 @@ const PostHeader = ({
             <FaUserCircle />
           </PostUserIcon>
         )}
-        <PostUsername>{username}</PostUsername>
+        <PostUsername>
+          <Link to={`/profile${userId === postUserId ? '' : `/${postUserId}`}`}>
+            {username}
+          </Link>
+        </PostUsername>
       </PostUser>
       <PostDate>{formatedDateTime(createdAt)}</PostDate>
     </PostHeaderContainer>

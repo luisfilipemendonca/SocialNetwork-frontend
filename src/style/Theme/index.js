@@ -15,7 +15,7 @@ export default {
       textLight: '#6c6eb2',
     },
     sizes: {
-      default: '1.2rem',
+      default: '1.1rem',
       primaryTitle: '2rem',
       secondaryTitle: '1.8rem',
       tertiaryTitle: '1.6rem',

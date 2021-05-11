@@ -27,4 +27,6 @@ export const PostLikes = styled.p``;
 
 export const PostDescription = styled.p`
   margin-bottom: 0.5rem;
+  max-height: 7rem;
+  overflow: auto;
 `;

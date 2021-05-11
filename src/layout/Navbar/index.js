@@ -39,7 +39,7 @@ const Navbar = () => {
               </NavbarLink>
             </NavbarItem>
             <NavbarItem>
-              <NavbarLink to="profile" exact>
+              <NavbarLink to="/profile" exact>
                 Profile
               </NavbarLink>
             </NavbarItem>

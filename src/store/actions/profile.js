@@ -5,8 +5,6 @@ export const fetchUserData = (id, isProfile = false) => async (dispatch) => {
   try {
     const response = await axios(`/users/${id}`);
 
-    console.log(response.data);
-
     if (isProfile) {
       dispatch({
         type: actionTypes.FETCH_USER_PROFILE,

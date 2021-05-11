@@ -3,10 +3,12 @@ class Form {
     this.inputs = inputs;
   }
 
-  validate(setInputError) {
+  validate(setInputError, isUpdate = false) {
     let isFormValid = true;
 
     this.inputs.forEach((input) => {
+      if (isUpdate && input.value === '') return;
+
       // eslint-disable-next-line no-restricted-syntax
       for (const validator of input.validators) {
         const { isValid, errorMsg } = validator(input);
@@ -36,12 +38,17 @@ class Form {
     const formData = new FormData();
 
     this.inputs.forEach((input) => {
-      if (input.type === 'file' && input.value.length > 1) {
-        input.value.forEach((val) => formData.append(`${input.id}[]`, val));
-      } else if (input.type === 'file' && input.value.length <= 1) {
-        input.value.forEach((val) => formData.append(input.id, val));
+      const { value, type, id } = input;
+
+      if (value === '' || (type === 'file' && typeof value === 'string'))
+        return;
+
+      if (type === 'file' && value.length > 1) {
+        value.forEach((val) => formData.append(`${id}[]`, val));
+      } else if (type === 'file' && value.length <= 1) {
+        value.forEach((val) => formData.append(id, val));
       } else {
-        formData.append(input.id, input.value);
+        formData.append(id, value);
       }
     });
     return formData;
