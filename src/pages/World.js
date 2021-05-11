@@ -17,8 +17,10 @@ const WorldPage = () => {
   const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
-  const closeModal = () => {
-    dispatch(updateUserPhoto({}, false));
+  const closeModal = (wasUpdated = false) => {
+    if (!wasUpdated) {
+      dispatch(updateUserPhoto({}, false));
+    }
     setShowModal(false);
   };
 
@@ -29,7 +31,7 @@ const WorldPage = () => {
   useEffect(() => {
     if (!userFirstTime) return;
 
-    setTimeout(() => setShowModal(true), 1000);
+    setTimeout(() => setShowModal(true), 500);
   }, [userFirstTime]);
 
   if (isLoading) {

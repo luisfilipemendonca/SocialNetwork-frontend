@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import { SectionForm } from '../../style';
 
 import { registerInputs, profilePictureInput } from '../../constants/inputs';
+
+import { updateUserPhoto } from '../../store/actions/user';
 
 import useInputs from '../../hooks/useInputs';
 
@@ -13,6 +16,8 @@ import Form from '../../components/Form';
 import Input from '../../components/Inputs';
 
 const FormUpdatedAccount = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
   const {
     userProfilePictureUrl,
     userProfilePicture,
@@ -36,7 +41,8 @@ const FormUpdatedAccount = () => {
 
     const data = form.buildFormData();
 
-    console.log(data);
+    dispatch(updateUserPhoto(data));
+    history.replace('/profile');
   };
 
   useEffect(() => {

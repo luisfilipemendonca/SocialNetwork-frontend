@@ -35,9 +35,9 @@ export const UserInfo = styled.div`
 
 export const UserPhotoContainer = styled.span`
   display: flex;
-  width: 4rem;
-  height: 4rem;
-  font-size: 4rem;
+  width: 6rem;
+  height: 6rem;
+  font-size: 6rem;
 `;
 
 export const UserPhoto = styled.img`
@@ -49,6 +49,7 @@ export const UserPhoto = styled.img`
 
 export const UserName = styled.h2`
   margin-left: 0.8rem;
+  flex: 1;
 `;
 
 export const UserFollowers = styled.div`

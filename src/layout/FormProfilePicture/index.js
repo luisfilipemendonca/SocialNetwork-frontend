@@ -28,6 +28,7 @@ const FormProfilePicture = ({ closeHandler }) => {
     const data = form.buildFormData();
 
     dispatch(updateUserPhoto(data));
+    closeHandler(true);
   };
 
   const aditionalBtn = (

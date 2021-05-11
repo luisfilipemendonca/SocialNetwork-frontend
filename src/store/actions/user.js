@@ -20,21 +20,15 @@ export const authenticate = (data, isLogging = false) => async (dispatch) => {
   }
 };
 
-export const updateUserPhoto = (data, hasPhoto = true) => async (dispatch) => {
+export const updateUserPhoto = (data) => async (dispatch) => {
   try {
-    let response;
+    const response = await axios.put('/users', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
 
-    if (hasPhoto) {
-      response = await axios.put('/users', data, {
-        headers: {
-          'Content-Type': 'Multipart/form-data',
-        },
-      });
-    } else {
-      response = await axios.put('/users', data);
-    }
-
-    dispatch({ type: actionTypes.UPDATE_USER_PHOTO, payload: response.data });
+    dispatch({ type: actionTypes.UPDATE_USER, payload: response.data });
   } catch (e) {
     // do something
   }

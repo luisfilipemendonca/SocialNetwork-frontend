@@ -37,7 +37,7 @@ class Validator {
       errorMsg: isValid
         ? ''
         : `Must contain ${
-            maxLength !== Infinity
+            maxLength === Infinity
               ? `at least ${minLength} characters`
               : `between ${minLength} and ${maxLength} characters`
           }`,

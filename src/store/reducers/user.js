@@ -74,7 +74,7 @@ const UserReducer = (state = initialState, action) => {
       return authenticate(state, { ...action.payload, rehydrated: true });
     case actionTypes.FETCH_USER_POSTS:
       return fetchUserPosts(state, action.payload);
-    case actionTypes.UPDATE_USER_PHOTO:
+    case actionTypes.UPDATE_USER:
       return updateUser(state, action.payload);
     default:
       return state;
