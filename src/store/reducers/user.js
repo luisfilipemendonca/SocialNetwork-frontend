@@ -11,6 +11,8 @@ const initialState = {
   userToken: null,
   userFirstTime: null,
   userPosts: [],
+  userFollowers: [],
+  userFollowing: [],
 };
 
 const authenticate = (state, payload) => {
@@ -43,9 +45,12 @@ const authenticate = (state, payload) => {
   return stateCopy;
 };
 
-const fetchUserPosts = (state, payload) => {
+const fetchUserData = (state, payload) => {
+  const { posts, followers, following } = payload;
   const stateCopy = { ...state };
-  stateCopy.userPosts = payload;
+  stateCopy.userPosts = posts;
+  stateCopy.userFollowers = followers;
+  stateCopy.userFollowing = following;
   return stateCopy;
 };
 
@@ -66,16 +71,34 @@ const updateUser = (state, payload) => {
   return stateCopy;
 };
 
+const addFollowing = (state, payload) => {
+  const stateCopy = { ...state };
+  stateCopy.userFollowing.push(payload);
+  return stateCopy;
+};
+
+const deleteFollowing = (state, payload) => {
+  const stateCopy = { ...state };
+  stateCopy.userFollowing = stateCopy.userFollowing.filter(
+    (follower) => follower.followerId !== +payload
+  );
+  return stateCopy;
+};
+
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATE:
       return authenticate(state, action.payload);
     case actionTypes.REHYDRATE_USER:
       return authenticate(state, { ...action.payload, rehydrated: true });
-    case actionTypes.FETCH_USER_POSTS:
-      return fetchUserPosts(state, action.payload);
+    case actionTypes.FETCH_USER_DATA:
+      return fetchUserData(state, action.payload);
     case actionTypes.UPDATE_USER:
       return updateUser(state, action.payload);
+    case actionTypes.ADD_FOLLOWING:
+      return addFollowing(state, action.payload);
+    case actionTypes.DELETE_FOLLOWING:
+      return deleteFollowing(state, action.payload);
     default:
       return state;
   }

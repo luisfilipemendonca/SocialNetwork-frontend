@@ -15,10 +15,8 @@ const WorldPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { userFirstTime } = useSelector((state) => state.user);
   const { posts } = useSelector((state) => state.posts);
-  // const { isLoading } = useSelector((state) => state.loading);
+  const { isLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
-
-  const isLoading = true;
 
   const closeModal = (wasUpdated = false) => {
     if (!wasUpdated) {
