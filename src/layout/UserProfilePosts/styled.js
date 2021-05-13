@@ -4,19 +4,20 @@ export const UserPostsMenu = styled.ul`
   flex: 1;
   overflow: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  grid-template-rows: repeat(auto-fill, 10rem);
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
 `;
 
 export const UserPostItem = styled.li`
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
+  height: 10rem;
 `;
 
 export const UserPostBtn = styled.button`
   display: block;
   height: 100%;
   position: relative;
+  width: 100%;
 
   &::before {
     content: '';

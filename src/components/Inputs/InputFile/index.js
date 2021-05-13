@@ -12,6 +12,8 @@ import {
   InputFilePreview,
 } from '../styled';
 
+import ImgSlider from '../../ImgSlider';
+
 const InputFile = ({
   id,
   type,
@@ -34,13 +36,14 @@ const InputFile = ({
             {typeof value === 'string' ? (
               <InputFilePreview src={value} alt="" />
             ) : (
-              value.map((val) => (
-                <InputFilePreview
-                  key={val.name}
-                  src={URL.createObjectURL(val)}
-                  alt=""
-                />
-              ))
+              <ImgSlider imgs={value.map((val) => URL.createObjectURL(val))} />
+              // value.map((val) => (
+              //   <InputFilePreview
+              //     key={val.name}
+              //     src={URL.createObjectURL(val)}
+              //     alt=""
+              //   />
+              // ))
             )}
           </InputFilePreviewContainer>
         )}

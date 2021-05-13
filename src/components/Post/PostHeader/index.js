@@ -20,6 +20,7 @@ const PostHeader = ({
   username,
   createdAt,
   postUserId,
+  isProfile,
 }) => {
   const { userId } = useSelector((state) => state.user);
 
@@ -39,7 +40,11 @@ const PostHeader = ({
           </Link>
         </PostUsername>
       </PostUser>
-      <PostDate>{formatedDateTime(createdAt)}</PostDate>
+      {!isProfile || userId !== postUserId ? (
+        <PostDate>{formatedDateTime(createdAt)}</PostDate>
+      ) : (
+        <button type="button">Delete Post</button>
+      )}
     </PostHeaderContainer>
   );
 };

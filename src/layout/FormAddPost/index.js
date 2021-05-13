@@ -25,6 +25,7 @@ const FormAddPost = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('ola');
 
     const form = new FormHelper(inputs);
 
