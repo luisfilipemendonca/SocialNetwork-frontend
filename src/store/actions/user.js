@@ -48,3 +48,13 @@ export const addPost = (data) => async (dispatch) => {
     // do something
   }
 };
+
+export const deletePost = (postId) => async (dispatch) => {
+  try {
+    await axios.delete(`/posts/${postId}`);
+
+    dispatch({ type: actionTypes.DELETE_POST, payload: postId });
+  } catch (e) {
+    // do something
+  }
+};

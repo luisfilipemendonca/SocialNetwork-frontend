@@ -43,6 +43,7 @@ const Post = ({
           username={user.username}
           postUserId={user.id}
           isProfile={isProfile}
+          postId={id}
         />
         <PostPhotos photos={photos} showAnimation={liked && alreadyLiked} />
         <PostInfo>

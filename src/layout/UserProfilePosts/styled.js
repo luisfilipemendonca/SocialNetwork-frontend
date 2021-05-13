@@ -5,12 +5,14 @@ export const UserPostsMenu = styled.ul`
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  align-content: flex-start;
   gap: 1rem;
 `;
 
 export const UserPostItem = styled.li`
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
   height: 10rem;
+  align-self: flex-start;
 `;
 
 export const UserPostBtn = styled.button`
