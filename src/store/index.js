@@ -11,7 +11,7 @@ import ProfileReducer from './reducers/profile';
 const persistConfig = {
   key: 'socialNetwork',
   storage,
-  blacklist: ['userPosts'],
+  blacklist: ['userPosts', 'userFollowers', 'userFollowing'],
 };
 
 const rootReducer = combineReducers({

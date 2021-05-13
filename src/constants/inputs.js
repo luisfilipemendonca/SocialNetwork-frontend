@@ -64,3 +64,24 @@ export const profilePictureInput = [
     validators: [Validator.isRequired],
   },
 ];
+
+export const postInputs = [
+  {
+    id: 'postPhoto',
+    value: '',
+    hasError: false,
+    isMultiple: true,
+    type: 'file',
+    acceptedTypes: ['image/jpeg', 'image/png'],
+    fileValidator: Validator.isFileValid,
+    validators: [Validator.isRequired],
+  },
+  {
+    id: 'description',
+    value: '',
+    type: 'textarea',
+    placeholder: 'Enter post description',
+    hasError: false,
+    validators: [Validator.isRequired],
+  },
+];

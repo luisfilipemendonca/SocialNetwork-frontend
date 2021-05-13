@@ -20,6 +20,7 @@ const InputFile = ({
   focusHandler,
   hasError,
   errorMsg,
+  isMultiple,
 }) => {
   return (
     <InputFileContainer>
@@ -46,6 +47,7 @@ const InputFile = ({
         <InputFileElement
           type={type}
           id={id}
+          multiple={isMultiple}
           onFocus={focusHandler}
           onChange={changeHandler}
         />

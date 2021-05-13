@@ -6,7 +6,9 @@ import AuthenticationPage from '../pages/Authentication';
 import FollowingPage from '../pages/Following';
 import ProtectedRoute from '../components/ProtectedRoute';
 import ProfilePage from '../pages/Profile';
+
 import FormUpdateAccount from '../layout/FormUpdateAccount';
+import FormAddPost from '../layout/FormAddPost';
 
 const Routes = () => {
   return (
@@ -14,6 +16,12 @@ const Routes = () => {
       <ProtectedRoute
         path="/profile/user/update_account"
         component={FormUpdateAccount}
+        isClosed
+        isExact
+      />
+      <ProtectedRoute
+        path="/profile/user/add_post"
+        component={FormAddPost}
         isClosed
         isExact
       />

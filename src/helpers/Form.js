@@ -43,14 +43,13 @@ class Form {
       if (value === '' || (type === 'file' && typeof value === 'string'))
         return;
 
-      if (type === 'file' && value.length > 1) {
-        value.forEach((val) => formData.append(`${id}[]`, val));
-      } else if (type === 'file' && value.length <= 1) {
+      if (type === 'file') {
         value.forEach((val) => formData.append(id, val));
       } else {
         formData.append(id, value);
       }
     });
+
     return formData;
   }
 }

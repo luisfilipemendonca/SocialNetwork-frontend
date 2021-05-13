@@ -81,7 +81,9 @@ const UserProfileInfo = ({
           </PrimaryButton>
         ) : (
           <>
-            <PrimaryLink to="/">Create Post</PrimaryLink>
+            <PrimaryLink to={`${location.pathname}/user/add_post`}>
+              Create Post
+            </PrimaryLink>
             <SecondaryLink to={`${location.pathname}/user/update_account`}>
               Update Profile
             </SecondaryLink>

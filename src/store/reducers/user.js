@@ -85,6 +85,12 @@ const deleteFollowing = (state, payload) => {
   return stateCopy;
 };
 
+const addPost = (state, payload) => {
+  const stateCopy = { ...state };
+  stateCopy.userPosts.unshift(payload);
+  return stateCopy;
+};
+
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.AUTHENTICATE:
@@ -99,6 +105,8 @@ const UserReducer = (state = initialState, action) => {
       return addFollowing(state, action.payload);
     case actionTypes.DELETE_FOLLOWING:
       return deleteFollowing(state, action.payload);
+    case actionTypes.ADD_POST:
+      return addPost(state, action.payload);
     default:
       return state;
   }

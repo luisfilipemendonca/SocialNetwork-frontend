@@ -25,6 +25,7 @@ const Input = ({
   errorMsg,
   info,
   type,
+  isMultiple,
   changeHandler,
   focusHandler,
 }) => {
@@ -36,6 +37,7 @@ const Input = ({
         hasError={hasError}
         value={value}
         errorMsg={errorMsg}
+        isMultiple={isMultiple}
         focusHandler={focusHandler}
         changeHandler={changeHandler}
       />

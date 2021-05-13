@@ -33,3 +33,18 @@ export const updateUserPhoto = (data) => async (dispatch) => {
     // do something
   }
 };
+
+export const addPost = (data) => async (dispatch) => {
+  try {
+    const response = await axios.post('/posts', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    dispatch({ type: actionTypes.ADD_POST, payload: response.data });
+    console.log(dispatch);
+  } catch (e) {
+    // do something
+  }
+};

@@ -102,7 +102,7 @@ export const InputFileLabel = styled.label`
   display: block;
   position: relative;
   width: ${({ isProfilePhoto }) => (isProfilePhoto ? '13rem' : '100%')};
-  height: ${({ isProfilePhoto }) => (isProfilePhoto ? '13rem' : '100%')};
+  height: ${({ isProfilePhoto }) => (isProfilePhoto ? '13rem' : '23rem')};
   border: ${({ theme }) => `1px dashed ${theme.colors.primaryDark}`};
   cursor: pointer;
   border-radius: ${({ isProfilePhoto }) => isProfilePhoto && '50%'};
