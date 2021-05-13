@@ -1,11 +1,17 @@
 import axios from '../../util/axios';
 import * as actionTypes from '../actionTypes';
 
-export const fetchPosts = () => async (dispatch) => {
+export const fetchPosts = (isFollowing = false) => async (dispatch) => {
   dispatch({ type: actionTypes.START_LOADING });
 
   try {
-    const response = await axios('/posts');
+    let response;
+
+    if (isFollowing) {
+      response = await axios('/posts/following');
+    } else {
+      response = await axios('/posts');
+    }
 
     dispatch({ type: actionTypes.FETCH_POST, payload: response.data });
     dispatch({ type: actionTypes.STOP_LOADING });
