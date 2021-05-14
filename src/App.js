@@ -12,6 +12,7 @@ import { persistor, store } from './store';
 import Routes from './routes';
 
 import Navbar from './layout/Navbar';
+import Toasts from './layout/Toasts';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <PersistGate persistor={persistor}>
           <BrowserRouter>
             <ThemeProvider theme={Theme}>
+              <Toasts />
               <Navbar />
               <MainContainer>
                 <Routes />

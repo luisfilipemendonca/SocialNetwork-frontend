@@ -1,0 +1,31 @@
+import styled from 'styled-components';
+
+export const ToastsContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+  display: flex;
+`;
+
+const ToastContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+`;
+
+export const ToastContainerLeft = styled(ToastContainer)`
+  align-items: flex-start;
+`;
+
+export const ToastContainerCenter = styled(ToastContainer)`
+  align-items: center;
+`;
+
+export const ToastContainerRight = styled(ToastContainer)`
+  align-items: flex-end;
+`;
