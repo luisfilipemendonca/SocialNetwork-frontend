@@ -10,8 +10,9 @@ export const FormContainer = styled.form`
   position: relative;
   overflow: hidden;
   z-index: 1;
+  padding: 2rem 0;
 
-  & > * {
+  & > *:not(:last-child) {
     margin-bottom: 2rem;
   }
 
@@ -30,10 +31,10 @@ export const FormContainer = styled.form`
 
 export const FormHeader = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.secondaryDark};
-  padding: 0.8rem;
+  padding: 0 0.8rem 0.8rem;
 
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.small}) {
-    padding: 1rem 2rem;
+    padding: 0 2rem 1rem;
   }
 `;
 

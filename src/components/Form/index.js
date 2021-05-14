@@ -9,6 +9,7 @@ import {
   FormBtns,
 } from './styled';
 
+import Spinner from '../Spinner';
 import { PrimaryButton } from '../BaseButton/styled';
 
 const Form = ({
@@ -19,6 +20,8 @@ const Form = ({
   submitBtnDescription,
   aditionalBtn,
 }) => {
+  const isLoading = true;
+
   return (
     <FormContainer onSubmit={submitHandler}>
       <FormHeader>
@@ -26,12 +29,16 @@ const Form = ({
         {info && <FormInfo>{info}</FormInfo>}
       </FormHeader>
       <FormContent>{children}</FormContent>
-      <FormBtns>
-        <PrimaryButton type="submit" onClick={submitHandler}>
-          {submitBtnDescription}
-        </PrimaryButton>
-        {aditionalBtn}
-      </FormBtns>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <FormBtns>
+          <PrimaryButton type="submit" onClick={submitHandler}>
+            {submitBtnDescription}
+          </PrimaryButton>
+          {aditionalBtn}
+        </FormBtns>
+      )}
     </FormContainer>
   );
 };
