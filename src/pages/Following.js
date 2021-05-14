@@ -10,14 +10,14 @@ import Loader from '../components/Loader';
 
 const FollowingPage = () => {
   const { posts } = useSelector((state) => state.posts);
-  const { isLoading } = useSelector((state) => state.loading);
+  const { isPageLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchPosts(true));
   }, []);
 
-  if (isLoading) {
+  if (isPageLoading) {
     return <Loader />;
   }
 

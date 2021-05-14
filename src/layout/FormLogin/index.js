@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SectionForm } from '../../style';
 
@@ -17,6 +17,7 @@ import { SecondaryLink } from '../../components/BaseButton/styled';
 
 const FormLogin = () => {
   const dispatch = useDispatch();
+  const { isComponentLoading } = useSelector((state) => state.loading);
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     loginInputs
   );
@@ -45,6 +46,7 @@ const FormLogin = () => {
         submitHandler={submitHandler}
         submitBtnDescription="Login"
         aditionalBtn={aditionalBtn}
+        isLoading={isComponentLoading}
       >
         {inputs.map(
           ({ id, placeholder, label, value, hasError, errorMsg, type }) => (

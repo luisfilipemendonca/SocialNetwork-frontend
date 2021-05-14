@@ -2,7 +2,7 @@ import axios from '../../util/axios';
 import * as actionTypes from '../actionTypes';
 
 export const fetchPosts = (isFollowing = false) => async (dispatch) => {
-  dispatch({ type: actionTypes.START_LOADING });
+  dispatch({ type: actionTypes.START_PAGE_LOADING });
 
   try {
     let response;
@@ -14,7 +14,7 @@ export const fetchPosts = (isFollowing = false) => async (dispatch) => {
     }
 
     dispatch({ type: actionTypes.FETCH_POST, payload: response.data });
-    dispatch({ type: actionTypes.STOP_LOADING });
+    dispatch({ type: actionTypes.STOP_PAGE_LOADING });
   } catch (e) {
     // do something
   }
@@ -54,7 +54,8 @@ export const deleteLike = (postId, isProfile = false) => async (
 export const fetchComments = ({ postId, page, offset }, isProfile) => async (
   dispatch
 ) => {
-  //  dispatch loading comments
+  dispatch({ type: actionTypes.START_COMPONENT_LOADING });
+
   try {
     const response = await axios(
       `/comments/${postId}?page=${page}&offset=${offset}`
@@ -64,6 +65,7 @@ export const fetchComments = ({ postId, page, offset }, isProfile) => async (
       type: actionTypes.FETCH_COMMENTS,
       payload: { ...response.data, postId, isProfile },
     });
+    dispatch({ type: actionTypes.STOP_COMPONENT_LOADING });
   } catch (e) {
     // do something
   }

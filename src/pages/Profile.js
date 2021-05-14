@@ -16,6 +16,7 @@ import UserProfilePosts from '../layout/UserProfilePosts';
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { isPageLoading } = useSelector((state) => state.loading);
   const { userId: appUserId } = useSelector((state) => state.user);
   const {
     userId,
@@ -27,7 +28,6 @@ const ProfilePage = () => {
     userFollowing,
   } = useSelector((state) => (id ? state.profile : state.user));
   const { selectedPost } = useSelector((state) => state.posts);
-  const { isLoading } = useSelector((state) => state.loading);
 
   const getPostHandler = (postId) => {
     dispatch(getPost(postId));
@@ -47,7 +47,7 @@ const ProfilePage = () => {
     }
   }, [id]);
 
-  if (isLoading) {
+  if (isPageLoading) {
     return <Loader />;
   }
 

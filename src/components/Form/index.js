@@ -19,9 +19,8 @@ const Form = ({
   submitHandler,
   submitBtnDescription,
   aditionalBtn,
+  isLoading,
 }) => {
-  const isLoading = true;
-
   return (
     <FormContainer onSubmit={submitHandler}>
       <FormHeader>

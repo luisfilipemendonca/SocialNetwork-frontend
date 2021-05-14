@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SectionForm } from '../../style';
 
@@ -16,6 +16,7 @@ import Input from '../../components/Inputs';
 import { SecondaryLink } from '../../components/BaseButton/styled';
 
 const FormRegister = () => {
+  const { isComponentLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     registerInputs
@@ -45,6 +46,7 @@ const FormRegister = () => {
         submitHandler={submitHandler}
         submitBtnDescription="Register"
         aditionalBtn={aditionalBtn}
+        isLoading={isComponentLoading}
       >
         {inputs.map(
           ({ id, placeholder, label, value, hasError, errorMsg, type }) => (

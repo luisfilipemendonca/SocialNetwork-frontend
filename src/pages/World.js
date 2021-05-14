@@ -15,7 +15,7 @@ const WorldPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { userFirstTime } = useSelector((state) => state.user);
   const { posts } = useSelector((state) => state.posts);
-  const { isLoading } = useSelector((state) => state.loading);
+  const { isPageLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
 
   const closeModal = (wasUpdated = false) => {
@@ -35,7 +35,7 @@ const WorldPage = () => {
     setTimeout(() => setShowModal(true), 500);
   }, [userFirstTime]);
 
-  if (isLoading) {
+  if (isPageLoading) {
     return <Loader />;
   }
 

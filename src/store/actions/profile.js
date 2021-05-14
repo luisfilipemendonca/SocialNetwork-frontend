@@ -2,6 +2,8 @@ import axios from '../../util/axios';
 import * as actionTypes from '../actionTypes';
 
 export const fetchUserData = (id, isProfile = false) => async (dispatch) => {
+  dispatch({ type: actionTypes.START_PAGE_LOADING });
+
   try {
     const response = await axios(`/users/${id}`);
 
@@ -20,6 +22,7 @@ export const fetchUserData = (id, isProfile = false) => async (dispatch) => {
         },
       });
     }
+    dispatch({ type: actionTypes.STOP_PAGE_LOADING });
   } catch (e) {
     // do something
   }

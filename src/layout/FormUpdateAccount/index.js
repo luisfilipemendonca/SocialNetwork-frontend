@@ -18,6 +18,7 @@ import Input from '../../components/Inputs';
 const FormUpdatedAccount = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isComponentLoading } = useSelector((state) => state.loading);
   const {
     userProfilePictureUrl,
     userProfilePicture,
@@ -61,6 +62,7 @@ const FormUpdatedAccount = () => {
         title="Update Account"
         submitHandler={submitHandler}
         submitBtnDescription="Update"
+        isLoading={isComponentLoading}
       >
         {inputs.map(
           ({ id, placeholder, label, value, hasError, errorMsg, type }) => (

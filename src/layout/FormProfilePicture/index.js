@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { profilePictureInput } from '../../constants/inputs';
 
@@ -13,6 +13,7 @@ import Form from '../../components/Form';
 import Input from '../../components/Inputs';
 
 const FormProfilePicture = ({ closeHandler }) => {
+  const { isComponentLoading } = useSelector((state) => state.loading);
   const dispatch = useDispatch();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     profilePictureInput
@@ -44,6 +45,7 @@ const FormProfilePicture = ({ closeHandler }) => {
       submitHandler={submitHandler}
       submitBtnDescription="Add Photo"
       aditionalBtn={aditionalBtn}
+      isLoading={isComponentLoading}
     >
       {inputs.map((input) => (
         <Input

@@ -2,7 +2,7 @@ import axios from '../../util/axios';
 import * as actionTypes from '../actionTypes';
 
 export const authenticate = (data, isLogging = false) => async (dispatch) => {
-  dispatch({ type: actionTypes.START_LOADING_FORM });
+  dispatch({ type: actionTypes.START_COMPONENT_LOADING });
 
   try {
     let response;
@@ -14,13 +14,15 @@ export const authenticate = (data, isLogging = false) => async (dispatch) => {
     }
 
     dispatch({ type: actionTypes.AUTHENTICATE, payload: response.data });
-    dispatch({ type: actionTypes.STOP_LOADING_FORM });
+    dispatch({ type: actionTypes.STOP_COMPONENT_LOADING });
   } catch (e) {
     // do something
   }
 };
 
 export const updateUserPhoto = (data) => async (dispatch) => {
+  dispatch({ type: actionTypes.START_COMPONENT_LOADING });
+
   try {
     const response = await axios.put('/users', data, {
       headers: {
@@ -29,12 +31,14 @@ export const updateUserPhoto = (data) => async (dispatch) => {
     });
 
     dispatch({ type: actionTypes.UPDATE_USER, payload: response.data });
+    dispatch({ type: actionTypes.STOP_COMPONENT_LOADING });
   } catch (e) {
     // do something
   }
 };
 
 export const addPost = (data) => async (dispatch) => {
+  dispatch({ type: actionTypes.START_COMPONENT_LOADING });
   try {
     const response = await axios.post('/posts', data, {
       headers: {
@@ -43,7 +47,7 @@ export const addPost = (data) => async (dispatch) => {
     });
 
     dispatch({ type: actionTypes.ADD_POST, payload: response.data });
-    console.log(dispatch);
+    dispatch({ type: actionTypes.STOP_COMPONENT_LOADING });
   } catch (e) {
     // do something
   }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
   PostCommentsContainer,
@@ -25,6 +25,7 @@ import { formatedDateTime } from '../../../util/dates';
 import { fetchComments, addComment } from '../../../store/actions/posts';
 
 import Input from '../../Inputs';
+import Spinner from '../../Spinner';
 
 const PostComments = ({
   comments,
@@ -34,6 +35,7 @@ const PostComments = ({
   isProfile,
 }) => {
   const dispatch = useDispatch();
+  const { isComponentLoading } = useSelector((state) => state.loading);
   const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll();
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     commentInput
@@ -78,6 +80,7 @@ const PostComments = ({
             </CommentContainer>
           )
         )}
+        {isComponentLoading && <Spinner />}
         {hasMoreComments && <div ref={infiniteScrollRef}>Loading...</div>}
       </PostCommentsContent>
       <PostCommentCta>

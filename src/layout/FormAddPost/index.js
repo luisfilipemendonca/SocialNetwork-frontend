@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { SectionForm } from '../../style';
@@ -18,6 +18,7 @@ import Input from '../../components/Inputs';
 const FormAddPost = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const { isComponentLoading } = useSelector((state) => state.loading);
 
   const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
     postInputs
@@ -25,7 +26,6 @@ const FormAddPost = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('ola');
 
     const form = new FormHelper(inputs);
 
@@ -50,6 +50,7 @@ const FormAddPost = () => {
         submitHandler={submitHandler}
         submitBtnDescription="Save"
         aditionalBtn={aditionalBtn}
+        isLoading={isComponentLoading}
       >
         {inputs.map(
           ({
