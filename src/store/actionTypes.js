@@ -27,3 +27,7 @@ export const DELETE_POST = 'DELETE_POST';
 export const FETCH_USER_PROFILE = 'FETCH_USER_PROFILE';
 export const ADD_FOLLOWER = 'ADD_FOLLOWER';
 export const DELETE_FOLLOWER = 'DELETE_FOLLOWER';
+
+// TOASTS ACTIONS
+export const ADD_TOAST = 'ADD_TOAST';
+export const DELETE_TOAST = 'DELETE_TOAST';

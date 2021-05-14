@@ -7,6 +7,7 @@ import UserReducer from './reducers/user';
 import PostsReducer from './reducers/posts';
 import LoadingReducer from './reducers/loading';
 import ProfileReducer from './reducers/profile';
+import ToastsReducer from './reducers/toasts';
 
 const persistConfig = {
   key: 'socialNetwork',
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   posts: PostsReducer,
   loading: LoadingReducer,
   profile: ProfileReducer,
+  toasts: ToastsReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

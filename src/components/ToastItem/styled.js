@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 
 export const ToastItemContainer = styled.div`
+  @keyframes slideAndBounce {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   display: flex;
   justify-content: space-between;
   text-overflow: clip;
@@ -11,14 +25,28 @@ export const ToastItemContainer = styled.div`
   border-radius: 3px;
   position: relative;
   overflow: hidden;
+  opacity: 0;
 
   &:not(:last-of-type) {
     margin-bottom: 0.8rem;
+  }
+
+  &.toasts-enter-active {
+    animation: slideAndBounce 1s ease-in-out;
+  }
+
+  &.toasts-enter-done {
+    opacity: 1;
+  }
+
+  &.toasts-exit-active {
+    animation: slideAndBounce 1s ease-in-out reverse;
   }
 `;
 
 export const ToastDescription = styled.p`
   word-break: break-all;
+  margin-right: 0.5rem;
 `;
 
 export const ToastBorder = styled.span`

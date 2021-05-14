@@ -16,6 +16,10 @@ const ToastContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+
+  ul {
+    width: 100%;
+  }
 `;
 
 export const ToastContainerLeft = styled(ToastContainer)`
