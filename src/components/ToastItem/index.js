@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 
-import { ToastItemContainer, ToastDescription, ToastBorder } from './styled';
+import {
+  ToastItemContainer,
+  ToastDescription,
+  ToastBorder,
+  ToastClose,
+} from './styled';
 
 import { deleteToasts } from '../../store/actions/toasts';
 
-const ToastItem = ({ description, id, position }) => {
+const ToastItem = ({ description, id, position, type }) => {
   const dispatch = useDispatch();
   const [borderWidth, setBorderWidth] = useState(100);
 
@@ -28,12 +33,12 @@ const ToastItem = ({ description, id, position }) => {
   }, [borderWidth]);
 
   return (
-    <ToastItemContainer>
+    <ToastItemContainer type={type}>
       <ToastDescription>{description}</ToastDescription>
-      <button type="button" onClick={deleteToastHandler}>
+      <ToastClose type="button" toastType={type} onClick={deleteToastHandler}>
         <FaTimes />
-      </button>
-      <ToastBorder borderWidth={borderWidth} />
+      </ToastClose>
+      <ToastBorder borderWidth={borderWidth} type={type} />
     </ToastItemContainer>
   );
 };

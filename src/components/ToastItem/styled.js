@@ -18,7 +18,11 @@ export const ToastItemContainer = styled.div`
   display: flex;
   justify-content: space-between;
   text-overflow: clip;
-  border: 1px solid red;
+  border: 1px solid
+    ${({ type, theme }) =>
+      type === 'success' ? theme.colors.primaryDark : theme.colors.warning};
+  color: ${({ type, theme }) =>
+    type === 'success' ? theme.colors.primaryDark : theme.colors.warning};
   width: 100%;
   max-width: 25rem;
   padding: 0.8rem;
@@ -26,6 +30,7 @@ export const ToastItemContainer = styled.div`
   position: relative;
   overflow: hidden;
   opacity: 0;
+  background-color: #f5f5f5;
 
   &:not(:last-of-type) {
     margin-bottom: 0.8rem;
@@ -56,5 +61,14 @@ export const ToastBorder = styled.span`
   transition: width 50ms linear;
   bottom: 0;
   right: 0;
-  background: red;
+  background: ${({ type, theme }) =>
+    type === 'success'
+      ? theme.colors.primaryLight
+      : theme.colors.warningOpacity};
+`;
+
+export const ToastClose = styled.button`
+  pointer-events: all;
+  color: ${({ toastType, theme }) =>
+    toastType === 'success' ? theme.colors.primaryDark : theme.colors.warning};
 `;

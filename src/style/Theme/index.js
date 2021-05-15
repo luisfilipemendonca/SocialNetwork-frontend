@@ -8,6 +8,8 @@ export default {
     secondaryDark: '#efd8b2',
     secondaryLight: '#f7ecd8',
     secondaryOpacity: 'rgba(239, 216, 178, 0.3)',
+    warning: '#fc4c4c',
+    warningOpacity: 'rgba(252,76,76, 0.2)',
   },
   typography: {
     colors: {

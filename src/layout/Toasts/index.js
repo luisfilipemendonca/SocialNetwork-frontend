@@ -30,21 +30,26 @@ const Toasts = () => {
     <ToastsContainer>
       <ToastContainerLeft>
         <TransitionGroup className="toast-list" component="ul">
-          {leftToasts.map(({ id, description }) => (
+          {leftToasts.map(({ id, description, type }) => (
             <CSSTransition
               timeout={1000}
               classNames="toasts"
               key={id}
               unmountOnExit
             >
-              <ToastItem description={description} id={id} position="left" />
+              <ToastItem
+                description={description}
+                id={id}
+                position="left"
+                type={type}
+              />
             </CSSTransition>
           ))}
         </TransitionGroup>
       </ToastContainerLeft>
       <ToastContainerCenter>
         <TransitionGroup className="toast-list" component="ul">
-          {centerToasts.map(({ id, description }) => (
+          {centerToasts.map(({ id, description, type }) => (
             <CSSTransition
               timeout={1000}
               classNames="toasts"
@@ -56,6 +61,7 @@ const Toasts = () => {
                 description={description}
                 id={id}
                 position="center"
+                type={type}
               />
             </CSSTransition>
           ))}
@@ -63,14 +69,19 @@ const Toasts = () => {
       </ToastContainerCenter>
       <ToastContainerRight>
         <TransitionGroup className="toast-list" component="ul">
-          {rightToasts.map(({ id, description }) => (
+          {rightToasts.map(({ id, description, type }) => (
             <CSSTransition
               timeout={1000}
               classNames="toasts"
               key={id}
               unmountOnExit
             >
-              <ToastItem description={description} id={id} position="left" />
+              <ToastItem
+                description={description}
+                id={id}
+                position="left"
+                type={type}
+              />
             </CSSTransition>
           ))}
         </TransitionGroup>

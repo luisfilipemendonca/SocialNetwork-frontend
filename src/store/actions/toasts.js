@@ -4,7 +4,7 @@ export const addToast = () => (dispatch) => {
   dispatch({
     type: actionTypes.ADD_TOAST,
     payload: {
-      type: 'success',
+      type: 'error',
       position: 'center',
       description: 'Hello world',
     },

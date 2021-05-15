@@ -6,9 +6,9 @@ export const ToastsContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.8);
   z-index: 1000;
   display: flex;
+  pointer-events: none;
 `;
 
 const ToastContainer = styled.div`
