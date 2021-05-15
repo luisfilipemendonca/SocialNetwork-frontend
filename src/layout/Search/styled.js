@@ -23,3 +23,14 @@ export const SearchMenu = styled.ul`
   padding: 0.8rem;
   border-radius: 3px;
 `;
+
+export const SearchError = styled.p`
+  padding: 0.8rem;
+  position: absolute;
+  top: 100%;
+  margin-top: 0.8rem;
+  background-color: #f5f5f5;
+  width: 100%;
+  left: 0;
+  text-align: center;
+`;
