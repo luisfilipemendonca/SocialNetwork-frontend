@@ -8,8 +8,9 @@ import { updateUserPhoto } from '../store/actions/user';
 
 import Post from '../components/Post';
 import Modal from '../components/Modal';
-import FormProfilePicture from '../layout/FormProfilePicture';
 import Loader from '../components/Loader';
+import FormProfilePicture from '../layout/FormProfilePicture';
+import Search from '../layout/Search';
 
 const WorldPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -44,6 +45,7 @@ const WorldPage = () => {
       <Modal show={showModal} closeHandler={closeModal}>
         <FormProfilePicture closeHandler={closeModal} />
       </Modal>
+      <Search />
       <MainSection>
         <PostsContainer>
           {posts.map(

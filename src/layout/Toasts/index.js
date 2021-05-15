@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import {
@@ -9,22 +9,14 @@ import {
   ToastContainerRight,
 } from './styled';
 
-import { addToast } from '../../store/actions/toasts';
-
 import ToastItem from '../../components/ToastItem';
 
 const Toasts = () => {
-  const dispatch = useDispatch();
   const {
     right: rightToasts,
     left: leftToasts,
     center: centerToasts,
   } = useSelector((state) => state.toasts);
-
-  useEffect(() => {
-    dispatch(addToast());
-    dispatch(addToast());
-  }, []);
 
   return (
     <ToastsContainer>
