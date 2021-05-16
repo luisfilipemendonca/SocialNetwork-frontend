@@ -20,8 +20,9 @@ export const SearchMenu = styled.ul`
   margin-top: 0.8rem;
   z-index: ${({ isModalOpen }) => isModalOpen && 500};
   border: 1px solid ${({ theme }) => theme.colors.primaryDark};
-  padding: 0.8rem;
   border-radius: 3px;
+  max-height: 30rem;
+  overflow-y: auto;
 `;
 
 export const SearchError = styled.p`

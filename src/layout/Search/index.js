@@ -5,6 +5,7 @@ import { SearchContainer, SearchMenu, SearchError } from './styled';
 
 import Input from '../../components/Inputs';
 import Modal from '../../components/Modal';
+import SearchItem from '../../components/SearchItem';
 
 const Search = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,8 +57,17 @@ const Search = () => {
         />
         {searchedUsers.length > 0 && (
           <SearchMenu isModalOpen={isModalOpen}>
-            <li>Ola</li>
-            <li>Ola</li>
+            {searchedUsers.map(
+              ({ id, username, profilePicture, profilePictureUrl }) => (
+                <SearchItem
+                  key={id}
+                  username={username}
+                  id={id}
+                  profilePicture={profilePicture}
+                  profilePictureUrl={profilePictureUrl}
+                />
+              )
+            )}
           </SearchMenu>
         )}
         {searchValue && searchedUsers.length <= 0 && (
