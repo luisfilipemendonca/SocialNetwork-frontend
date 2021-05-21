@@ -151,7 +151,7 @@ export const NavbarLink = styled(NavLink)`
   @media screen and (min-width: ${({ theme }) => theme.mediaQueries.medium}) {
     color: ${({ theme }) => theme.colors.secondaryDark};
     width: unset;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     padding: 0.2rem 1.5rem;
     transition: none;
 

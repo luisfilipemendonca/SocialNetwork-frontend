@@ -46,8 +46,7 @@ const focus = (state, payload) => {
 
 const clearInputs = (state) => {
   const inputsCopy = [...state];
-  inputsCopy.forEach((input) => ({ ...input, value: '' }));
-  return inputsCopy;
+  return inputsCopy.map((input) => ({ ...input, value: '' }));
 };
 
 const setInputs = (state, payload) => {

@@ -46,6 +46,11 @@ export const PostCommentsContent = styled.ul`
   padding: 1rem;
 `;
 
+export const PostCommentsEmpty = styled.p`
+  text-align: center;
+  padding: 1rem;
+`;
+
 export const CommentContainer = styled.li`
   @keyframes blink {
     0% {
@@ -94,4 +99,8 @@ export const PostCommentCta = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.primaryLight};
 `;
 
-export const CommentForm = styled.form``;
+export const CommentForm = styled.form`
+  & > *:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+`;

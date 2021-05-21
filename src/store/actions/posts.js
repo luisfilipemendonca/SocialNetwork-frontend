@@ -1,20 +1,28 @@
 import axios from '../../util/axios';
 import * as actionTypes from '../actionTypes';
 
-export const fetchPosts = (isFollowing = false) => async (dispatch) => {
-  dispatch({ type: actionTypes.START_PAGE_LOADING });
+export const fetchPosts = (page, isFollowing = false) => async (dispatch) => {
+  if (page === 1) {
+    dispatch({ type: actionTypes.START_PAGE_LOADING });
+  }
 
   try {
     let response;
 
     if (isFollowing) {
-      response = await axios('/posts/following');
+      response = await axios(`/posts/following?page=${page}`);
     } else {
-      response = await axios('/posts');
+      response = await axios(`/posts?page=${page}`);
     }
 
-    dispatch({ type: actionTypes.FETCH_POST, payload: response.data });
-    dispatch({ type: actionTypes.STOP_PAGE_LOADING });
+    dispatch({
+      type: actionTypes.FETCH_POST,
+      payload: response.data,
+    });
+
+    if (page === 1) {
+      dispatch({ type: actionTypes.STOP_PAGE_LOADING });
+    }
   } catch (e) {
     // do something
   }
@@ -84,7 +92,11 @@ export const getPost = (postId) => async (dispatch) => {
   }
 };
 
-export const clearPost = () => ({ type: actionTypes.CLEAR_POST });
+export const clearPost = (page) => (dispatch) => {
+  console.log(page);
+
+  dispatch({ type: actionTypes.CLEAR_POST });
+};
 
 export const addComment = (data, postId, isProfile = false) => async (
   dispatch

@@ -17,6 +17,8 @@ import {
   PostUsername,
 } from './styled';
 
+import { WarningButton } from '../../BaseButton/styled';
+
 const PostHeader = ({
   profilePicture,
   profilePictureUrl,
@@ -53,9 +55,9 @@ const PostHeader = ({
       {!isProfile || userId !== postUserId ? (
         <PostDate>{formatedDateTime(createdAt)}</PostDate>
       ) : (
-        <button type="button" onClick={deletePostHandler}>
+        <WarningButton type="button" onClick={deletePostHandler}>
           Delete Post
-        </button>
+        </WarningButton>
       )}
     </PostHeaderContainer>
   );

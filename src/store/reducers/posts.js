@@ -3,6 +3,8 @@ import * as actionTypes from '../actionTypes';
 const initialState = {
   posts: [],
   selectedPost: [],
+  hasMorePosts: true,
+  isPostsFetched: false,
 };
 
 const addLikeHandler = ({ state, postIdx, data }) => {
@@ -49,8 +51,13 @@ const fetchCommentsHandler = ({
 };
 
 const fetchPosts = (state, payload) => {
+  const { hasMorePosts, posts } = payload;
   const updatedState = { ...state };
-  updatedState.posts = payload;
+
+  updatedState.posts.push(...posts);
+
+  updatedState.hasMorePosts = hasMorePosts;
+  updatedState.isPostsFetched = true;
   return updatedState;
 };
 
@@ -131,6 +138,12 @@ const getPost = (state, payload) => {
 const clearPost = (state) => {
   const updatedState = { ...state };
   updatedState.selectedPost = [];
+
+  if (state.posts.length > 0) {
+    updatedState.posts = [];
+    updatedState.isPostsFetched = false;
+    updatedState.hasMorePosts = true;
+  }
   return updatedState;
 };
 

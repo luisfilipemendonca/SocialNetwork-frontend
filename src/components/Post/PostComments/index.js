@@ -6,6 +6,7 @@ import {
   PostCommentsHeader,
   PostCommentsContent,
   PostCommentCta,
+  PostCommentsEmpty,
   CommentContainer,
   CommentHeader,
   CommentUser,
@@ -26,6 +27,7 @@ import { fetchComments, addComment } from '../../../store/actions/posts';
 
 import Input from '../../Inputs';
 import Spinner from '../../Spinner';
+import { PrimaryButton } from '../../BaseButton/styled';
 
 const PostComments = ({
   comments,
@@ -37,9 +39,13 @@ const PostComments = ({
   const dispatch = useDispatch();
   const { isComponentLoading } = useSelector((state) => state.loading);
   const { currentPage, infiniteScrollRef, rootRef } = useInfiniteScroll();
-  const { inputs, changeHandler, focusHandler, setErrorHandler } = useInputs(
-    commentInput
-  );
+  const {
+    inputs,
+    changeHandler,
+    focusHandler,
+    setErrorHandler,
+    clearInputsHandler,
+  } = useInputs(commentInput);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -51,6 +57,7 @@ const PostComments = ({
     const data = form.buildFormObj();
 
     dispatch(addComment(data, postId, isProfile));
+    clearInputsHandler();
   };
 
   useEffect(() => {
@@ -62,6 +69,9 @@ const PostComments = ({
   return (
     <PostCommentsContainer>
       <PostCommentsHeader>Comments</PostCommentsHeader>
+      {!comments?.length && currentPage >= 1 && !isComponentLoading && (
+        <PostCommentsEmpty>This post dont have comments</PostCommentsEmpty>
+      )}
       <PostCommentsContent ref={rootRef}>
         {comments?.map(
           ({
@@ -80,8 +90,9 @@ const PostComments = ({
             </CommentContainer>
           )
         )}
-        {isComponentLoading && <Spinner />}
-        {hasMoreComments && <div ref={infiniteScrollRef}>Loading...</div>}
+        {hasMoreComments && (
+          <div ref={infiniteScrollRef}>{isComponentLoading && <Spinner />}</div>
+        )}
       </PostCommentsContent>
       <PostCommentCta>
         <CommentForm onSubmit={submitHandler}>
@@ -100,9 +111,9 @@ const PostComments = ({
               />
             )
           )}
-          <button type="button" onClick={submitHandler}>
+          <PrimaryButton type="button" onClick={submitHandler}>
             Add Comment
-          </button>
+          </PrimaryButton>
         </CommentForm>
       </PostCommentCta>
     </PostCommentsContainer>

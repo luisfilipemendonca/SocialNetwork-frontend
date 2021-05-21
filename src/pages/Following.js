@@ -3,59 +3,77 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { MainSection, PostsContainer } from '../style';
 
-import { fetchPosts } from '../store/actions/posts';
+import { fetchPosts, clearPost } from '../store/actions/posts';
+
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 import Post from '../components/Post';
 import Loader from '../components/Loader';
+import Spinner from '../components/Spinner';
 
 const FollowingPage = () => {
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, hasMorePosts, isPostsFetched } = useSelector(
+    (state) => state.posts
+  );
   const { isPageLoading } = useSelector((state) => state.loading);
+  const { currentPage, infiniteScrollRef } = useInfiniteScroll();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts(true));
-  }, []);
+    if (currentPage === 0) return;
 
-  if (isPageLoading) {
-    return <Loader />;
-  }
+    dispatch(fetchPosts(currentPage, true));
+  }, [currentPage]);
+
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return
+    return () => dispatch(clearPost());
+  }, []);
 
   return (
     <>
       <MainSection>
-        <PostsContainer>
-          {posts.map(
-            ({
-              id,
-              description,
-              createdAt,
-              User,
-              PostPhotos,
-              comments,
-              liked,
-              alreadyLiked,
-              Likes,
-              hasMoreComments,
-              commentsOffset,
-            }) => (
-              <Post
-                key={id}
-                id={id}
-                description={description}
-                createdAt={createdAt}
-                user={User}
-                photos={PostPhotos}
-                comments={comments}
-                hasMoreComments={hasMoreComments}
-                likesCount={Likes.length}
-                liked={liked}
-                alreadyLiked={alreadyLiked}
-                commentsOffset={commentsOffset}
-              />
-            )
-          )}
-        </PostsContainer>
+        {isPageLoading && <Loader />}
+        {!isPageLoading && posts.length > 0 && (
+          <PostsContainer>
+            {posts.map(
+              ({
+                id,
+                description,
+                createdAt,
+                User,
+                PostPhotos,
+                comments,
+                liked,
+                alreadyLiked,
+                Likes,
+                hasMoreComments,
+                commentsOffset,
+              }) => (
+                <Post
+                  key={id}
+                  id={id}
+                  description={description}
+                  createdAt={createdAt}
+                  user={User}
+                  photos={PostPhotos}
+                  comments={comments}
+                  hasMoreComments={hasMoreComments}
+                  likesCount={Likes.length}
+                  liked={liked}
+                  alreadyLiked={alreadyLiked}
+                  commentsOffset={commentsOffset}
+                />
+              )
+            )}
+          </PostsContainer>
+        )}
+        {isPostsFetched && !posts.length && (
+          <div>There are no posts to show</div>
+        )}
+        {(hasMorePosts || currentPage === 0) && (
+          <div ref={infiniteScrollRef}>{currentPage > 1 && <Spinner />}</div>
+        )}
       </MainSection>
     </>
   );

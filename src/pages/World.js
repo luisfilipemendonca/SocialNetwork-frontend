@@ -3,20 +3,26 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { MainSection, PostsContainer } from '../style';
 
-import { fetchPosts } from '../store/actions/posts';
+import { fetchPosts, clearPost } from '../store/actions/posts';
 import { updateUserPhoto } from '../store/actions/user';
+
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 import Post from '../components/Post';
 import Modal from '../components/Modal';
 import Loader from '../components/Loader';
 import FormProfilePicture from '../layout/FormProfilePicture';
 import Search from '../layout/Search';
+import Spinner from '../components/Spinner';
 
 const WorldPage = () => {
   const [showModal, setShowModal] = useState(false);
   const { userFirstTime } = useSelector((state) => state.user);
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, isPostsFetched, hasMorePosts } = useSelector(
+    (state) => state.posts
+  );
   const { isPageLoading } = useSelector((state) => state.loading);
+  const { currentPage, infiniteScrollRef } = useInfiniteScroll();
   const dispatch = useDispatch();
 
   const closeModal = (wasUpdated = false) => {
@@ -27,8 +33,10 @@ const WorldPage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
+    if (currentPage === 0) return;
+
+    dispatch(fetchPosts(currentPage));
+  }, [currentPage]);
 
   useEffect(() => {
     if (!userFirstTime) return;
@@ -36,52 +44,60 @@ const WorldPage = () => {
     setTimeout(() => setShowModal(true), 500);
   }, [userFirstTime]);
 
-  if (isPageLoading) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    // eslint-disable-next-line consistent-return
+    return () => dispatch(clearPost());
+  }, []);
 
   return (
     <>
       <Modal show={showModal} closeHandler={closeModal}>
         <FormProfilePicture closeHandler={closeModal} />
       </Modal>
-      <Search />
       <MainSection>
-        {posts.length > 0 ? (
-          <PostsContainer>
-            {posts.map(
-              ({
-                id,
-                description,
-                createdAt,
-                User,
-                PostPhotos,
-                comments,
-                liked,
-                alreadyLiked,
-                Likes,
-                hasMoreComments,
-                commentsOffset,
-              }) => (
-                <Post
-                  key={id}
-                  id={id}
-                  description={description}
-                  createdAt={createdAt}
-                  user={User}
-                  photos={PostPhotos}
-                  comments={comments}
-                  hasMoreComments={hasMoreComments}
-                  likesCount={Likes.length}
-                  liked={liked}
-                  alreadyLiked={alreadyLiked}
-                  commentsOffset={commentsOffset}
-                />
-              )
-            )}
-          </PostsContainer>
-        ) : (
+        {isPageLoading && <Loader />}
+        {!isPageLoading && posts.length > 0 && (
+          <>
+            <Search />
+            <PostsContainer>
+              {posts.map(
+                ({
+                  id,
+                  description,
+                  createdAt,
+                  User,
+                  PostPhotos,
+                  comments,
+                  liked,
+                  alreadyLiked,
+                  Likes,
+                  hasMoreComments,
+                  commentsOffset,
+                }) => (
+                  <Post
+                    key={id}
+                    id={id}
+                    description={description}
+                    createdAt={createdAt}
+                    user={User}
+                    photos={PostPhotos}
+                    comments={comments}
+                    hasMoreComments={hasMoreComments}
+                    likesCount={Likes.length}
+                    liked={liked}
+                    alreadyLiked={alreadyLiked}
+                    commentsOffset={commentsOffset}
+                  />
+                )
+              )}
+            </PostsContainer>
+          </>
+        )}
+        {isPostsFetched && !posts.length && (
           <div>There are no posts to show</div>
+        )}
+        {(hasMorePosts || currentPage === 0) && (
+          <div ref={infiniteScrollRef}>{currentPage > 1 && <Spinner />}</div>
         )}
       </MainSection>
     </>

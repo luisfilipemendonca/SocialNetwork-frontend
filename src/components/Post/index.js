@@ -30,6 +30,8 @@ const Post = ({
 }) => {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
+  console.log(id);
+
   const toggleCommentsVisibility = () =>
     setIsCommentsOpen((prevState) => !prevState);
 
@@ -76,4 +78,4 @@ const Post = ({
   );
 };
 
-export default Post;
+export default React.memo(Post);
