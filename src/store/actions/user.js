@@ -62,3 +62,19 @@ export const deletePost = (postId) => async (dispatch) => {
     // do something
   }
 };
+
+export const deleteUser = (userId) => async (dispatch) => {
+  try {
+    await axios.delete(`/users/${userId}`);
+
+    dispatch({ type: actionTypes.LOGOUT });
+  } catch (e) {
+    // do something
+  }
+};
+
+export const logout = () => {
+  return {
+    type: actionTypes.LOGOUT,
+  };
+};

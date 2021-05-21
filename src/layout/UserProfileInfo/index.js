@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { addFollower, deleteFollower } from '../../store/actions/profile';
+import { deleteUser } from '../../store/actions/user';
 
 import {
   UserProfile,
@@ -23,6 +24,7 @@ import {
   PrimaryButton,
   PrimaryLink,
   SecondaryLink,
+  WarningButton,
 } from '../../components/BaseButton/styled';
 
 const UserProfileInfo = ({
@@ -48,6 +50,10 @@ const UserProfileInfo = ({
     } else {
       dispatch(addFollower(profileUserId));
     }
+  };
+
+  const deleteUserHandler = () => {
+    dispatch(deleteUser(userId));
   };
 
   return (
@@ -87,7 +93,9 @@ const UserProfileInfo = ({
             <SecondaryLink to={`${location.pathname}/user/update_account`}>
               Update Profile
             </SecondaryLink>
-            <button type="button">Delete Account</button>
+            <WarningButton type="button" onClick={deleteUserHandler}>
+              Delete Account
+            </WarningButton>
           </>
         )}
       </UserCta>

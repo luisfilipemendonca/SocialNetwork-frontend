@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   NavbarContainer,
@@ -11,11 +11,18 @@ import {
   NavbarTogglerItem,
 } from './styled';
 
+import { logout } from '../../store/actions/user';
+
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { isLogged } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
 
   const openNavbarHandler = () => setIsOpen((prevState) => !prevState);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
 
   return (
     <NavbarContainer isLogged={isLogged}>
@@ -41,6 +48,11 @@ const Navbar = () => {
             <NavbarItem>
               <NavbarLink to="/profile" exact>
                 Profile
+              </NavbarLink>
+            </NavbarItem>
+            <NavbarItem>
+              <NavbarLink to="/login" exact onClick={logoutHandler}>
+                Logout
               </NavbarLink>
             </NavbarItem>
           </NavbarMenu>

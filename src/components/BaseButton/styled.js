@@ -35,6 +35,19 @@ const DefaultSecondaryButton = css`
   }
 `;
 
+const DefaultWarningButton = css`
+  ${DefaultButton};
+  border-color: ${({ theme }) => theme.colors.warning};
+  color: ${({ theme }) => theme.colors.warning};
+  background-color: ${({ theme }) => theme.colors.warningOpacity};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.colors.warning};
+    color: #f5f5f5;
+  }
+`;
+
 export const PrimaryButton = styled.button`
   ${DefaultPrimaryButton};
 `;
@@ -49,4 +62,8 @@ export const PrimaryLink = styled(Link)`
 
 export const SecondaryLink = styled(Link)`
   ${DefaultSecondaryButton};
+`;
+
+export const WarningButton = styled.button`
+  ${DefaultWarningButton};
 `;

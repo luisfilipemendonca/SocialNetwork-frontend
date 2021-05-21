@@ -47,38 +47,42 @@ const WorldPage = () => {
       </Modal>
       <Search />
       <MainSection>
-        <PostsContainer>
-          {posts.map(
-            ({
-              id,
-              description,
-              createdAt,
-              User,
-              PostPhotos,
-              comments,
-              liked,
-              alreadyLiked,
-              Likes,
-              hasMoreComments,
-              commentsOffset,
-            }) => (
-              <Post
-                key={id}
-                id={id}
-                description={description}
-                createdAt={createdAt}
-                user={User}
-                photos={PostPhotos}
-                comments={comments}
-                hasMoreComments={hasMoreComments}
-                likesCount={Likes.length}
-                liked={liked}
-                alreadyLiked={alreadyLiked}
-                commentsOffset={commentsOffset}
-              />
-            )
-          )}
-        </PostsContainer>
+        {posts.length > 0 ? (
+          <PostsContainer>
+            {posts.map(
+              ({
+                id,
+                description,
+                createdAt,
+                User,
+                PostPhotos,
+                comments,
+                liked,
+                alreadyLiked,
+                Likes,
+                hasMoreComments,
+                commentsOffset,
+              }) => (
+                <Post
+                  key={id}
+                  id={id}
+                  description={description}
+                  createdAt={createdAt}
+                  user={User}
+                  photos={PostPhotos}
+                  comments={comments}
+                  hasMoreComments={hasMoreComments}
+                  likesCount={Likes.length}
+                  liked={liked}
+                  alreadyLiked={alreadyLiked}
+                  commentsOffset={commentsOffset}
+                />
+              )
+            )}
+          </PostsContainer>
+        ) : (
+          <div>There are no posts to show</div>
+        )}
       </MainSection>
     </>
   );

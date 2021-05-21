@@ -117,6 +117,8 @@ const UserReducer = (state = initialState, action) => {
       return addPost(state, action.payload);
     case actionTypes.DELETE_POST:
       return deletePost(state, action.payload);
+    case actionTypes.LOGOUT:
+      return initialState;
     default:
       return state;
   }
