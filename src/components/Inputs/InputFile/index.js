@@ -1,15 +1,17 @@
 import React from 'react';
-import { FaExclamationCircle } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 
 import {
+  InputLabelFile,
   InputError,
-  InputErrorIcon,
   InputErrorMessage,
   InputFileContainer,
   InputFileLabel,
   InputFileElement,
   InputFilePreviewContainer,
   InputFilePreview,
+  InputInfo,
+  InputLabelIcon,
 } from '../styled';
 
 import ImgSlider from '../../ImgSlider';
@@ -21,11 +23,14 @@ const InputFile = ({
   changeHandler,
   focusHandler,
   hasError,
+  info,
+  label,
   errorMsg,
   isMultiple,
 }) => {
   return (
     <InputFileContainer>
+      <InputLabelFile>{label}</InputLabelFile>
       <InputFileLabel
         htmlFor={id}
         isProfilePhoto={id === 'profilePicture'}
@@ -37,13 +42,6 @@ const InputFile = ({
               <InputFilePreview src={value} alt="" />
             ) : (
               <ImgSlider imgs={value.map((val) => URL.createObjectURL(val))} />
-              // value.map((val) => (
-              //   <InputFilePreview
-              //     key={val.name}
-              //     src={URL.createObjectURL(val)}
-              //     alt=""
-              //   />
-              // ))
             )}
           </InputFilePreviewContainer>
         )}
@@ -54,15 +52,16 @@ const InputFile = ({
           onFocus={focusHandler}
           onChange={changeHandler}
         />
+        <InputLabelIcon isVisible={value.length <= 0}>
+          <FaPlusCircle />
+        </InputLabelIcon>
       </InputFileLabel>
       {hasError && (
         <InputError>
-          <InputErrorIcon>
-            <FaExclamationCircle />
-          </InputErrorIcon>
-          <InputErrorMessage>{errorMsg}</InputErrorMessage>
+          <InputErrorMessage isFileType>{errorMsg}</InputErrorMessage>
         </InputError>
       )}
+      {info && <InputInfo>{info}</InputInfo>}
     </InputFileContainer>
   );
 };

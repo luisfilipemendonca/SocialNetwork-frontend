@@ -24,10 +24,10 @@ export const updateUserPhoto = (data) => async (dispatch) => {
   dispatch({ type: actionTypes.START_COMPONENT_LOADING });
 
   try {
+    const headers = data ? { 'Content-Type': 'multipart/form-data' } : {};
+
     const response = await axios.put('/users', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+      headers,
     });
 
     dispatch({ type: actionTypes.UPDATE_USER, payload: response.data });

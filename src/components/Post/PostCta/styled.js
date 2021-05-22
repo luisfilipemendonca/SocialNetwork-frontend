@@ -8,7 +8,8 @@ export const PostCtaContainer = styled.div`
 `;
 
 export const PostBtn = styled.button`
-  background-color: ${({ theme }) => theme.colors.primaryLight};
+  background-color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.primaryDark : theme.colors.primaryLight};
   color: ${({ theme }) => theme.colors.secondaryLight};
   width: 3.5rem;
   height: 3.5rem;

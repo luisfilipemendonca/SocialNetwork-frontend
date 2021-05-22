@@ -6,7 +6,13 @@ import { PostBtn, PostCtaContainer } from './styled';
 
 import { addLike, deleteLike } from '../../../store/actions/posts';
 
-const PostCta = ({ toggleCommentsVisibility, liked, id, isProfile }) => {
+const PostCta = ({
+  toggleCommentsVisibility,
+  liked,
+  id,
+  isProfile,
+  isOpen,
+}) => {
   const dispatch = useDispatch();
 
   const addLikeHandler = () => {
@@ -18,7 +24,11 @@ const PostCta = ({ toggleCommentsVisibility, liked, id, isProfile }) => {
   };
   return (
     <PostCtaContainer>
-      <PostBtn type="button" onClick={toggleCommentsVisibility}>
+      <PostBtn
+        type="button"
+        onClick={toggleCommentsVisibility}
+        isSelected={isOpen}
+      >
         <FaCommentAlt />
       </PostBtn>
       <PostBtn

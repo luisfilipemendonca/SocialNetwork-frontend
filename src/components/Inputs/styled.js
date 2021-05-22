@@ -1,8 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const InputContainer = styled.div``;
 
 export const InputLabel = styled.label`
+  display: block;
+  margin-bottom: 0.2rem;
+`;
+
+export const InputLabelFile = styled.div`
   display: block;
   margin-bottom: 0.2rem;
 `;
@@ -22,7 +27,8 @@ export const InputBorder = styled.span`
   transform: translateX(-50%);
 `;
 
-export const InputElement = styled.input`
+const DefaultInput = css`
+  font-size: 1.1rem;
   width: 100%;
   display: block;
   padding: 0.7rem 0.8rem;
@@ -35,17 +41,12 @@ export const InputElement = styled.input`
   }
 `;
 
-export const TextareaElement = styled.textarea`
-  width: 100%;
-  display: block;
-  padding: 0.7rem 0.8rem;
-  background-color: ${({ hasError }) =>
-    hasError ? 'rgba(252,76,76, 0.2)' : 'rgba(163, 164, 207, 0.2)'};
-  border-radius: 3px;
+export const InputElement = styled.input`
+  ${DefaultInput};
+`;
 
-  &:focus + ${InputBorder} {
-    width: 100%;
-  }
+export const TextareaElement = styled.textarea`
+  ${DefaultInput};
 `;
 
 export const InputError = styled.div`
@@ -60,7 +61,7 @@ export const InputError = styled.div`
 export const InputErrorMessage = styled.p`
   position: absolute;
   right: 0;
-  top: 0;
+  top: ${({ isFileType }) => (isFileType ? '50%' : 0)};
   background-color: #fc4c4c;
   padding: 0.2rem 0.8rem;
   font-size: 0.8rem;
@@ -80,7 +81,7 @@ export const InputErrorIcon = styled.span`
 
 export const InputInfo = styled.p`
   margin-top: 0.3rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 export const InputFileContainer = styled.div`
@@ -129,4 +130,14 @@ export const InputFilePreview = styled.img`
   height: 100%;
   display: block;
   object-fit: cover;
+`;
+
+export const InputLabelIcon = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  display: ${({ isVisible }) => (isVisible ? 'flex' : 'none')};
+  color: ${({ theme }) => theme.colors.primaryDark};
 `;

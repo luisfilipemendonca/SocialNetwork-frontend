@@ -25,9 +25,9 @@ const WorldPage = () => {
   const { currentPage, infiniteScrollRef } = useInfiniteScroll();
   const dispatch = useDispatch();
 
-  const closeModal = (wasUpdated = false) => {
-    if (!wasUpdated) {
-      dispatch(updateUserPhoto({}, false));
+  const closeModal = (value = false) => {
+    if (!value) {
+      dispatch(updateUserPhoto('', false));
     }
     setShowModal(false);
   };

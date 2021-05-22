@@ -11,6 +11,7 @@ import { updateUserPhoto } from '../../store/actions/user';
 
 import Form from '../../components/Form';
 import Input from '../../components/Inputs';
+import { SecondaryButton } from '../../components/BaseButton/styled';
 
 const FormProfilePicture = ({ closeHandler }) => {
   const { isComponentLoading } = useSelector((state) => state.loading);
@@ -33,9 +34,9 @@ const FormProfilePicture = ({ closeHandler }) => {
   };
 
   const aditionalBtn = (
-    <button type="button" onClick={closeHandler}>
+    <SecondaryButton type="button" onClick={() => closeHandler(false)}>
       Close
-    </button>
+    </SecondaryButton>
   );
 
   return (

@@ -62,12 +62,14 @@ const FormAddPost = () => {
             errorMsg,
             type,
             isMultiple,
+            info,
           }) => (
             <Input
               key={id}
               id={id}
               placeholder={placeholder}
               label={label}
+              info={info}
               value={value}
               hasError={hasError}
               errorMsg={errorMsg}

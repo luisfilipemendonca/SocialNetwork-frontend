@@ -30,8 +30,6 @@ const Post = ({
 }) => {
   const [isCommentsOpen, setIsCommentsOpen] = useState(false);
 
-  console.log(id);
-
   const toggleCommentsVisibility = () =>
     setIsCommentsOpen((prevState) => !prevState);
 
@@ -73,6 +71,7 @@ const Post = ({
         liked={liked || alreadyLiked}
         toggleCommentsVisibility={toggleCommentsVisibility}
         isProfile={isProfile}
+        isOpen={isCommentsOpen}
       />
     </PostContainer>
   );

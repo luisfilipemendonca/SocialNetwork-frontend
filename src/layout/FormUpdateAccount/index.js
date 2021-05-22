@@ -65,7 +65,16 @@ const FormUpdatedAccount = () => {
         isLoading={isComponentLoading}
       >
         {inputs.map(
-          ({ id, placeholder, label, value, hasError, errorMsg, type }) => (
+          ({
+            id,
+            placeholder,
+            label,
+            value,
+            hasError,
+            errorMsg,
+            type,
+            info,
+          }) => (
             <Input
               key={id}
               id={id}
@@ -74,6 +83,7 @@ const FormUpdatedAccount = () => {
               value={value}
               hasError={hasError}
               errorMsg={errorMsg}
+              info={info}
               type={type}
               changeHandler={changeHandler}
               focusHandler={focusHandler}

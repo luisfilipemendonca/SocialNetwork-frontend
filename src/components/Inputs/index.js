@@ -34,10 +34,12 @@ const Input = ({
       <InputFile
         id={id}
         type={type}
+        label={label}
         hasError={hasError}
         value={value}
         errorMsg={errorMsg}
         isMultiple={isMultiple}
+        info={info}
         focusHandler={focusHandler}
         changeHandler={changeHandler}
       />
@@ -51,6 +53,7 @@ const Input = ({
       <Textarea
         id={id}
         hasError={hasError}
+        info={info}
         placeholder={placeholder}
         changeHandler={changeHandler}
         focusHandler={focusHandler}
@@ -62,6 +65,7 @@ const Input = ({
       <InputNormal
         id={id}
         hasError={hasError}
+        info={info}
         placeholder={placeholder}
         type={type}
         changeHandler={changeHandler}

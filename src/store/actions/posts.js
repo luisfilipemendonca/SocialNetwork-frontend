@@ -92,11 +92,8 @@ export const getPost = (postId) => async (dispatch) => {
   }
 };
 
-export const clearPost = (page) => (dispatch) => {
-  console.log(page);
-
+export const clearPost = () => (dispatch) =>
   dispatch({ type: actionTypes.CLEAR_POST });
-};
 
 export const addComment = (data, postId, isProfile = false) => async (
   dispatch
