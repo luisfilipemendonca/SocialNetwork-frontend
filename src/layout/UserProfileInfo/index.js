@@ -80,7 +80,7 @@ const UserProfileInfo = ({
           </UserFollow>
         </UserFollowers>
       </UserData>
-      <UserCta>
+      <UserCta isNotUserProfile={!!id}>
         {id ? (
           <PrimaryButton type="button" onClick={followerHandler}>
             {isFollowing ? 'Unfollow' : 'Follow'}

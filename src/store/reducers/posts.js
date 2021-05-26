@@ -110,7 +110,7 @@ const fetchComments = (state, payload) => {
   const updatedState = { ...state };
 
   if (isProfile) {
-    updatedState.posts = fetchCommentsHandler({
+    updatedState.selectedPost = fetchCommentsHandler({
       state: updatedState.selectedPost,
       postIdx: 0,
       comments,
@@ -152,11 +152,20 @@ const addComment = (state, payload) => {
   const updatedState = { ...state };
 
   if (isProfile) {
-    addCommentHandler({ state: updatedState.posts, postIdx: 0, comment });
+    updatedState.selectedPost = addCommentHandler({
+      state: updatedState.selectedPost,
+      postIdx: 0,
+      comment,
+    });
   } else {
     const postIdx = updatedState.posts.findIndex((post) => post.id === postId);
-    addCommentHandler({ state: updatedState.posts, postIdx, comment });
+    updatedState.posts = addCommentHandler({
+      state: updatedState.posts,
+      postIdx,
+      comment,
+    });
   }
+
   return updatedState;
 };
 

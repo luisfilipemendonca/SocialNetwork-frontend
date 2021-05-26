@@ -69,7 +69,7 @@ const PostComments = ({
   return (
     <PostCommentsContainer>
       <PostCommentsHeader>Comments</PostCommentsHeader>
-      {!comments?.length && currentPage >= 1 && !isComponentLoading && (
+      {!comments?.length && currentPage <= 1 && !isComponentLoading && (
         <PostCommentsEmpty>This post dont have comments</PostCommentsEmpty>
       )}
       <PostCommentsContent ref={rootRef}>

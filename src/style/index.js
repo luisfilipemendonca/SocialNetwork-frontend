@@ -50,6 +50,7 @@ export default createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: ${({ theme }) => theme.typography.colors.textLight};
   }
 
   button,
@@ -108,4 +109,9 @@ export const PostsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const NoPostsText = styled.p`
+  margin: 0 auto;
+  text-align: center;
 `;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { MainSection, PostsContainer } from '../style';
+import { MainSection, PostsContainer, NoPostsText } from '../style';
 
 import { fetchPosts, clearPost } from '../store/actions/posts';
 
@@ -69,9 +69,9 @@ const FollowingPage = () => {
           </PostsContainer>
         )}
         {isPostsFetched && !posts.length && (
-          <div>There are no posts to show</div>
+          <NoPostsText>There are no posts to show</NoPostsText>
         )}
-        {(hasMorePosts || currentPage === 0) && (
+        {(hasMorePosts || currentPage <= 1) && (
           <div ref={infiniteScrollRef}>{currentPage > 1 && <Spinner />}</div>
         )}
       </MainSection>
